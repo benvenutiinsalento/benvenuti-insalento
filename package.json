@@ -1,0 +1,23 @@
+{
+  "name": "benvenuti-in-salento-netlify",
+  "version": "13.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "npm run check && npm test && node scripts/build-static.mjs",
+    "dev": "netlify dev",
+    "dev:qa": "node scripts/qa-server.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "check": "node scripts/check-project.mjs",
+    "db:migrate": "node scripts/db-run-sql.mjs supabase/migrations",
+    "db:seed": "node scripts/db-run-sql.mjs supabase/seeds",
+    "db:check": "node scripts/check-database.mjs",
+    "seeds:generate": "node scripts/generate-seeds.mjs"
+  },
+  "dependencies": {
+    "pg": "8.22.0"
+  },
+  "devDependencies": {
+    "netlify-cli": "^27.0.1"
+  }
+}

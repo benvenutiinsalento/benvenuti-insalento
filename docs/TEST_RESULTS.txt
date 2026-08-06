@@ -1,0 +1,22 @@
+Benvenuti in Salento — Netlify v12
+Data collaudo: 4 agosto 2026
+
+- Build di produzione: superata
+- Moduli Netlify verificati: 32
+- Test automatici: 31/31 superati
+- Comuni disponibili nel filtro: 96
+- Ricerca iniziale: funzionante
+- Filtri data, Comune, categoria, testo e distanza: funzionanti
+- Oggi, Stasera, Domani, Weekend e 7 giorni: funzionanti
+- Geolocalizzazione: richiesta solo dopo azione dell'utente
+- Distanze: assenti senza consenso; calcolate dopo il consenso
+- Ripristino filtri: funzionante
+- Archivio verificato di emergenza: funzionante
+- Testi tecnici nella pagina pubblica: assenti
+- Layout responsive: regole dedicate per desktop, tablet e smartphone
+
+Casi dati controllati:
+- MEDinFEST: 8–9 agosto 2026
+- Sagra dell'Anguria, Botrugno: solo 17 agosto 2026
+- Alex Britti, Botrugno: 27 agosto 2026
+- Sant'Oronzo, Lecce: 23–27 agosto 2026

@@ -1,0 +1,716 @@
+[
+  {
+    "name": "Pro Loco Campi Salentina",
+    "municipality": "Campi Salentina",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/x-comitato-provinciale-lecce/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Carmiano Magliano",
+    "municipality": "Carmiano",
+    "locality": "Magliano",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/x-comitato-provinciale-lecce/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Casalabate — Marina di Squinzano",
+    "municipality": "Squinzano",
+    "locality": "Casalabate",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/x-comitato-provinciale-lecce/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Casalabate — Marina di Trepuzzi",
+    "municipality": "Trepuzzi",
+    "locality": "Casalabate",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/x-comitato-provinciale-lecce/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Cavallino-Castromediano",
+    "municipality": "Cavallino",
+    "locality": "Castromediano",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/x-comitato-provinciale-lecce/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Guagnano",
+    "municipality": "Guagnano",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/x-comitato-provinciale-lecce/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Lecce",
+    "municipality": "Lecce",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/x-comitato-provinciale-lecce/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Lequile Leculo",
+    "municipality": "Lequile",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/x-comitato-provinciale-lecce/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Monteroni di Lecce",
+    "municipality": "Monteroni di Lecce",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/x-comitato-provinciale-lecce/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Novoli",
+    "municipality": "Novoli",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/x-comitato-provinciale-lecce/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Nuova Pro Loco Acaya",
+    "municipality": "Vernole",
+    "locality": "Acaya",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/x-comitato-provinciale-lecce/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Porto Cesareo",
+    "municipality": "Porto Cesareo",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/x-comitato-provinciale-lecce/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Salice Salentino",
+    "municipality": "Salice Salentino",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/x-comitato-provinciale-lecce/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco San Cataldo La Rotonda",
+    "municipality": "Lecce",
+    "locality": "San Cataldo",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/x-comitato-provinciale-lecce/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco San Donato di Lecce Galugnano",
+    "municipality": "San Donato di Lecce",
+    "locality": "Galugnano",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/x-comitato-provinciale-lecce/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco San Pietro in Lama",
+    "municipality": "San Pietro in Lama",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/x-comitato-provinciale-lecce/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Spiaggiabella",
+    "municipality": "Lecce",
+    "locality": "Spiaggiabella",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/x-comitato-provinciale-lecce/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Squinzano",
+    "municipality": "Squinzano",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/x-comitato-provinciale-lecce/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Torre Lapillo",
+    "municipality": "Porto Cesareo",
+    "locality": "Torre Lapillo",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/x-comitato-provinciale-lecce/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Veglie",
+    "municipality": "Veglie",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/x-comitato-provinciale-lecce/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Villa Baldassarri",
+    "municipality": "Guagnano",
+    "locality": "Villa Baldassarri",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/x-comitato-provinciale-lecce/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Acquarica di Lecce",
+    "municipality": "Vernole",
+    "locality": "Acquarica di Lecce",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xi-delegazione-grecia-salentina/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Borgagne",
+    "municipality": "Melendugno",
+    "locality": "Borgagne",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xi-delegazione-grecia-salentina/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Carpignano Salentino",
+    "municipality": "Carpignano Salentino",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xi-delegazione-grecia-salentina/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Castrì di Lecce",
+    "municipality": "Castrì di Lecce",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xi-delegazione-grecia-salentina/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Cerceto-Cannole",
+    "municipality": "Cannole",
+    "locality": "Cerceto",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xi-delegazione-grecia-salentina/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Corigliano d’Otranto",
+    "municipality": "Corigliano d’Otranto",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xi-delegazione-grecia-salentina/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Cursi",
+    "municipality": "Cursi",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xi-delegazione-grecia-salentina/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Cutrofiano",
+    "municipality": "Cutrofiano",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xi-delegazione-grecia-salentina/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Kalimera",
+    "municipality": "Calimera",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xi-delegazione-grecia-salentina/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Martano",
+    "municipality": "Martano",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xi-delegazione-grecia-salentina/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Martignano",
+    "municipality": "Martignano",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xi-delegazione-grecia-salentina/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Melpignano",
+    "municipality": "Melpignano",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xi-delegazione-grecia-salentina/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Palmariggi-Montevergine",
+    "municipality": "Palmariggi",
+    "locality": "Montevergine",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xi-delegazione-grecia-salentina/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Serrano",
+    "municipality": "Carpignano Salentino",
+    "locality": "Serrano",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xi-delegazione-grecia-salentina/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Sogliano Cavour",
+    "municipality": "Sogliano Cavour",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xi-delegazione-grecia-salentina/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Soleto",
+    "municipality": "Soleto",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xi-delegazione-grecia-salentina/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Sternatia APS",
+    "municipality": "Sternatia",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xi-delegazione-grecia-salentina/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Strudà",
+    "municipality": "Vernole",
+    "locality": "Strudà",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xi-delegazione-grecia-salentina/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Terre di Melendugno",
+    "municipality": "Melendugno",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xi-delegazione-grecia-salentina/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Terre di San Foca",
+    "municipality": "Melendugno",
+    "locality": "San Foca",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xi-delegazione-grecia-salentina/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Torre dell’Orso",
+    "municipality": "Melendugno",
+    "locality": "Torre dell’Orso",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xi-delegazione-grecia-salentina/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Vernole",
+    "municipality": "Vernole",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xi-delegazione-grecia-salentina/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Zollino",
+    "municipality": "Zollino",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xi-delegazione-grecia-salentina/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Acquaviva di Marittima APS",
+    "municipality": "Diso",
+    "locality": "Acquaviva di Marittima",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xii-delegazione-messapia/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Andrano",
+    "municipality": "Andrano",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xii-delegazione-messapia/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Bagnolo del Salento",
+    "municipality": "Bagnolo del Salento",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xii-delegazione-messapia/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Castro",
+    "municipality": "Castro",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xii-delegazione-messapia/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Giurdignano Sant’Arcangelo de Casulis",
+    "municipality": "Giurdignano",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xii-delegazione-messapia/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Ippocampo-Vignacastrisi",
+    "municipality": "Ortelle",
+    "locality": "Vignacastrisi",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xii-delegazione-messapia/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Maglie Avv. Luigi Puzzovio",
+    "municipality": "Maglie",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xii-delegazione-messapia/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Minervino di Lecce Minerva",
+    "municipality": "Minervino di Lecce",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xii-delegazione-messapia/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Nociglia Farnese",
+    "municipality": "Nociglia",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xii-delegazione-messapia/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Poggiardo",
+    "municipality": "Poggiardo",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xii-delegazione-messapia/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Porto Badisco",
+    "municipality": "Otranto",
+    "locality": "Porto Badisco",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xii-delegazione-messapia/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Otranto",
+    "municipality": "Otranto",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xii-delegazione-messapia/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco San Cassiano",
+    "municipality": "San Cassiano",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xii-delegazione-messapia/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Sanarica",
+    "municipality": "Sanarica",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xii-delegazione-messapia/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Santa Cesarea Terme",
+    "municipality": "Santa Cesarea Terme",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xii-delegazione-messapia/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Scorrano",
+    "municipality": "Scorrano",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xii-delegazione-messapia/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Spongano",
+    "municipality": "Spongano",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xii-delegazione-messapia/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Surano",
+    "municipality": "Surano",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xii-delegazione-messapia/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Uggiano la Chiesa e Casamassella",
+    "municipality": "Uggiano la Chiesa",
+    "locality": "Casamassella",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xii-delegazione-messapia/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Acquarica del Capo",
+    "municipality": "Presicce-Acquarica",
+    "locality": "Acquarica del Capo",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xiii-delegazione-finibus-terrae/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Alessano",
+    "municipality": "Alessano",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xiii-delegazione-finibus-terrae/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Alliste-Felline",
+    "municipality": "Alliste",
+    "locality": "Felline",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xiii-delegazione-finibus-terrae/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Corsano",
+    "municipality": "Corsano",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xiii-delegazione-finibus-terrae/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Depressa",
+    "municipality": "Tricase",
+    "locality": "Depressa",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xiii-delegazione-finibus-terrae/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Gagliano del Capo",
+    "municipality": "Gagliano del Capo",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xiii-delegazione-finibus-terrae/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Gemini-Torre San Giovanni-Torre Mozza Beach",
+    "municipality": "Ugento",
+    "locality": "Gemini / Torre San Giovanni / Torre Mozza",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xiii-delegazione-finibus-terrae/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Leuca",
+    "municipality": "Castrignano del Capo",
+    "locality": "Santa Maria di Leuca",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xiii-delegazione-finibus-terrae/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Lido Marini",
+    "municipality": "Ugento",
+    "locality": "Lido Marini",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xiii-delegazione-finibus-terrae/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Miggiano",
+    "municipality": "Miggiano",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xiii-delegazione-finibus-terrae/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Montesano Salentino",
+    "municipality": "Montesano Salentino",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xiii-delegazione-finibus-terrae/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Patù",
+    "municipality": "Patù",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xiii-delegazione-finibus-terrae/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Presicce",
+    "municipality": "Presicce-Acquarica",
+    "locality": "Presicce",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xiii-delegazione-finibus-terrae/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Ruffano",
+    "municipality": "Ruffano",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xiii-delegazione-finibus-terrae/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Salve, Ruggiano e Marine",
+    "municipality": "Salve",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xiii-delegazione-finibus-terrae/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Specchia",
+    "municipality": "Specchia",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xiii-delegazione-finibus-terrae/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Supersano",
+    "municipality": "Supersano",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xiii-delegazione-finibus-terrae/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Taurisano",
+    "municipality": "Taurisano",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xiii-delegazione-finibus-terrae/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Tiggiano",
+    "municipality": "Tiggiano",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xiii-delegazione-finibus-terrae/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Torre Vado",
+    "municipality": "Morciano di Leuca",
+    "locality": "Torre Vado",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xiii-delegazione-finibus-terrae/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Tricase",
+    "municipality": "Tricase",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xiii-delegazione-finibus-terrae/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Ugento e Marine",
+    "municipality": "Ugento",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xiii-delegazione-finibus-terrae/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Alezio",
+    "municipality": "Alezio",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xiv-delegazione-ionica-terrae-salentine/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Nuova Pro Loco Aradeo",
+    "municipality": "Aradeo",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xiv-delegazione-ionica-terrae-salentine/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Capilungo APS",
+    "municipality": "Alliste",
+    "locality": "Capilungo",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xiv-delegazione-ionica-terrae-salentine/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Copertino F. Verdesca",
+    "municipality": "Copertino",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xiv-delegazione-ionica-terrae-salentine/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Galatina",
+    "municipality": "Galatina",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xiv-delegazione-ionica-terrae-salentine/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Galatone",
+    "municipality": "Galatone",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xiv-delegazione-ionica-terrae-salentine/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Gallipoli",
+    "municipality": "Gallipoli",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xiv-delegazione-ionica-terrae-salentine/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Leverano",
+    "municipality": "Leverano",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xiv-delegazione-ionica-terrae-salentine/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Lido Conchiglie-Sannicola",
+    "municipality": "Sannicola",
+    "locality": "Lido Conchiglie",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xiv-delegazione-ionica-terrae-salentine/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Marina di Sant’Isidoro",
+    "municipality": "Nardò",
+    "locality": "Sant’Isidoro",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xiv-delegazione-ionica-terrae-salentine/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Matino Sant’Ermete",
+    "municipality": "Matino",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xiv-delegazione-ionica-terrae-salentine/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Melissano",
+    "municipality": "Melissano",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xiv-delegazione-ionica-terrae-salentine/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Nardò e Terra d’Arneo",
+    "municipality": "Nardò",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xiv-delegazione-ionica-terrae-salentine/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Neviano",
+    "municipality": "Neviano",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xiv-delegazione-ionica-terrae-salentine/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Seclì",
+    "municipality": "Seclì",
+    "locality": "",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xiv-delegazione-ionica-terrae-salentine/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Taviano Mancaversa APS",
+    "municipality": "Taviano",
+    "locality": "Marina di Mancaversa",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xiv-delegazione-ionica-terrae-salentine/",
+    "status": "candidate_from_unpli_registry"
+  },
+  {
+    "name": "Pro Loco Torre Suda",
+    "municipality": "Racale",
+    "locality": "Torre Suda",
+    "registryUrl": "https://www.prolocopuglia.it/delegazioni/xiv-delegazione-ionica-terrae-salentine/",
+    "status": "candidate_from_unpli_registry"
+  }
+]

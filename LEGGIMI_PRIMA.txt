@@ -1,0 +1,35 @@
+BENVENUTI IN SALENTO — VERSIONE NETLIFY v12 DEFINITIVA
+
+QUESTO È IL PACCHETTO COMPLETO, NON UNA DEMO.
+
+COME PUBBLICARLO
+1. Conserva lo ZIP della versione attualmente online, per poter tornare indietro.
+2. Estrai questo ZIP.
+3. Accedi a Netlify con il tuo account e apri il progetto di benvenutiinsalento.it.
+4. In Deploys trascina la CARTELLA ESTRATTA completa, non il solo file ZIP e non la cartella dist.
+5. Attendi che la pubblicazione sia completata.
+6. Apri https://benvenutiinsalento.it/eventi
+
+NON DEVI MODIFICARE FILE O CODICE.
+
+COSA TROVA L'UTENTE
+- interfaccia pubblica pulita e coordinata con il sito;
+- risultati già visibili al primo accesso;
+- Oggi, Stasera, Domani, Weekend e 7 giorni;
+- ricerca per testo, Comune, categoria e date;
+- pulsante "Trova eventi vicino a me" con richiesta del consenso del browser;
+- ricerca entro 5, 10, 25 o 50 km;
+- schede evento e collegamento al programma.
+
+COSA PARTE SUL DEPLOY PUBBLICATO
+- controllo delle fonti ogni ora;
+- ricerca di nuove fonti e calendari ogni 6 ore;
+- aggiornamento della copertura ogni giorno;
+- database Netlify e migrazioni automatiche.
+
+IMPORTANTE
+La posizione funziona sul dominio HTTPS pubblicato. Il browser chiederà il consenso all'utente e il sito non memorizza le coordinate.
+Le funzioni programmate vengono eseguite solo sul deploy pubblicato. Nel pannello Netlify, la sezione Functions deve mostrare il badge Scheduled.
+
+BACKOFFICE FACOLTATIVO
+La pagina pubblica non richiede configurazioni manuali. Soltanto per usare /admin-eventi.html bisogna impostare un ADMIN_TOKEN lungo e segreto nelle variabili d'ambiente Netlify. Non inserirlo nei file.

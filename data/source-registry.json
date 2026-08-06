@@ -1,0 +1,236 @@
+{
+  "policyVersion": "2026-08-01",
+  "publicationPolicy": {
+    "autoPublishMaxPriority": 4,
+    "requiredFields": [
+      "title",
+      "startDate",
+      "town",
+      "sourceUrl"
+    ],
+    "secondarySourcesRequireReview": true,
+    "oldYearInferenceForbidden": true
+  },
+  "coreSources": [
+    {
+      "key": "regione-puglia-eventi-json",
+      "entityName": "Regione Puglia — Cosa fare in Puglia",
+      "sourceType": "regional_open_data",
+      "url": "https://osservatorio.dms.puglia.it/opendata/puglia_eventi_attivita/eventi_attivita.json",
+      "priority": 2,
+      "parserType": "puglia_json",
+      "active": true,
+      "discoveryOnly": false,
+      "crawlPolicy": "open_data"
+    },
+    {
+      "key": "ipa-enti",
+      "entityName": "Indice delle Pubbliche Amministrazioni — Enti",
+      "sourceType": "official_registry",
+      "url": "https://indicepa.gov.it/ipa-dati/api/3/action/datastore_search?resource_id=d09adf99-dc10-4349-8c53-27b1e5aa97b6&limit=50000",
+      "priority": 1,
+      "parserType": "ipa_entities",
+      "active": true,
+      "discoveryOnly": true,
+      "crawlPolicy": "open_data"
+    },
+    {
+      "key": "regione-puglia-albo-pro-loco",
+      "entityName": "Regione Puglia — Albo regionale Pro Loco",
+      "sourceType": "official_registry",
+      "url": "https://www.regione.puglia.it/web/turismo/albo-pro-loco",
+      "priority": 2,
+      "parserType": "pro_loco_registry",
+      "active": true,
+      "discoveryOnly": true,
+      "crawlPolicy": "public_page"
+    },
+    {
+      "key": "unpli-puglia",
+      "entityName": "UNPLI Puglia",
+      "sourceType": "pro_loco_network",
+      "url": "https://www.prolocopuglia.it/",
+      "priority": 3,
+      "parserType": "organization_discovery",
+      "active": true,
+      "discoveryOnly": true,
+      "crawlPolicy": "public_page"
+    },
+    {
+      "key": "unpli-lecce-x",
+      "entityName": "UNPLI X Delegazione Lecce",
+      "sourceType": "pro_loco_registry",
+      "url": "https://www.prolocopuglia.it/delegazioni/x-comitato-provinciale-lecce/",
+      "priority": 3,
+      "parserType": "organization_discovery",
+      "active": true,
+      "discoveryOnly": true,
+      "crawlPolicy": "public_page"
+    },
+    {
+      "key": "unpli-grecia-xi",
+      "entityName": "UNPLI XI Delegazione Grecia Salentina",
+      "sourceType": "pro_loco_registry",
+      "url": "https://www.prolocopuglia.it/delegazioni/xi-delegazione-grecia-salentina/",
+      "priority": 3,
+      "parserType": "organization_discovery",
+      "active": true,
+      "discoveryOnly": true,
+      "crawlPolicy": "public_page"
+    },
+    {
+      "key": "unpli-messapia-xii",
+      "entityName": "UNPLI XII Delegazione Messapia",
+      "sourceType": "pro_loco_registry",
+      "url": "https://www.prolocopuglia.it/delegazioni/xii-delegazione-messapia/",
+      "priority": 3,
+      "parserType": "organization_discovery",
+      "active": true,
+      "discoveryOnly": true,
+      "crawlPolicy": "public_page"
+    },
+    {
+      "key": "unpli-finibus-xiii",
+      "entityName": "UNPLI XIII Delegazione Finibus Terrae",
+      "sourceType": "pro_loco_registry",
+      "url": "https://www.prolocopuglia.it/delegazioni/xiii-delegazione-finibus-terrae/",
+      "priority": 3,
+      "parserType": "organization_discovery",
+      "active": true,
+      "discoveryOnly": true,
+      "crawlPolicy": "public_page"
+    },
+    {
+      "key": "unpli-ionica-xiv",
+      "entityName": "UNPLI XIV Delegazione Ionica Terrae Salentine",
+      "sourceType": "pro_loco_registry",
+      "url": "https://www.prolocopuglia.it/delegazioni/xiv-delegazione-ionica-terrae-salentine/",
+      "priority": 3,
+      "parserType": "organization_discovery",
+      "active": true,
+      "discoveryOnly": true,
+      "crawlPolicy": "public_page"
+    },
+    {
+      "key": "puglia-culture-eventi",
+      "entityName": "Puglia Culture",
+      "sourceType": "regional_cultural_portal",
+      "url": "https://www.pugliaculture.it/ricerca-eventi/",
+      "priority": 3,
+      "parserType": "generic_html",
+      "active": true,
+      "discoveryOnly": false,
+      "crawlPolicy": "public_page"
+    },
+    {
+      "key": "provincia-lecce",
+      "entityName": "Provincia di Lecce",
+      "sourceType": "province",
+      "url": "https://www.provincia.le.it/",
+      "priority": 2,
+      "parserType": "municipal_discovery",
+      "active": true,
+      "discoveryOnly": true,
+      "crawlPolicy": "public_page"
+    },
+    {
+      "key": "arcidiocesi-lecce",
+      "entityName": "Arcidiocesi di Lecce",
+      "sourceType": "diocese",
+      "url": "https://www.diocesilecce.org/",
+      "priority": 3,
+      "parserType": "religious_discovery",
+      "active": true,
+      "discoveryOnly": true,
+      "crawlPolicy": "public_page"
+    },
+    {
+      "key": "arcidiocesi-otranto",
+      "entityName": "Arcidiocesi di Otranto",
+      "sourceType": "diocese",
+      "url": "https://www.diocesiotranto.it/",
+      "priority": 3,
+      "parserType": "religious_discovery",
+      "active": true,
+      "discoveryOnly": true,
+      "crawlPolicy": "public_page"
+    },
+    {
+      "key": "diocesi-nardo-gallipoli",
+      "entityName": "Diocesi di Nardò-Gallipoli",
+      "sourceType": "diocese",
+      "url": "https://www.diocesinardogallipoli.it/",
+      "priority": 3,
+      "parserType": "religious_discovery",
+      "active": true,
+      "discoveryOnly": true,
+      "crawlPolicy": "public_page"
+    },
+    {
+      "key": "diocesi-ugento-leuca",
+      "entityName": "Diocesi di Ugento-Santa Maria di Leuca",
+      "sourceType": "diocese",
+      "url": "https://www.diocesiugento.org/",
+      "priority": 3,
+      "parserType": "religious_discovery",
+      "active": true,
+      "discoveryOnly": true,
+      "crawlPolicy": "public_page"
+    },
+    {
+      "key": "portalecce-eventi-religiosi",
+      "entityName": "Portalecce — informazione dell'Arcidiocesi di Lecce",
+      "sourceType": "diocesan_news",
+      "url": "https://www.portalecce.it/",
+      "priority": 3,
+      "parserType": "religious_discovery",
+      "active": true,
+      "discoveryOnly": true,
+      "crawlPolicy": "public_page"
+    },
+    {
+      "key": "arcidiocesi-lecce-parrocchie",
+      "entityName": "Arcidiocesi di Lecce — Parrocchie e Vicarie",
+      "sourceType": "parish_directory",
+      "url": "https://www.diocesilecce.org/diocesi-di-lecce/parrocchie/",
+      "priority": 3,
+      "parserType": "religious_discovery",
+      "active": true,
+      "discoveryOnly": true,
+      "crawlPolicy": "public_page"
+    },
+    {
+      "key": "arcidiocesi-otranto-parrocchie",
+      "entityName": "Arcidiocesi di Otranto — Enti e Parrocchie",
+      "sourceType": "parish_directory",
+      "url": "https://www.diocesiotranto.it/wd-annuario-enti/",
+      "priority": 3,
+      "parserType": "religious_discovery",
+      "active": true,
+      "discoveryOnly": true,
+      "crawlPolicy": "public_page"
+    },
+    {
+      "key": "diocesi-nardo-gallipoli-parrocchie",
+      "entityName": "Diocesi di Nardò-Gallipoli — Parrocchie",
+      "sourceType": "parish_directory",
+      "url": "https://diocesinardogallipoli.it/parrocchie/",
+      "priority": 3,
+      "parserType": "religious_discovery",
+      "active": true,
+      "discoveryOnly": true,
+      "crawlPolicy": "public_page"
+    },
+    {
+      "key": "diocesi-ugento-leuca-parrocchie",
+      "entityName": "Diocesi di Ugento-Santa Maria di Leuca — Parrocchie",
+      "sourceType": "parish_directory",
+      "url": "https://diocesiugento.org/parrocchie-della-diocesi/",
+      "priority": 3,
+      "parserType": "religious_discovery",
+      "active": true,
+      "discoveryOnly": true,
+      "crawlPolicy": "public_page"
+    }
+  ]
+}

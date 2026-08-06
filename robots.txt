@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin-eventi.html
+Disallow: /api/admin/
+Sitemap: https://benvenutiinsalento.it/sitemap.xml
+Sitemap: https://benvenutiinsalento.it/sitemap-eventi.xml

@@ -1,0 +1,21 @@
+﻿Chiave;Ente;Tipo;URL;Priorita;Parser;Attiva;Solo_discovery;Politica_crawling
+regione-puglia-eventi-json;Regione Puglia — Cosa fare in Puglia;regional_open_data;https://osservatorio.dms.puglia.it/opendata/puglia_eventi_attivita/eventi_attivita.json;2;puglia_json;SI;NO;open_data
+ipa-enti;Indice delle Pubbliche Amministrazioni — Enti;official_registry;https://indicepa.gov.it/ipa-dati/api/3/action/datastore_search?resource_id=d09adf99-dc10-4349-8c53-27b1e5aa97b6&limit=50000;1;ipa_entities;SI;SI;open_data
+regione-puglia-albo-pro-loco;Regione Puglia — Albo regionale Pro Loco;official_registry;https://www.regione.puglia.it/web/turismo/albo-pro-loco;2;pro_loco_registry;SI;SI;public_page
+unpli-puglia;UNPLI Puglia;pro_loco_network;https://www.prolocopuglia.it/;3;organization_discovery;SI;SI;public_page
+unpli-lecce-x;UNPLI X Delegazione Lecce;pro_loco_registry;https://www.prolocopuglia.it/delegazioni/x-comitato-provinciale-lecce/;3;organization_discovery;SI;SI;public_page
+unpli-grecia-xi;UNPLI XI Delegazione Grecia Salentina;pro_loco_registry;https://www.prolocopuglia.it/delegazioni/xi-delegazione-grecia-salentina/;3;organization_discovery;SI;SI;public_page
+unpli-messapia-xii;UNPLI XII Delegazione Messapia;pro_loco_registry;https://www.prolocopuglia.it/delegazioni/xii-delegazione-messapia/;3;organization_discovery;SI;SI;public_page
+unpli-finibus-xiii;UNPLI XIII Delegazione Finibus Terrae;pro_loco_registry;https://www.prolocopuglia.it/delegazioni/xiii-delegazione-finibus-terrae/;3;organization_discovery;SI;SI;public_page
+unpli-ionica-xiv;UNPLI XIV Delegazione Ionica Terrae Salentine;pro_loco_registry;https://www.prolocopuglia.it/delegazioni/xiv-delegazione-ionica-terrae-salentine/;3;organization_discovery;SI;SI;public_page
+puglia-culture-eventi;Puglia Culture;regional_cultural_portal;https://www.pugliaculture.it/ricerca-eventi/;3;generic_html;SI;NO;public_page
+provincia-lecce;Provincia di Lecce;province;https://www.provincia.le.it/;2;municipal_discovery;SI;SI;public_page
+arcidiocesi-lecce;Arcidiocesi di Lecce;diocese;https://www.diocesilecce.org/;3;religious_discovery;SI;SI;public_page
+arcidiocesi-otranto;Arcidiocesi di Otranto;diocese;https://www.diocesiotranto.it/;3;religious_discovery;SI;SI;public_page
+diocesi-nardo-gallipoli;Diocesi di Nardò-Gallipoli;diocese;https://www.diocesinardogallipoli.it/;3;religious_discovery;SI;SI;public_page
+diocesi-ugento-leuca;Diocesi di Ugento-Santa Maria di Leuca;diocese;https://www.diocesiugento.org/;3;religious_discovery;SI;SI;public_page
+portalecce-eventi-religiosi;Portalecce — informazione dell'Arcidiocesi di Lecce;diocesan_news;https://www.portalecce.it/;3;religious_discovery;SI;SI;public_page
+arcidiocesi-lecce-parrocchie;Arcidiocesi di Lecce — Parrocchie e Vicarie;parish_directory;https://www.diocesilecce.org/diocesi-di-lecce/parrocchie/;3;religious_discovery;SI;SI;public_page
+arcidiocesi-otranto-parrocchie;Arcidiocesi di Otranto — Enti e Parrocchie;parish_directory;https://www.diocesiotranto.it/wd-annuario-enti/;3;religious_discovery;SI;SI;public_page
+diocesi-nardo-gallipoli-parrocchie;Diocesi di Nardò-Gallipoli — Parrocchie;parish_directory;https://diocesinardogallipoli.it/parrocchie/;3;religious_discovery;SI;SI;public_page
+diocesi-ugento-leuca-parrocchie;Diocesi di Ugento-Santa Maria di Leuca — Parrocchie;parish_directory;https://diocesiugento.org/parrocchie-della-diocesi/;3;religious_discovery;SI;SI;public_page

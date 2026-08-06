@@ -1,0 +1,1277 @@
+[
+  {
+    "name": "Alessano",
+    "slug": "alessano",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075002",
+    "latitude": 39.89381,
+    "longitude": 18.33221,
+    "coordsSource": "GeoNames (Alessano)",
+    "websiteCandidate": "https://www.comune.alessano.le.it/",
+    "aliases": [
+      "Montesardo"
+    ]
+  },
+  {
+    "name": "Alezio",
+    "slug": "alezio",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075003",
+    "latitude": 40.06226,
+    "longitude": 18.05712,
+    "coordsSource": "GeoNames (Alezio)",
+    "websiteCandidate": "https://www.comune.alezio.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Alliste",
+    "slug": "alliste",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075004",
+    "latitude": 39.94803,
+    "longitude": 18.08971,
+    "coordsSource": "GeoNames (Alliste)",
+    "websiteCandidate": "https://www.comune.alliste.le.it/",
+    "aliases": [
+      "Felline",
+      "Capilungo",
+      "Posto Rosso"
+    ]
+  },
+  {
+    "name": "Andrano",
+    "slug": "andrano",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075005",
+    "latitude": 39.98546,
+    "longitude": 18.38232,
+    "coordsSource": "GeoNames (Andrano)",
+    "websiteCandidate": "https://www.comune.andrano.le.it/",
+    "aliases": [
+      "Castiglione d’Otranto",
+      "Marina di Andrano"
+    ]
+  },
+  {
+    "name": "Aradeo",
+    "slug": "aradeo",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075006",
+    "latitude": 40.12921,
+    "longitude": 18.12951,
+    "coordsSource": "GeoNames (Aradeo)",
+    "websiteCandidate": "https://www.comune.aradeo.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Arnesano",
+    "slug": "arnesano",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075007",
+    "latitude": 40.33679,
+    "longitude": 18.09145,
+    "coordsSource": "GeoNames (Arnesano)",
+    "websiteCandidate": "https://www.comune.arnesano.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Bagnolo del Salento",
+    "slug": "bagnolo-del-salento",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075008",
+    "latitude": 40.14908,
+    "longitude": 18.35208,
+    "coordsSource": "GeoNames (Bagnolo del Salento)",
+    "websiteCandidate": "https://www.comune.bagnolodelsalento.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Botrugno",
+    "slug": "botrugno",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075009",
+    "latitude": 40.06359,
+    "longitude": 18.32254,
+    "coordsSource": "GeoNames (Botrugno)",
+    "websiteCandidate": "https://www.comune.botrugno.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Calimera",
+    "slug": "calimera",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075010",
+    "latitude": 40.24948,
+    "longitude": 18.27982,
+    "coordsSource": "GeoNames (Calimera)",
+    "websiteCandidate": "https://www.comune.calimera.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Campi Salentina",
+    "slug": "campi-salentina",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075011",
+    "latitude": 40.39747,
+    "longitude": 18.02141,
+    "coordsSource": "GeoNames (Campi Salentina)",
+    "websiteCandidate": "https://www.comune.campisalentina.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Cannole",
+    "slug": "cannole",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075012",
+    "latitude": 40.16592,
+    "longitude": 18.36456,
+    "coordsSource": "GeoNames (Cannole)",
+    "websiteCandidate": "https://www.comune.cannole.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Caprarica di Lecce",
+    "slug": "caprarica-di-lecce",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075013",
+    "latitude": 40.2606,
+    "longitude": 18.24426,
+    "coordsSource": "GeoNames (Caprarica di Lecce)",
+    "websiteCandidate": "https://www.comune.capraricadilecce.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Carmiano",
+    "slug": "carmiano",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075014",
+    "latitude": 40.34404,
+    "longitude": 18.04195,
+    "coordsSource": "GeoNames (Carmiano)",
+    "websiteCandidate": "https://www.comune.carmiano.le.it/",
+    "aliases": [
+      "Magliano"
+    ]
+  },
+  {
+    "name": "Carpignano Salentino",
+    "slug": "carpignano-salentino",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075015",
+    "latitude": 40.19537,
+    "longitude": 18.33826,
+    "coordsSource": "GeoNames (Carpignano Salentino)",
+    "websiteCandidate": "https://www.comune.carpignanosalentino.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Casarano",
+    "slug": "casarano",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075016",
+    "latitude": 40.01131,
+    "longitude": 18.16237,
+    "coordsSource": "GeoNames (Casarano)",
+    "websiteCandidate": "https://www.comune.casarano.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Castrignano del Capo",
+    "slug": "castrignano-del-capo",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075019",
+    "latitude": 39.8328,
+    "longitude": 18.35087,
+    "coordsSource": "GeoNames (Castrignano del Capo)",
+    "websiteCandidate": "https://www.comune.castrignanodelcapo.le.it/",
+    "aliases": [
+      "Santa Maria di Leuca"
+    ]
+  },
+  {
+    "name": "Castrignano de’ Greci",
+    "slug": "castrignano-de-greci",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075018",
+    "latitude": 40.17342,
+    "longitude": 18.29643,
+    "coordsSource": "GeoNames (Castrignano De' Greci)",
+    "websiteCandidate": "https://www.comune.castrignanodeigreci.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Castro",
+    "slug": "castro",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075096",
+    "latitude": 40.00702,
+    "longitude": 18.42573,
+    "coordsSource": "GeoNames (Castro)",
+    "websiteCandidate": "https://www.comune.castro.le.it/",
+    "aliases": [
+      "Castro Marina"
+    ]
+  },
+  {
+    "name": "Castrì di Lecce",
+    "slug": "castri-di-lecce",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075017",
+    "latitude": 40.2736,
+    "longitude": 18.2624,
+    "coordsSource": "GeoNames (Castri di Lecce)",
+    "websiteCandidate": "https://www.comune.castridilecce.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Cavallino",
+    "slug": "cavallino",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075020",
+    "latitude": 40.3102,
+    "longitude": 18.20221,
+    "coordsSource": "GeoNames (Cavallino)",
+    "websiteCandidate": "https://www.comune.cavallino.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Collepasso",
+    "slug": "collepasso",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075021",
+    "latitude": 40.07115,
+    "longitude": 18.16222,
+    "coordsSource": "GeoNames (Collepasso)",
+    "websiteCandidate": "https://www.comune.collepasso.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Copertino",
+    "slug": "copertino",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075022",
+    "latitude": 40.26821,
+    "longitude": 18.0543,
+    "coordsSource": "GeoNames (Copertino)",
+    "websiteCandidate": "https://www.comune.copertino.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Corigliano d’Otranto",
+    "slug": "corigliano-dotranto",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075023",
+    "latitude": 40.15925,
+    "longitude": 18.25598,
+    "coordsSource": "GeoNames (Corigliano d'Otranto)",
+    "websiteCandidate": "https://www.comune.coriglianodotranto.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Corsano",
+    "slug": "corsano",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075024",
+    "latitude": 39.88911,
+    "longitude": 18.36747,
+    "coordsSource": "GeoNames (Corsano)",
+    "websiteCandidate": "https://www.comune.corsano.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Cursi",
+    "slug": "cursi",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075025",
+    "latitude": 40.14847,
+    "longitude": 18.31605,
+    "coordsSource": "GeoNames (Cursi)",
+    "websiteCandidate": "https://www.comune.cursi.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Cutrofiano",
+    "slug": "cutrofiano",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075026",
+    "latitude": 40.12616,
+    "longitude": 18.2026,
+    "coordsSource": "GeoNames (Cutrofiano)",
+    "websiteCandidate": "https://www.comune.cutrofiano.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Diso",
+    "slug": "diso",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075027",
+    "latitude": 40.00915,
+    "longitude": 18.39144,
+    "coordsSource": "GeoNames (Diso)",
+    "websiteCandidate": "https://www.comune.diso.le.it/",
+    "aliases": [
+      "Marittima",
+      "Acquaviva di Marittima"
+    ]
+  },
+  {
+    "name": "Gagliano del Capo",
+    "slug": "gagliano-del-capo",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075028",
+    "latitude": 39.84323,
+    "longitude": 18.36962,
+    "coordsSource": "GeoNames (Gagliano del Capo)",
+    "websiteCandidate": "https://www.comune.gaglianodelcapo.le.it/",
+    "aliases": [
+      "Arigliano",
+      "San Dana"
+    ]
+  },
+  {
+    "name": "Galatina",
+    "slug": "galatina",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075029",
+    "latitude": 40.17416,
+    "longitude": 18.17032,
+    "coordsSource": "GeoNames (Galatina)",
+    "websiteCandidate": "https://www.comune.galatina.le.it/",
+    "aliases": [
+      "Collemeto",
+      "Noha",
+      "Santa Barbara"
+    ]
+  },
+  {
+    "name": "Galatone",
+    "slug": "galatone",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075030",
+    "latitude": 40.14673,
+    "longitude": 18.06937,
+    "coordsSource": "GeoNames (Galatone)",
+    "websiteCandidate": "https://www.comune.galatone.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Gallipoli",
+    "slug": "gallipoli",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075031",
+    "latitude": 40.05594,
+    "longitude": 17.99088,
+    "coordsSource": "GeoNames (Gallipoli)",
+    "websiteCandidate": "https://www.comune.gallipoli.le.it/",
+    "aliases": [
+      "Baia Verde",
+      "Rivabella",
+      "Lido Conchiglie"
+    ]
+  },
+  {
+    "name": "Giuggianello",
+    "slug": "giuggianello",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075032",
+    "latitude": 40.09383,
+    "longitude": 18.36894,
+    "coordsSource": "GeoNames (Giuggianello)",
+    "websiteCandidate": "https://www.comune.giuggianello.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Giurdignano",
+    "slug": "giurdignano",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075033",
+    "latitude": 40.12367,
+    "longitude": 18.43155,
+    "coordsSource": "GeoNames (Giurdignano)",
+    "websiteCandidate": "https://www.comune.giurdignano.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Guagnano",
+    "slug": "guagnano",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075034",
+    "latitude": 40.40123,
+    "longitude": 17.94902,
+    "coordsSource": "GeoNames (Guagnano)",
+    "websiteCandidate": "https://www.comune.guagnano.le.it/",
+    "aliases": [
+      "Villa Baldassarri"
+    ]
+  },
+  {
+    "name": "Lecce",
+    "slug": "lecce",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075035",
+    "latitude": 40.35481,
+    "longitude": 18.17244,
+    "coordsSource": "GeoNames (Lecce)",
+    "websiteCandidate": "https://www.comune.lecce.le.it/",
+    "aliases": [
+      "Frigole",
+      "San Cataldo",
+      "Torre Chianca",
+      "Spiaggiabella",
+      "Torre Rinalda",
+      "San Ligorio"
+    ]
+  },
+  {
+    "name": "Lequile",
+    "slug": "lequile",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075036",
+    "latitude": 40.30583,
+    "longitude": 18.14022,
+    "coordsSource": "GeoNames (Lequile)",
+    "websiteCandidate": "https://www.comune.lequile.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Leverano",
+    "slug": "leverano",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075037",
+    "latitude": 40.28852,
+    "longitude": 17.9965,
+    "coordsSource": "GeoNames (Leverano)",
+    "websiteCandidate": "https://www.comune.leverano.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Lizzanello",
+    "slug": "lizzanello",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075038",
+    "latitude": 40.30475,
+    "longitude": 18.22283,
+    "coordsSource": "GeoNames (Lizzanello)",
+    "websiteCandidate": "https://www.comune.lizzanello.le.it/",
+    "aliases": [
+      "Merine"
+    ]
+  },
+  {
+    "name": "Maglie",
+    "slug": "maglie",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075039",
+    "latitude": 40.12069,
+    "longitude": 18.29797,
+    "coordsSource": "GeoNames (Maglie)",
+    "websiteCandidate": "https://www.comune.maglie.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Martano",
+    "slug": "martano",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075040",
+    "latitude": 40.20205,
+    "longitude": 18.30193,
+    "coordsSource": "GeoNames (Martano)",
+    "websiteCandidate": "https://www.comune.martano.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Martignano",
+    "slug": "martignano",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075041",
+    "latitude": 40.23821,
+    "longitude": 18.25602,
+    "coordsSource": "GeoNames (Martignano)",
+    "websiteCandidate": "https://www.comune.martignano.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Matino",
+    "slug": "matino",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075042",
+    "latitude": 40.03083,
+    "longitude": 18.1363,
+    "coordsSource": "GeoNames (Matino)",
+    "websiteCandidate": "https://www.comune.matino.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Melendugno",
+    "slug": "melendugno",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075043",
+    "latitude": 40.27252,
+    "longitude": 18.33798,
+    "coordsSource": "GeoNames (Melendugno)",
+    "websiteCandidate": "https://www.comune.melendugno.le.it/",
+    "aliases": [
+      "Borgagne",
+      "San Foca",
+      "Roca Vecchia",
+      "Roca Nuova",
+      "Torre dell’Orso",
+      "Sant’Andrea"
+    ]
+  },
+  {
+    "name": "Melissano",
+    "slug": "melissano",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075044",
+    "latitude": 39.97315,
+    "longitude": 18.12113,
+    "coordsSource": "GeoNames (Melissano)",
+    "websiteCandidate": "https://www.comune.melissano.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Melpignano",
+    "slug": "melpignano",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075045",
+    "latitude": 40.15624,
+    "longitude": 18.29194,
+    "coordsSource": "GeoNames (Melpignano)",
+    "websiteCandidate": "https://www.comune.melpignano.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Miggiano",
+    "slug": "miggiano",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075046",
+    "latitude": 39.9618,
+    "longitude": 18.31119,
+    "coordsSource": "GeoNames (Miggiano)",
+    "websiteCandidate": "https://www.comune.miggiano.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Minervino di Lecce",
+    "slug": "minervino-di-lecce",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075047",
+    "latitude": 40.09025,
+    "longitude": 18.42139,
+    "coordsSource": "GeoNames (Minervino di Lecce)",
+    "websiteCandidate": "https://www.comune.minervinodilecce.le.it/",
+    "aliases": [
+      "Cocumola",
+      "Specchia Gallone"
+    ]
+  },
+  {
+    "name": "Monteroni di Lecce",
+    "slug": "monteroni-di-lecce",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075048",
+    "latitude": 40.31929,
+    "longitude": 18.09163,
+    "coordsSource": "GeoNames (Monteroni di Lecce)",
+    "websiteCandidate": "https://www.comune.monteronidilecce.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Montesano Salentino",
+    "slug": "montesano-salentino",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075049",
+    "latitude": 39.97544,
+    "longitude": 18.32277,
+    "coordsSource": "GeoNames (Montesano Salentino)",
+    "websiteCandidate": "https://www.comune.montesanosalentino.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Morciano di Leuca",
+    "slug": "morciano-di-leuca",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075050",
+    "latitude": 39.84719,
+    "longitude": 18.31089,
+    "coordsSource": "GeoNames (Morciano di Leuca)",
+    "websiteCandidate": "https://www.comune.morcianodileuca.le.it/",
+    "aliases": [
+      "Barbarano del Capo",
+      "Torre Vado"
+    ]
+  },
+  {
+    "name": "Muro Leccese",
+    "slug": "muro-leccese",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075051",
+    "latitude": 40.10286,
+    "longitude": 18.33674,
+    "coordsSource": "GeoNames (Muro Leccese)",
+    "websiteCandidate": "https://www.comune.muroleccese.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Nardò",
+    "slug": "nardo",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075052",
+    "latitude": 40.17953,
+    "longitude": 18.03174,
+    "coordsSource": "GeoNames (Nardò)",
+    "websiteCandidate": "https://www.comune.nardo.le.it/",
+    "aliases": [
+      "Santa Caterina",
+      "Santa Maria al Bagno",
+      "Sant’Isidoro",
+      "Porto Selvaggio",
+      "Villaggio Resta"
+    ]
+  },
+  {
+    "name": "Neviano",
+    "slug": "neviano",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075053",
+    "latitude": 40.1065,
+    "longitude": 18.11517,
+    "coordsSource": "GeoNames (Neviano)",
+    "websiteCandidate": "https://www.comune.neviano.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Nociglia",
+    "slug": "nociglia",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075054",
+    "latitude": 40.03804,
+    "longitude": 18.32757,
+    "coordsSource": "GeoNames (Nociglia)",
+    "websiteCandidate": "https://www.comune.nociglia.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Novoli",
+    "slug": "novoli",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075055",
+    "latitude": 40.37673,
+    "longitude": 18.04757,
+    "coordsSource": "GeoNames (Novoli)",
+    "websiteCandidate": "https://www.comune.novoli.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Ortelle",
+    "slug": "ortelle",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075056",
+    "latitude": 40.03371,
+    "longitude": 18.39125,
+    "coordsSource": "GeoNames (Ortelle)",
+    "websiteCandidate": "https://www.comune.ortelle.le.it/",
+    "aliases": [
+      "Vignacastrisi"
+    ]
+  },
+  {
+    "name": "Otranto",
+    "slug": "otranto",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075057",
+    "latitude": 40.14789,
+    "longitude": 18.48682,
+    "coordsSource": "GeoNames (Otranto)",
+    "websiteCandidate": "https://www.comune.otranto.le.it/",
+    "aliases": [
+      "Porto Badisco"
+    ]
+  },
+  {
+    "name": "Palmariggi",
+    "slug": "palmariggi",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075058",
+    "latitude": 40.13099,
+    "longitude": 18.37863,
+    "coordsSource": "GeoNames (Palmariggi)",
+    "websiteCandidate": "https://www.comune.palmariggi.le.it/",
+    "aliases": [
+      "Montevergine"
+    ]
+  },
+  {
+    "name": "Parabita",
+    "slug": "parabita",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075059",
+    "latitude": 40.05139,
+    "longitude": 18.12651,
+    "coordsSource": "GeoNames (Parabita)",
+    "websiteCandidate": "https://www.comune.parabita.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Patù",
+    "slug": "patu",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075060",
+    "latitude": 39.84078,
+    "longitude": 18.33784,
+    "coordsSource": "GeoNames (Patù)",
+    "websiteCandidate": "https://www.comune.patu.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Poggiardo",
+    "slug": "poggiardo",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075061",
+    "latitude": 40.05315,
+    "longitude": 18.37819,
+    "coordsSource": "GeoNames (Poggiardo)",
+    "websiteCandidate": "https://www.comune.poggiardo.le.it/",
+    "aliases": [
+      "Vaste"
+    ]
+  },
+  {
+    "name": "Porto Cesareo",
+    "slug": "porto-cesareo",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075097",
+    "latitude": 40.26228,
+    "longitude": 17.89896,
+    "coordsSource": "GeoNames (Porto Cesareo)",
+    "websiteCandidate": "https://www.comune.portocesareo.le.it/",
+    "aliases": [
+      "Torre Lapillo",
+      "Punta Prosciutto"
+    ]
+  },
+  {
+    "name": "Presicce-Acquarica",
+    "slug": "presicce-acquarica",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075098",
+    "latitude": 39.90055,
+    "longitude": 18.26282,
+    "coordsSource": "GeoNames (Presicce)",
+    "websiteCandidate": "https://www.comune.presicceacquarica.le.it/",
+    "aliases": [
+      "Presicce",
+      "Acquarica del Capo",
+      "Lido Marini"
+    ]
+  },
+  {
+    "name": "Racale",
+    "slug": "racale",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075063",
+    "latitude": 39.96086,
+    "longitude": 18.09154,
+    "coordsSource": "GeoNames (Racale)",
+    "websiteCandidate": "https://www.comune.racale.le.it/",
+    "aliases": [
+      "Torre Suda"
+    ]
+  },
+  {
+    "name": "Ruffano",
+    "slug": "ruffano",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075064",
+    "latitude": 39.98195,
+    "longitude": 18.24974,
+    "coordsSource": "GeoNames (Ruffano)",
+    "websiteCandidate": "https://www.comune.ruffano.le.it/",
+    "aliases": [
+      "Torrepaduli"
+    ]
+  },
+  {
+    "name": "Salice Salentino",
+    "slug": "salice-salentino",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075065",
+    "latitude": 40.38485,
+    "longitude": 17.96134,
+    "coordsSource": "GeoNames (Salice Salentino)",
+    "websiteCandidate": "https://www.comune.salicesalentino.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Salve",
+    "slug": "salve",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075066",
+    "latitude": 39.86111,
+    "longitude": 18.29493,
+    "coordsSource": "GeoNames (Salve)",
+    "websiteCandidate": "https://www.comune.salve.le.it/",
+    "aliases": [
+      "Ruggiano",
+      "Pescoluse",
+      "Torre Pali",
+      "Posto Vecchio"
+    ]
+  },
+  {
+    "name": "San Cassiano",
+    "slug": "san-cassiano",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075095",
+    "latitude": 40.05631,
+    "longitude": 18.33392,
+    "coordsSource": "GeoNames (San Cassiano)",
+    "websiteCandidate": "https://www.comune.sancassiano.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "San Cesario di Lecce",
+    "slug": "san-cesario-di-lecce",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075068",
+    "latitude": 40.30221,
+    "longitude": 18.16098,
+    "coordsSource": "GeoNames (San Cesario di Lecce)",
+    "websiteCandidate": "https://www.comune.sancesariodilecce.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "San Donato di Lecce",
+    "slug": "san-donato-di-lecce",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075069",
+    "latitude": 40.26728,
+    "longitude": 18.18256,
+    "coordsSource": "GeoNames (San Donato di Lecce)",
+    "websiteCandidate": "https://www.comune.sandonatodilecce.le.it/",
+    "aliases": [
+      "Galugnano"
+    ]
+  },
+  {
+    "name": "San Pietro in Lama",
+    "slug": "san-pietro-in-lama",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075071",
+    "latitude": 40.30711,
+    "longitude": 18.12787,
+    "coordsSource": "GeoNames (San Pietro in Lama)",
+    "websiteCandidate": "https://www.comune.sanpietroinlama.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Sanarica",
+    "slug": "sanarica",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075067",
+    "latitude": 40.08908,
+    "longitude": 18.34803,
+    "coordsSource": "GeoNames (Sanarica)",
+    "websiteCandidate": "https://www.comune.sanarica.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Sannicola",
+    "slug": "sannicola",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075070",
+    "latitude": 40.09244,
+    "longitude": 18.06765,
+    "coordsSource": "GeoNames (Sannicola)",
+    "websiteCandidate": "https://www.comune.sannicola.le.it/",
+    "aliases": [
+      "Chiesanuova",
+      "San Simone",
+      "Lido Conchiglie"
+    ]
+  },
+  {
+    "name": "Santa Cesarea Terme",
+    "slug": "santa-cesarea-terme",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075072",
+    "latitude": 40.03607,
+    "longitude": 18.45542,
+    "coordsSource": "GeoNames (Santa Cesarea Terme)",
+    "websiteCandidate": "https://www.comune.santacesareaterme.le.it/",
+    "aliases": [
+      "Cerfignano",
+      "Vitigliano",
+      "Porto Miggiano"
+    ]
+  },
+  {
+    "name": "Scorrano",
+    "slug": "scorrano",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075073",
+    "latitude": 40.09018,
+    "longitude": 18.29993,
+    "coordsSource": "GeoNames (Scorrano)",
+    "websiteCandidate": "https://www.comune.scorrano.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Seclì",
+    "slug": "secli",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075074",
+    "latitude": 40.11897,
+    "longitude": 18.10931,
+    "coordsSource": "GeoNames (Seclì)",
+    "websiteCandidate": "https://www.comune.secli.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Sogliano Cavour",
+    "slug": "sogliano-cavour",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075075",
+    "latitude": 40.14827,
+    "longitude": 18.19741,
+    "coordsSource": "GeoNames (Sogliano Cavour)",
+    "websiteCandidate": "https://www.comune.soglianocavour.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Soleto",
+    "slug": "soleto",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075076",
+    "latitude": 40.18781,
+    "longitude": 18.2063,
+    "coordsSource": "GeoNames (Soleto)",
+    "websiteCandidate": "https://www.comune.soleto.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Specchia",
+    "slug": "specchia",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075077",
+    "latitude": 39.93913,
+    "longitude": 18.29784,
+    "coordsSource": "GeoNames (Specchia)",
+    "websiteCandidate": "https://www.comune.specchia.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Spongano",
+    "slug": "spongano",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075078",
+    "latitude": 40.01782,
+    "longitude": 18.36563,
+    "coordsSource": "GeoNames (Spongano)",
+    "websiteCandidate": "https://www.comune.spongano.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Squinzano",
+    "slug": "squinzano",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075079",
+    "latitude": 40.43513,
+    "longitude": 18.04086,
+    "coordsSource": "GeoNames (Squinzano)",
+    "websiteCandidate": "https://www.comune.squinzano.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Sternatia",
+    "slug": "sternatia",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075080",
+    "latitude": 40.22022,
+    "longitude": 18.22748,
+    "coordsSource": "GeoNames (Sternatia)",
+    "websiteCandidate": "https://www.comune.sternatia.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Supersano",
+    "slug": "supersano",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075081",
+    "latitude": 40.01655,
+    "longitude": 18.24205,
+    "coordsSource": "GeoNames (Supersano)",
+    "websiteCandidate": "https://www.comune.supersano.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Surano",
+    "slug": "surano",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075082",
+    "latitude": 40.02818,
+    "longitude": 18.34591,
+    "coordsSource": "GeoNames (Surano)",
+    "websiteCandidate": "https://www.comune.surano.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Surbo",
+    "slug": "surbo",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075083",
+    "latitude": 40.39383,
+    "longitude": 18.13456,
+    "coordsSource": "GeoNames (Surbo)",
+    "websiteCandidate": "https://www.comune.surbo.le.it/",
+    "aliases": [
+      "Giorgilorio"
+    ]
+  },
+  {
+    "name": "Taurisano",
+    "slug": "taurisano",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075084",
+    "latitude": 39.95746,
+    "longitude": 18.21498,
+    "coordsSource": "GeoNames (Taurisano)",
+    "websiteCandidate": "https://www.comune.taurisano.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Taviano",
+    "slug": "taviano",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075085",
+    "latitude": 39.98224,
+    "longitude": 18.08151,
+    "coordsSource": "GeoNames (Taviano)",
+    "websiteCandidate": "https://www.comune.taviano.le.it/",
+    "aliases": [
+      "Marina di Mancaversa"
+    ]
+  },
+  {
+    "name": "Tiggiano",
+    "slug": "tiggiano",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075086",
+    "latitude": 39.90284,
+    "longitude": 18.36501,
+    "coordsSource": "GeoNames (Tiggiano)",
+    "websiteCandidate": "https://www.comune.tiggiano.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Trepuzzi",
+    "slug": "trepuzzi",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075087",
+    "latitude": 40.40535,
+    "longitude": 18.07625,
+    "coordsSource": "GeoNames (Trepuzzi)",
+    "websiteCandidate": "https://www.comune.trepuzzi.le.it/",
+    "aliases": [
+      "Casalabate"
+    ]
+  },
+  {
+    "name": "Tricase",
+    "slug": "tricase",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075088",
+    "latitude": 39.93018,
+    "longitude": 18.35421,
+    "coordsSource": "GeoNames (Tricase)",
+    "websiteCandidate": "https://www.comune.tricase.le.it/",
+    "aliases": [
+      "Depressa",
+      "Lucugnano",
+      "Tutino",
+      "Caprarica del Capo",
+      "Sant’Eufemia",
+      "Marina Serra",
+      "Tricase Porto"
+    ]
+  },
+  {
+    "name": "Tuglie",
+    "slug": "tuglie",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075089",
+    "latitude": 40.07346,
+    "longitude": 18.09872,
+    "coordsSource": "GeoNames (Tuglie)",
+    "websiteCandidate": "https://www.comune.tuglie.le.it/",
+    "aliases": [
+      "Montegrappa"
+    ]
+  },
+  {
+    "name": "Ugento",
+    "slug": "ugento",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075090",
+    "latitude": 39.92724,
+    "longitude": 18.15832,
+    "coordsSource": "GeoNames (Ugento)",
+    "websiteCandidate": "https://www.comune.ugento.le.it/",
+    "aliases": [
+      "Gemini",
+      "Torre San Giovanni",
+      "Torre Mozza",
+      "Lido Marini"
+    ]
+  },
+  {
+    "name": "Uggiano la Chiesa",
+    "slug": "uggiano-la-chiesa",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075091",
+    "latitude": 40.10091,
+    "longitude": 18.44872,
+    "coordsSource": "GeoNames (Uggiano la Chiesa)",
+    "websiteCandidate": "https://www.comune.uggianolachiesa.le.it/",
+    "aliases": [
+      "Casamassella"
+    ]
+  },
+  {
+    "name": "Veglie",
+    "slug": "veglie",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075092",
+    "latitude": 40.33474,
+    "longitude": 17.96238,
+    "coordsSource": "GeoNames (Veglie)",
+    "websiteCandidate": "https://www.comune.veglie.le.it/",
+    "aliases": []
+  },
+  {
+    "name": "Vernole",
+    "slug": "vernole",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075093",
+    "latitude": 40.28834,
+    "longitude": 18.30165,
+    "coordsSource": "GeoNames (Vernole)",
+    "websiteCandidate": "https://www.comune.vernole.le.it/",
+    "aliases": [
+      "Acaya",
+      "Acquarica di Lecce",
+      "Strudà",
+      "Vanze",
+      "Pisignano",
+      "San Foca"
+    ]
+  },
+  {
+    "name": "Zollino",
+    "slug": "zollino",
+    "province": "Lecce",
+    "region": "Puglia",
+    "istat": "075094",
+    "latitude": 40.20581,
+    "longitude": 18.24774,
+    "coordsSource": "GeoNames (Zollino)",
+    "websiteCandidate": "https://www.comune.zollino.le.it/",
+    "aliases": []
+  }
+]

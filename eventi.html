@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Eventi e sagre nel Salento | Benvenuti in Salento</title>
+  <meta name="description" content="Trova sagre, feste patronali, concerti e manifestazioni nella provincia di Lecce, anche vicino alla tua posizione.">
+  <meta name="theme-color" content="#0d3b4f">
+  <link rel="icon" href="assets/favicon.svg">
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/events.css">
+  <script defer src="scripts/events.js"></script>
+</head>
+<body class="events-page">
+  <a class="skip-link" href="#contenuto">Vai al contenuto</a>
+
+  <header class="event-mini-header">
+    <a class="event-brand" href="/" aria-label="Benvenuti in Salento, torna alla home">
+      <img src="assets/images/benvenuti-in-salento-logo.png" alt="" width="48" height="48">
+      <span><strong>Benvenuti in Salento</strong><small>Eventi e sagre</small></span>
+    </a>
+    <a class="event-home-link" href="/">Torna al sito</a>
+  </header>
+
+  <main id="contenuto">
+    <section class="events-hero">
+      <div class="section-inner events-hero-inner">
+        <p class="events-kicker">Vivi il Salento</p>
+        <h1>Cosa succede oggi?</h1>
+        <p>Scopri sagre, feste patronali, concerti e appuntamenti in tutta la provincia di Lecce.</p>
+
+        <button class="geo-hero-button" type="button" id="geo">
+          <span class="geo-icon" aria-hidden="true"></span>
+          <span><strong>Trova eventi vicino a me</strong><small id="geo-status" aria-live="polite">Usa la posizione del dispositivo</small></span>
+        </button>
+      </div>
+    </section>
+
+    <section class="events-search-shell" aria-label="Cerca eventi">
+      <div class="section-inner">
+        <form id="events-search" class="events-search-card">
+          <div class="quick-date-row" aria-label="Scegli quando">
+            <button type="button" data-range="today">Oggi</button>
+            <button type="button" data-range="evening">Stasera</button>
+            <button type="button" data-range="tomorrow">Domani</button>
+            <button type="button" data-range="weekend">Weekend</button>
+            <button type="button" data-range="seven" class="is-active">7 giorni</button>
+          </div>
+
+          <div class="events-filter-grid">
+            <label class="filter-search">Cosa cerchi?
+              <input type="search" name="q" placeholder="Pizzica, sagra, concerto…" autocomplete="off">
+            </label>
+            <label>Comune
+              <select name="town" id="town"><option value="">Tutta la provincia</option></select>
+            </label>
+            <label>Categoria
+              <select name="category">
+                <option value="">Tutti gli eventi</option>
+                <option value="Sagre">Sagre</option>
+                <option value="Feste patronali">Feste patronali</option>
+                <option value="Musica e pizzica">Musica e pizzica</option>
+                <option value="Mercatini">Mercatini</option>
+                <option value="Cultura">Cultura e spettacoli</option>
+                <option value="Sport">Sport</option>
+                <option value="Per famiglie">Bambini e famiglie</option>
+                <option value="Altro">Altro</option>
+              </select>
+            </label>
+            <label>Dal
+              <input type="date" name="from" id="from">
+            </label>
+            <label>Al
+              <input type="date" name="to" id="to">
+            </label>
+            <label>Distanza
+              <select name="radius" id="radius">
+                <option value="">Qualsiasi distanza</option>
+                <option value="5">Entro 5 km</option>
+                <option value="10">Entro 10 km</option>
+                <option value="25">Entro 25 km</option>
+                <option value="50">Entro 50 km</option>
+              </select>
+            </label>
+          </div>
+
+          <input type="hidden" name="lat" id="lat">
+          <input type="hidden" name="lng" id="lng">
+          <input type="hidden" name="evening" id="evening">
+          <input type="hidden" name="sort" id="sort" value="date">
+
+          <div class="events-actions">
+            <button class="events-submit" type="submit">Mostra gli eventi</button>
+            <button class="events-reset" type="reset">Azzera filtri</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="events-results-section">
+      <div class="section-inner">
+        <div class="events-results-head">
+          <div>
+            <p class="events-kicker">Da non perdere</p>
+            <h2 id="results-title">Eventi in programma</h2>
+          </div>
+          <p id="results-meta" aria-live="polite"></p>
+        </div>
+        <div id="events-status" class="events-status" aria-live="polite"></div>
+        <div id="events-grid" class="events-grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer events-footer">
+    <div class="section-inner"><p>© Benvenuti in Salento</p><p><a href="privacy.html">Privacy</a> · <a href="/">Home</a></p></div>
+  </footer>
+
+  <template id="event-card">
+    <article class="event-card-new">
+      <div class="event-card-accent"><span class="event-day"></span><span class="event-month"></span></div>
+      <div class="event-card-body">
+        <span class="event-category"></span>
+        <h3></h3>
+        <p class="event-date"></p>
+        <p class="event-place"></p>
+        <p class="event-distance"></p>
+        <button class="event-open" type="button">Scopri di più</button>
+      </div>
+    </article>
+  </template>
+
+  <dialog id="event-dialog" class="event-dialog">
+    <button class="dialog-close" type="button" aria-label="Chiudi">×</button>
+    <p class="events-kicker dialog-category"></p>
+    <h2 class="dialog-title"></h2>
+    <p class="dialog-date"></p>
+    <p class="dialog-place"></p>
+    <p class="dialog-description"></p>
+    <p class="dialog-price"></p>
+    <a class="dialog-source" target="_blank" rel="nofollow noopener">Vedi il programma</a>
+  </dialog>
+</body>
+</html>

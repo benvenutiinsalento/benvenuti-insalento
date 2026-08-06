@@ -1,0 +1,77 @@
+{
+  "notes": "Località (frazioni, marine, borghi) della provincia di Lecce con tipologia. Tipi ammessi: frazione, marina, borgo, localita. Le chiavi 'aliases' contengono varianti comuni e forme abbreviate. Fonte dei nomi: registro territoriale del progetto + elenchi ISTAT/frazioni comunali; la tipologia segue la toponomastica locale consolidata.",
+  "entries": [
+    {"municipality":"Alessano","localities":[{"name":"Montesardo","type":"frazione","aliases":[]}]},
+    {"municipality":"Alliste","localities":[{"name":"Felline","type":"frazione","aliases":[]},{"name":"Capilungo","type":"marina","aliases":[]},{"name":"Posto Rosso","type":"marina","aliases":[]}]},
+    {"municipality":"Andrano","localities":[{"name":"Castiglione d’Otranto","type":"frazione","aliases":[]},{"name":"Marina di Andrano","type":"marina","aliases":[]}]},
+    {"municipality":"Carmiano","localities":[{"name":"Magliano","type":"frazione","aliases":[]}]},
+    {"municipality":"Castrignano del Capo","localities":[{"name":"Santa Maria di Leuca","type":"frazione","aliases":["Leuca","S.M. di Leuca","Finibus Terrae"]}]},
+    {"municipality":"Castro","localities":[{"name":"Castro Marina","type":"marina","aliases":[]}]},
+    {"municipality":"Diso","localities":[{"name":"Marittima","type":"frazione","aliases":[]},{"name":"Acquaviva di Marittima","type":"marina","aliases":["Acquaviva"]}]},
+    {"municipality":"Gagliano del Capo","localities":[{"name":"Arigliano","type":"frazione","aliases":[]},{"name":"San Dana","type":"frazione","aliases":[]}]},
+    {"municipality":"Galatina","localities":[{"name":"Collemeto","type":"frazione","aliases":[]},{"name":"Noha","type":"frazione","aliases":[]},{"name":"Santa Barbara","type":"frazione","aliases":[]}]},
+    {"municipality":"Gallipoli","localities":[{"name":"Baia Verde","type":"marina","aliases":[]},{"name":"Rivabella","type":"marina","aliases":[]},{"name":"Lido Conchiglie","type":"marina","aliases":[]}]},
+    {"municipality":"Guagnano","localities":[{"name":"Villa Baldassarri","type":"frazione","aliases":[]}]},
+    {"municipality":"Lecce","localities":[
+      {"name":"Frigole","type":"marina","aliases":[]},
+      {"name":"San Cataldo","type":"marina","aliases":[]},
+      {"name":"Torre Chianca","type":"marina","aliases":[]},
+      {"name":"Spiaggiabella","type":"marina","aliases":[]},
+      {"name":"Torre Rinalda","type":"marina","aliases":[]},
+      {"name":"San Ligorio","type":"marina","aliases":[]}
+    ]},
+    {"municipality":"Lizzanello","localities":[{"name":"Merine","type":"frazione","aliases":[]}]},
+    {"municipality":"Melendugno","localities":[
+      {"name":"Borgagne","type":"frazione","aliases":[]},
+      {"name":"San Foca","type":"marina","aliases":[]},
+      {"name":"Roca Vecchia","type":"marina","aliases":["Roca"]},
+      {"name":"Roca Nuova","type":"marina","aliases":[]},
+      {"name":"Torre dell’Orso","type":"marina","aliases":[]},
+      {"name":"Sant’Andrea","type":"marina","aliases":[]}
+    ]},
+    {"municipality":"Minervino di Lecce","localities":[{"name":"Cocumola","type":"frazione","aliases":[]},{"name":"Specchia Gallone","type":"frazione","aliases":[]}]},
+    {"municipality":"Morciano di Leuca","localities":[{"name":"Barbarano del Capo","type":"frazione","aliases":["Barbarano"]},{"name":"Torre Vado","type":"marina","aliases":[]}]},
+    {"municipality":"Nardò","localities":[
+      {"name":"Santa Caterina","type":"marina","aliases":["Santa Caterina di Nardò"]},
+      {"name":"Santa Maria al Bagno","type":"marina","aliases":[]},
+      {"name":"Sant’Isidoro","type":"marina","aliases":["San Isidoro"]},
+      {"name":"Porto Selvaggio","type":"localita","aliases":["Parco di Porto Selvaggio"]},
+      {"name":"Villaggio Resta","type":"localita","aliases":[]}
+    ]},
+    {"municipality":"Ortelle","localities":[{"name":"Vignacastrisi","type":"frazione","aliases":[]}]},
+    {"municipality":"Otranto","localities":[{"name":"Porto Badisco","type":"marina","aliases":[]}]},
+    {"municipality":"Palmariggi","localities":[{"name":"Montevergine","type":"localita","aliases":[]}]},
+    {"municipality":"Poggiardo","localities":[{"name":"Vaste","type":"frazione","aliases":[]}]},
+    {"municipality":"Porto Cesareo","localities":[{"name":"Torre Lapillo","type":"marina","aliases":[]},{"name":"Punta Prosciutto","type":"marina","aliases":["Punta Prosciutto di Porto Cesareo"]}]},
+    {"municipality":"Presicce-Acquarica","localities":[{"name":"Presicce","type":"borgo","aliases":[]},{"name":"Acquarica del Capo","type":"borgo","aliases":["Acquarica"]},{"name":"Lido Marini","type":"marina","aliases":[]}]},
+    {"municipality":"Racale","localities":[{"name":"Torre Suda","type":"marina","aliases":[]}]},
+    {"municipality":"Ruffano","localities":[{"name":"Torrepaduli","type":"frazione","aliases":[]}]},
+    {"municipality":"Salve","localities":[{"name":"Ruggiano","type":"frazione","aliases":[]},{"name":"Pescoluse","type":"marina","aliases":[]},{"name":"Torre Pali","type":"marina","aliases":[]},{"name":"Posto Vecchio","type":"marina","aliases":[]}]},
+    {"municipality":"San Donato di Lecce","localities":[{"name":"Galugnano","type":"frazione","aliases":[]}]},
+    {"municipality":"Sannicola","localities":[{"name":"Chiesanuova","type":"frazione","aliases":[]},{"name":"San Simone","type":"frazione","aliases":[]},{"name":"Lido Conchiglie","type":"marina","aliases":[]}]},
+    {"municipality":"Santa Cesarea Terme","localities":[{"name":"Cerfignano","type":"frazione","aliases":[]},{"name":"Vitigliano","type":"frazione","aliases":[]},{"name":"Porto Miggiano","type":"marina","aliases":[]}]},
+    {"municipality":"Surbo","localities":[{"name":"Giorgilorio","type":"frazione","aliases":[]}]},
+    {"municipality":"Taviano","localities":[{"name":"Marina di Mancaversa","type":"marina","aliases":["Mancaversa"]}]},
+    {"municipality":"Trepuzzi","localities":[{"name":"Casalabate","type":"marina","aliases":[]}]},
+    {"municipality":"Tricase","localities":[
+      {"name":"Depressa","type":"frazione","aliases":[]},
+      {"name":"Lucugnano","type":"frazione","aliases":[]},
+      {"name":"Tutino","type":"frazione","aliases":[]},
+      {"name":"Caprarica del Capo","type":"frazione","aliases":[]},
+      {"name":"Sant’Eufemia","type":"frazione","aliases":[]},
+      {"name":"Marina Serra","type":"marina","aliases":[]},
+      {"name":"Tricase Porto","type":"marina","aliases":[]}
+    ]},
+    {"municipality":"Tuglie","localities":[{"name":"Montegrappa","type":"frazione","aliases":[]}]},
+    {"municipality":"Ugento","localities":[{"name":"Gemini","type":"frazione","aliases":[]},{"name":"Torre San Giovanni","type":"marina","aliases":[]},{"name":"Torre Mozza","type":"marina","aliases":[]},{"name":"Lido Marini","type":"marina","aliases":[]}]},
+    {"municipality":"Uggiano la Chiesa","localities":[{"name":"Casamassella","type":"frazione","aliases":[]}]},
+    {"municipality":"Vernole","localities":[
+      {"name":"Acaya","type":"frazione","aliases":["Acaia"]},
+      {"name":"Acquarica di Lecce","type":"frazione","aliases":[]},
+      {"name":"Strudà","type":"frazione","aliases":["Struda"]},
+      {"name":"Vanze","type":"frazione","aliases":[]},
+      {"name":"Pisignano","type":"frazione","aliases":[]},
+      {"name":"San Foca","type":"marina","aliases":[]}
+    ]}
+  ]
+}
