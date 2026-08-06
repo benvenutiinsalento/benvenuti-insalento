@@ -159,3 +159,21 @@ RETTIFICA: in precedenza avevo dichiarato la anon key "non valida" perche'
   rpc search_events, auth settings. La chiave e' quindi valida e definitiva.
 CONSEGUENZA: nessuna ricopia necessaria; la chiave va solo impostata su Netlify.
 ```
+
+### Addendum 3 — collegamento GitHub finito sul sito Netlify di prova
+
+```text
+PROBLEMA TROVATO: il deploy funzionava ma sul sito NETLIFY DI PROVA
+  (benvenutiinsalento.netlify.app), non su quello col dominio reale.
+  L'utente ha confermato: il sito di prova era un vecchio esperimento,
+  ora disattivato da lui.
+  - Evidenza: /eventi → 200 su netlify.app (con fix ENOENT incluso dopo il push),
+    mentre benvenutiinsalento.it/eventi → 404 (vecchio sito manuale).
+  - Bug laterale trovato e corretto da me: fs.readFileSync dei JSON dati non
+    funziona in Lambda → sostituito con import JSON statici (bundled da esbuild).
+    Verificato live: dopo il push il sito di prova serviva il nuovo codice.
+CORREZIONE APPLICATA (utente, guidata): ripetere link GitHub + variabili
+  ambiente sul sito che possiede il dominio benvenutiinsalento.it.
+NESSUNO SPRECO: il lavoro fatto sul sito di prova ha permesso di scoprire e
+  correggere il bug deploy prima del go-live sul dominio reale.
+```
