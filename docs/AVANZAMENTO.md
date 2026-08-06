@@ -76,3 +76,61 @@ PROSSIMO PASSO: fase 5 — API del mandato completate; fase 6 — workflow GitHu
   (ingest-frequent 6h, recheck-imminent 2h, daily-maintenance, weekly-discovery,
   coverage-report, tests, deploy-preview) e spostamento crawling da Netlify.
 ```
+
+---
+
+## 2026-08-06 — Push iniziale su GitHub (step utente 1-2 completati)
+
+```text
+FASE: setup esterno + avvio cloud
+ATTIVITÀ COMPLETATE:
+  - Utente ha creato: account GitHub (benvenutiinsalento), repo pubblico
+    benvenutiinsalento/benvenuti-insalento, progetto Supabase eu-west-2 (Londra).
+  - Verifica token: validissimo, scope admin/push su quel solo repo. OK.
+  - PUSH INIZIALE COMPLETATO: 104 file su GitHub (codice, migrazione, seed, test, docs).
+  - Verifica progetto Supabase: REST service_role 200 OK; anon key incollata -> 401
+    (probabilmente copiata con un carattere perso; richiesta ricopia in dashboard).
+IN ATTESA DALL'UTENTE:
+  1. Estendere il token con permesso "Secrets: Read and write" (per scrivere i secrets Actions).
+  2. Password del database (per SUPABASE_DB_URL e migrazioni reali).
+  3. Ricopia esatta della anon public key da Settings -> API keys.
+  4. Email admin redazione (creo io l'utente con password temporanea).
+PROSSIMO PASSO: con 1+2 eseguo migrazioni+seed sul Supabase reale e scrivo i secrets;
+  intanto proseguo fasi 5-6 (API complete + workflow GitHub Actions).
+```
+
+---
+
+## 2026-08-06 — Database reale attivo, admin creato, secrets GitHub impostati
+
+```text
+FASE: provisioning Supabase reale + autenticazione + secrets CI
+ATTIVITÀ COMPLETATE (eseguite davvero, con verifica):
+  - Connessione al DB Supabase (pooler eu-west-2, PostgreSQL 17.6): OK.
+  - Estensioni unaccent + pg_trgm installate nello schema public (fissato a mano:
+    pgcrypto era preinstallata nello schema extensions, serviva coerenza per gli
+    indici FTS/trigram della migrazione).
+  - MIGRAZIONE 0001 applicata sul database reale: 35 tabelle, 32 con RLS attiva,
+    funzioni search_events / expand_query_terms / has_role, viste v_events_public
+    e v_municipality_coverage. Nessun errore.
+  - SEED applicati sul database reale: 96 comuni (96/96 con coordinate + ISTAT),
+    86 localita' tipizzate, 96 alias territoriali, 21 categorie, 30 sinonimi,
+    20 fonti (4 con auto_publish), 4 ruoli (nuovo seed 105_roles.sql aggiunto).
+  - UTENTE ADMIN CREATO su Supabase Auth: welcome.to.salento2024@gmail.com
+    (email confermata, password temporanea comunicata in chat, da cambiare).
+    Profilo + ruolo admin collegati e verificati con query.
+  - GITHUB SECRETS scritti via API (token ora con permesso Secrets):
+    SUPABASE_URL, SUPABASE_DB_URL, SUPABASE_SERVICE_ROLE_KEY.
+PROBLEMI TROVATI:
+  - La anon key incollata resta 401 anche al secondo tentativo: struttura JWT
+    corretta ma firma non valida. Provato recupero automatico (tutte le 2709
+    varianti a 1 carattere): nessuna valida -> la chiave va ricopiata integrale
+    dalla dashboard (Settings -> API -> anon public, pulsante copia).
+CORREZIONI APPLICATE: tutte elencate sopra su sistemi reali (Supabase + GitHub).
+AUTORIZZAZIONE NECESSARIA: nessuna ulteriore.
+PROSSIMO PASSO:
+  - Utente: (a) ricopiare la anon key e comunicarla; (b) collegare il repo a
+    Netlify (guida passo-passo in docs/ISTRUZIONI_DEPLOY_UTENTE.md, step 4).
+  - Io: fase 5 (API complete del mandato) e fase 6 (GitHub Actions: crawler,
+    riscadenze, manutenzione giornaliera, discovery settimanale, report copertura).
+```
