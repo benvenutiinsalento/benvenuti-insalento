@@ -134,3 +134,16 @@ PROSSIMO PASSO:
   - Io: fase 5 (API complete del mandato) e fase 6 (GitHub Actions: crawler,
     riscadenze, manutenzione giornaliera, discovery settimanale, report copertura).
 ```
+
+### Addendum (stessa giornata) — fix permessi REST
+
+```text
+PROBLEMA TROVATO: le API REST di Supabase rispondevano 403 anche con service_role:
+  la migrazione 0001 dava i grant solo ad anon/authenticated; gli oggetti creati
+  via SQL non ereditano i permessi automatici della dashboard.
+CORREZIONE APPLICATA: nuova migrazione 0002_grants.sql (grant completi a
+  service_role su tabelle/sequence/funzioni + default privileges per gli oggetti
+  futuri). Applicata sul reale. Verifica REST: municipalities 200, vista pubblica
+  200 (vuota: nessun evento ancora, il mandato vieta eventi inventati), RPC
+  search_events 200.
+```
