@@ -147,3 +147,15 @@ CORREZIONE APPLICATA: nuova migrazione 0002_grants.sql (grant completi a
   200 (vuota: nessun evento ancora, il mandato vieta eventi inventati), RPC
   search_events 200.
 ```
+
+### Addendum 2 — anon key VALIDATA (rettifica diagnosi precedente)
+
+```text
+RETTIFICA: in precedenza avevo dichiarato la anon key "non valida" perche'
+  il test rispondeva' 401. Errore mio di diagnosi: il test era stato fatto
+  sull'endpoint radice /rest/v1/ quando il database non aveva ancora
+  migrazioni/grant. Oggi, dopo migrazioni 0001+0002, la STESSA chiave incollata
+  dall'utente risponde 200 su: municipalities, v_events_public, categories,
+  rpc search_events, auth settings. La chiave e' quindi valida e definitiva.
+CONSEGUENZA: nessuna ricopia necessaria; la chiave va solo impostata su Netlify.
+```
