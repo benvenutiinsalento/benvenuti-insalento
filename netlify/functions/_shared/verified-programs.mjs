@@ -1,11 +1,12 @@
-import fs from 'node:fs';
+// Dati di riserva verificati (archivio redazionale). Import statico: esbuild
+// incorpora il JSON nel bundle (vedi registry.mjs). La rigenerazione
+// giornaliera da database e' prevista nella fase delle GitHub Actions.
+import verifiedProgramsData from '../../../data/verified-programs-2026.json' with { type: 'json' };
 import { eventOccursInRange, eventSearchText, isFamilyFriendly, normalizeSearchText } from './events-core.mjs';
 import { MUNICIPALITIES } from './registry.mjs';
 
-const fileUrl = new URL('../../../data/verified-programs-2026.json', import.meta.url);
-
 export function loadVerifiedPrograms() {
-  return JSON.parse(fs.readFileSync(fileUrl, 'utf8'));
+  return verifiedProgramsData;
 }
 
 export function verifiedEvents() {

@@ -1,11 +1,15 @@
-import fs from 'node:fs';
+// Registro territorio/fonti. I JSON sono importati staticamente: il bundler
+// esbuild di Netlify li incorpora nella funzione (niente fs.readFileSync, che
+// in Lambda non trova ../../../data perche' il bundle lavora in /var/task).
+import municipalitiesData from '../../../data/municipalities.json' with { type: 'json' };
+import proLocoRegistryData from '../../../data/pro-loco-registry.json' with { type: 'json' };
+import localitiesData from '../../../data/localities.json' with { type: 'json' };
+import sourceRegistryData from '../../../data/source-registry.json' with { type: 'json' };
 
-const read = (name) => JSON.parse(fs.readFileSync(new URL(`../../../data/${name}`, import.meta.url), 'utf8'));
-
-export const MUNICIPALITIES = read('municipalities.json');
-export const PRO_LOCO_REGISTRY = read('pro-loco-registry.json');
-export const LOCALITIES = read('localities.json').entries;
-export const SOURCE_REGISTRY = read('source-registry.json');
+export const MUNICIPALITIES = municipalitiesData;
+export const PRO_LOCO_REGISTRY = proLocoRegistryData;
+export const LOCALITIES = localitiesData.entries;
+export const SOURCE_REGISTRY = sourceRegistryData;
 
 export function normalize(value = '') {
   return String(value)
