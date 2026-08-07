@@ -1,0 +1,32 @@
+# ============================================================================
+# MANDATO — Ricontrollo eventi imminenti: OGNI 2 ORE, solo GitHub Actions.
+# Riesamina solo le fonti con eventi pubblicati nelle prossime 72 ore.
+# ============================================================================
+name: Ricontrollo eventi imminenti (2h)
+
+on:
+  schedule:
+    - cron: "45 */2 * * *"   # ogni 2 ore, al minuto 45 (UTC)
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: recheck-imminent
+  cancel-in-progress: true
+
+jobs:
+  recheck:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci --omit=dev
+      - name: Ricontrollo fonti con eventi < 72h
+        env:
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+        run: node scripts/gha-recheck.mjs

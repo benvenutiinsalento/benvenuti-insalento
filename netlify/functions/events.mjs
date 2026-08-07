@@ -1,5 +1,5 @@
 import { listEvents } from './_shared/event-repository.mjs';
-import { listVerifiedEvents } from './_shared/verified-programs.mjs';
+import { listVerifiedEvents, loadVerifiedPrograms } from './_shared/verified-programs.mjs';
 import { json, error, corsResponse, isoDateOrEmpty, parsePositiveInt } from './_shared/http.mjs';
 export default async (req) => {
   const cors = corsResponse(req); if (cors) return cors;
@@ -24,7 +24,12 @@ export default async (req) => {
       page:parsePositiveInt(u.searchParams.get('page'),1,10000),pageSize:parsePositiveInt(u.searchParams.get('pageSize'),30,100),
     });
     console.error('EVENTS_DATABASE_FALLBACK', e);
-    return json({ok:true,...data,verifiedFallback:true},200,{'cache-control':'public, max-age=60, stale-while-revalidate=300'});
+    let meta = null; try { meta = loadVerifiedPrograms(); } catch { meta = null; }
+    return json({ok:true,...data,verifiedFallback:true,
+      fallbackNotice:'Elenco servito da archivio di riserva rigenerato quotidianamente: verificare sempre fonte e ultimo controllo su ogni scheda.',
+      fallbackGeneratedAt: meta?.generatedAt || meta?.capturedAt || null,
+      fallbackExpiresAt: meta?.expiresAt || null},
+      200,{'cache-control':'public, max-age=60, stale-while-revalidate=300'});
   }
 };
 export const config={path:'/api/events',rateLimit:{windowLimit:120,windowSize:60,aggregateBy:['ip','domain']}};

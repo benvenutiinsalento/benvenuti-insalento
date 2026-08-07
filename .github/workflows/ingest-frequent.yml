@@ -1,0 +1,35 @@
+# ============================================================================
+# MANDATO — Crawling frequente delle fonti: OGNI 6 ORE, solo GitHub Actions.
+# Legge/pulisce Supabase via SUPABASE_DB_URL (secret). Nessun costo aggiuntivo.
+# ============================================================================
+name: Crawling fonti ufficiali (6h)
+
+on:
+  schedule:
+    - cron: "15 */6 * * *"   # ogni 6 ore, al minuto 15 (UTC)
+  workflow_dispatch: {}      # avvio manuale consentito
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ingest-frequent
+  cancel-in-progress: true
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Dipendenze (solo produzione)
+        run: npm ci --omit=dev
+      - name: Crawling batch fonti attive
+        env:
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+          INGEST_MAX_BATCHES: "8"
+          INGEST_BATCH_LIMIT: "8"
+        run: node scripts/gha-ingest.mjs

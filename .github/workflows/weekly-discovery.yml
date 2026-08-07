@@ -1,0 +1,32 @@
+# ============================================================================
+# MANDATO — Discovery settimanale (lunedì): sincronizza siti ufficiali dei
+# Comuni da iPA e cerca nuove fonti dai portali istituzionali.
+# ============================================================================
+name: Discovery settimanale fonti
+
+on:
+  schedule:
+    - cron: "45 4 * * 1"     # lunedì 04:45 UTC
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: weekly-discovery
+  cancel-in-progress: true
+
+jobs:
+  discovery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci --omit=dev
+      - name: Sync iPA + discovery nuove fonti
+        env:
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+        run: node scripts/gha-discovery.mjs
