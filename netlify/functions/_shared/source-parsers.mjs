@@ -89,6 +89,39 @@ function eventFromJsonLd(item, source, fallbackTown) {
   };
 }
 
+// Estrae liste di date italiane da una riga di cartellone:
+//   "13, 14 e 15 agosto: Titolo"          -> [13,14,15 ago]
+//   "21 e 22 agosto: Titolo"              -> [21,22 ago]
+//   "dal 13 al 31 luglio: Titolo"         -> tutti i giorni 13..31 lug
+//   "dal 19 giugno al 12 luglio: Titolo"  -> range multi-mese
+// Ritorna { dates: [iso...], rest: 'Titolo' } oppure null.
+function dateListFromLine(line, year) {
+  const monthsLong = [...MONTHS.keys()].filter((k) => k.length > 3).join('|');
+  const monthNum = (name) => MONTHS.get(String(name).toLowerCase());
+  const mk = (y, m, d) => `${y}-${m}-${String(d).padStart(2, '0')}`;
+  const tail = (text, idx) => text.slice(idx).replace(/^\s*[:;\-–—]\s*/, '').trim();
+  // range: "dal 13 al 31 luglio", "dall’1 al 4 settembre", "dal 19 giugno al 12 luglio"
+  let match = line.match(new RegExp("dal(?:l['’])?\\s*(\\d{1,2})(?:\\s+(" + monthsLong + "))?\\s+al(?:l['’])?\\s*(\\d{1,2})\\s+(" + monthsLong + ")", 'i'));
+  if (match && year) {
+    const m1 = match[2] ? monthNum(match[2]) : monthNum(match[4]);
+    const m2 = monthNum(match[4]);
+    const dates = [];
+    const cursor = new Date(mk(year, m1, match[1]) + 'T12:00:00Z');
+    const endD = new Date(mk(year, m2, match[3]) + 'T12:00:00Z');
+    let guard = 0;
+    while (cursor <= endD && guard < 45) { dates.push(cursor.toISOString().slice(0, 10)); cursor.setUTCDate(cursor.getUTCDate() + 1); guard += 1; }
+    if (dates.length) return { dates, rest: tail(line, match.index + match[0].length) };
+  }
+  // lista: "13, 14 e 15 agosto", "21 e 22 agosto", "5,12 e 19 settembre"
+  match = line.match(new RegExp("((?:\\d{1,2})(?:\\s*,\\s*\\d{1,2})+(?:\\s+e\\s+\\d{1,2})?|\\d{1,2}\\s+e\\s+\\d{1,2})\\s+(" + monthsLong + ")", 'i'));
+  if (match && year) {
+    const month = monthNum(match[2]);
+    const days = match[1].split(/\s*,\s*|\s+e\s+/i).map((d) => Number(d)).filter((d) => d >= 1 && d <= 31);
+    if (month && days.length >= 2) return { dates: days.map((d) => mk(year, month, d)), rest: tail(line, match.index + match[0].length) };
+  }
+  return null;
+}
+
 export function parseHtmlEvents(html, source) {
   const discovered = [];
   const scripts = [...String(html).matchAll(/<script[^>]+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)];
@@ -108,34 +141,48 @@ export function parseHtmlEvents(html, source) {
 
   const text = decodeHtml(html);
   const lines = text.split(/\n+/).map((line) => line.trim()).filter(Boolean);
+  // Anno implicito del cartellone: le pagine-programma ufficiali omettono
+  // spesso l'anno ("13 agosto:"); senza questo default tali righe andavano perse.
+  const defaultYear = source.year || Number(new Intl.DateTimeFormat("en", { year: "numeric", timeZone: "Europe/Rome" }).format(new Date()));
   for (let index = 0; index < lines.length; index += 1) {
     const line = lines[index];
-    const date = isoDate(line, source.year);
-    if (!date || !/(?:20\d{2}|gen|feb|mar|apr|mag|giu|lug|ago|set|ott|nov|dic)/i.test(line)) continue;
     const context = lines.slice(Math.max(0, index - 2), index + 5).join(" · ");
-    const titleCandidate = lines[index - 1] && !isoDate(lines[index - 1], source.year) ? lines[index - 1] : line.replace(/^.*?(?:20\d{2}|gennaio|febbraio|marzo|aprile|maggio|giugno|luglio|agosto|settembre|ottobre|novembre|dicembre)\s*[-–:]?\s*/i, "");
-    const title = decodeHtml(titleCandidate).slice(0, 140);
-    if (title.length < 3) continue;
-    discovered.push({
-      title,
-      description: context.slice(0, 600),
-      startDate: date,
-      endDate: date,
-      occurrenceDates: [date],
-      originalTimeText: context.match(/\b(?:ore|dalle?)\s*(\d{1,2}(?:[:.,]\d{2})?)/i)?.[0] || "",
-      town: source.municipality || "",
-      locality: source.locality || "",
-      venue: "Luogo indicato nella fonte",
-      address: source.municipality || "",
-      priceText: /ingresso libero|gratuit/i.test(context) ? "Gratuito" : "Da verificare",
-      priceType: /ingresso libero|gratuit/i.test(context) ? "free" : "unknown",
-      primaryCategory: classifyEvent(context),
-      status: detectEventStatus(context) || "draft",
-      sourceUrl: source.url,
-      sourceName: source.entityName,
-      sourcePriority: source.priority,
-      sourceYear: source.year,
-    });
+    const emit = (title, dates, timeText = "") => {
+      const clean = decodeHtml(title).slice(0, 140);
+      if (clean.length < 3 || !dates.length) return;
+      discovered.push({
+        title: clean,
+        description: context.slice(0, 600),
+        startDate: dates[0],
+        endDate: dates[dates.length - 1] || dates[0],
+        occurrenceDates: dates,
+        originalTimeText: timeText || context.match(/\b(?:ore|dalle?)\s*(\d{1,2}(?:[:.,]\d{2})?)/i)?.[0] || "",
+        town: source.municipality || "",
+        locality: source.locality || "",
+        venue: "Luogo indicato nella fonte",
+        address: source.municipality || "",
+        priceText: /ingresso libero|gratuit/i.test(context) ? "Gratuito" : "Da verificare",
+        priceType: /ingresso libero|gratuit/i.test(context) ? "free" : "unknown",
+        primaryCategory: classifyEvent(context),
+        status: detectEventStatus(context) || "draft",
+        sourceUrl: source.url,
+        sourceName: source.entityName,
+        sourcePriority: source.priority,
+        sourceYear: source.year,
+      });
+    };
+    // 1) Liste e intervalli di giorni ("13, 14 e 15 agosto:", "dal 13 al 31 luglio:", …)
+    const multi = dateListFromLine(line, defaultYear);
+    if (multi) {
+      const title = multi.rest.length >= 3 ? multi.rest : (lines[index - 1] && !isoDate(lines[index - 1], defaultYear) ? lines[index - 1] : multi.rest);
+      emit(title, multi.dates);
+      continue;
+    }
+    // 2) Data singola
+    const date = isoDate(line, defaultYear);
+    if (!date || !/(?:20\d{2}|gen|feb|mar|apr|mag|giu|lug|ago|set|ott|nov|dic)/i.test(line)) continue;
+    const titleCandidate = lines[index - 1] && !isoDate(lines[index - 1], defaultYear) && !dateListFromLine(lines[index - 1], defaultYear) ? lines[index - 1] : line.replace(/^.*?(?:20\d{2}|gennaio|febbraio|marzo|aprile|maggio|giugno|luglio|agosto|settembre|ottobre|novembre|dicembre)\s*[-–:]?\s*/i, "");
+    emit(titleCandidate, [date]);
   }
   return discovered;
 }

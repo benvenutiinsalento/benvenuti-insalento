@@ -263,3 +263,66 @@ NOTA PER L'UTENTE: il deploy 6a75a865 = main@b48d06b mostrava "piu' eventi"
   perche' era la modalita' riserva da archivio: ora quelli stessi eventi sono
   nel database vero, con fonte e tracciatura mandato.
 ```
+
+---
+DATA: 07/08/2026 (seconda voce — BLOCCO DI VERIFICA completato)
+
+FASE:
+Blocco di verifica "NON AGGIUNGERE EVENTI MANUALMENTE" — dimostrazione end-to-end
+che il sistema SCOPRE -> INDICIZZA -> VERIFICA -> AGGIORNA da solo.
+
+ATTIVITA' COMPLETATE:
+- Autenticazione backoffice migrata a Supabase Auth con ruoli admin/editor/reviewer/viewer;
+  eliminato completamente ADMIN_TOKEN da backend e frontend.
+- Nuovi endpoint: /api/health (200 ok / 503 ko), /api/admin/metrics (A-J + warning),
+  /api/admin/me, /api/events/:slug, /api/localities, /api/categories,
+  /api/search-suggestions, /api/coverage-summary; report fonti completo in /api/admin/sources.
+- Backoffice admin-eventi.html riscritto: login email+password (Supabase Auth),
+  badge ruolo, tab Panoramica/Fonti/Revisioni/Eventi/Segnalazioni, banner KO se il
+  backend cade (il fallback non maschera piu' il problema).
+- Filtri corretti: Weekend = venerdi' >=18:00 + sabato + domenica; Stasera = serale /
+  giornaliero in corso / pomeridiano che entra in serata / piu' occorrenze;
+  Famiglie = audience reali; Distanza 5/10/20/30/50 km; Date da event_occurrences.
+- Migrazione 0003 applicata (contatori ultima scansione per fonte, coverage_warnings,
+  indici). Scritture per-fonte a ogni controllo.
+- Discovery assistita reale: 14 nuove fonti registrate e tracciate (Comuni, Pro Loco,
+  parrocchie, aggregatori) incluse fonti per Otranto, Nardo', Galatina, Tricase,
+  Porto Cesareo, Leverano.
+- Backfill municipality_id per 272 fonti + fonte municipal_discovery per i 96 Comuni.
+- Collaudo eseguito con run multipli (16, 24, 26, 27 + passate editoriali mirate),
+  tutto registrato in source_runs/raw_ingestion_records/review_queue.
+- Parser potenziato: date senza anno e liste di date ("13, 14 e 15 agosto",
+  "dal 19 giugno al 12 luglio") diventano occorrenze distinte.
+- Test: 74/74 verdi (12 nuovi test del blocco). npm ci && npm test && npm run build riproducibili.
+- Metriche finali reali: A=655 B=157 C=14 D=113 E=42 F=46 G=50 H=415 I=0 J=3.
+  Live: /api/events total=114, fallback=false, x-backend-status: supabase.
+
+PROBLEMI TROVATI:
+- Errore "invalid input syntax for type json" su caratteri Unicode social (surrogati isolati).
+- 320 fonti senza municipality_id (la copertura "316 fonti" era di facciata).
+- Weekend/Stasera mai applicati (frontend non passava i flag al backend).
+- Parser perdeva date senza anno -> fonti Otranto/Nardo' davano quasi zero eventi.
+- Eventi di oggi chiusi a mezzanotte dal close-out.
+- Fonte tour nazionale attribuiva 22 date fasulle a Botrugno.
+- Duplicati diocesi Lecce/Melendugno (scorciatoie senza data ereditavano data errata).
+
+CORREZIONI APPLICATE:
+- Sanitizzazione Unicode dei payload JSONB + test di regressione.
+- Backfill municipality + fonti comunali automatiche per 96/96 Comuni.
+- Flag weekend/evening/family cablati frontend<->backend; regole SQL verificate con test.
+- Parser: defaultYear + dateListFromLine; Otranto passata da 2 a 14 candidati.
+- Close-out su CURRENT_DATE (giorno intero); riaperti 2 eventi di oggi.
+- Fonte tour disattivata, 6 eventi spurii rifiutati con storico; conservato il 27/8 reale.
+- Fix ereditarieta' data nelle scorciatoie diocesi; 2 duplicati rifiutati e non ricreati.
+- Rimossi 5 titoli boilerplate; decodificate entita' HTML in 42 titoli.
+
+AUTORIZZAZIONE NECESSARIA:
+- Nessuna spesa (sempre 0 euro). Da fare dall'utente quando comodo: cambiare la password
+  temporanea dell'account admin dal backoffice Supabase; a fine progetto ruotare
+  service_role key e revocare il PAT GitHub (mai inseriti nel codice).
+
+PROSSIMO PASSO:
+- Osservare le prime esecuzioni schedulate delle GitHub Actions (ingest ogni 6h,
+  maintenance quotidiana con ricalcolo COVERAGE_WARNING).
+- Nuova passata di discovery assistita per Leverano, Andrano, Casarano (fonti deboli).
+- Test login backoffice da browser (utente non tecnico, guida click-per-click).

@@ -363,7 +363,9 @@ export async function runIngestionBatch({ limit = 10, sourceIds = [], runType = 
   await query(`WITH closing AS (
       UPDATE events SET status='completed'
       WHERE status IN ('published','postponed')
-        AND NOT EXISTS (SELECT 1 FROM event_occurrences o WHERE o.event_id=events.id AND COALESCE(o.end_at,o.start_at) >= NOW())
+        -- Un evento è concluso solo quando TUTTE le sue giornate sono passate:
+        -- l'occorrenza di oggi (anche serale o tutto il giorno) lo tiene aperto.
+        AND NOT EXISTS (SELECT 1 FROM event_occurrences o WHERE o.event_id=events.id AND o.occurrence_date >= CURRENT_DATE)
       RETURNING id)
     INSERT INTO event_status_history (event_id, from_status, to_status, reason, actor)
       SELECT id, 'published', 'completed', 'Finestra occorrenze conclusa', 'system' FROM closing`);

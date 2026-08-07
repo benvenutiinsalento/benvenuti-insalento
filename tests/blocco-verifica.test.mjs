@@ -63,3 +63,22 @@ test('Sanificazione: rimuove surrogati orfani e caratteri di controllo', () => {
   assert.equal(sanitizeText('normale àèìòù ç'), 'normale àèìòù ç');
   assert.equal(JSON.stringify(sanitizeDeep({ t: 'x\uD835y' })), '{"t":"xy"}');
 });
+
+// Regressione parser date-list dei cartelloni comunali (bug estrazione Otranto)
+import { parseHtmlEvents } from '../netlify/functions/_shared/source-parsers.mjs';
+
+test('Parser: estrae liste di giorni, intervalli e anno implicito 2026', () => {
+  const html = '<p>🔹 13, 14 e 15 agosto: Festa dei Santi Martiri</p>'
+    + '<p>🔹 21 e 22 agosto: Notte dei Bambini</p>'
+    + '<p>🔹 dall’1 al 4 settembre: Giornalisti del Mediterraneo</p>';
+  const events = parseHtmlEvents(html, { entityName: 'Comune test', municipality: 'Otranto', url: 'https://x.it' });
+  const martiri = events.find((e) => e.title.includes('Santi Martiri'));
+  assert.deepEqual(martiri.occurrenceDates, ['2026-08-13', '2026-08-14', '2026-08-15']);
+  const notte = events.find((e) => e.title.includes('Notte dei Bambini'));
+  assert.deepEqual(notte.occurrenceDates, ['2026-08-21', '2026-08-22']);
+  const giornalisti = events.find((e) => e.title.includes('Giornalisti'));
+  assert.equal(giornalisti.occurrenceDates.length, 4);
+  // date discontinue mai fuse in un intervallo unico fittizio
+  assert.equal(martiri.startDate, '2026-08-13');
+  assert.equal(martiri.endDate, '2026-08-15');
+});
