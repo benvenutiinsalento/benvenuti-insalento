@@ -24,7 +24,8 @@ export async function computeMetrics() {
       (SELECT 1 FROM event_versions v WHERE v.event_id=e.id AND v.version=1 AND v.changed_by='ingestion')) AS h_eventi_automatici,
     (SELECT COUNT(*)::int FROM events e WHERE NOT EXISTS
       (SELECT 1 FROM event_versions v WHERE v.event_id=e.id AND v.version=1 AND v.changed_by='ingestion')) AS i_eventi_manuali,
-    (SELECT COUNT(*)::int FROM events WHERE status='pending_review') AS j_eventi_in_review`);
+    (SELECT COUNT(*)::int FROM events WHERE status='pending_review')
+      + (SELECT COUNT(*)::int FROM review_queue WHERE status='pending') AS j_eventi_in_review`);
   const warnings = await query(`SELECT w.id, m.name AS municipality, w.window_from, w.window_to,
     w.events_found, w.threshold, w.reason, w.status, w.created_at
     FROM coverage_warnings w JOIN municipalities m ON m.id = w.municipality_id

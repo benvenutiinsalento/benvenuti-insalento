@@ -298,7 +298,15 @@ export async function upsertEvent(rawCandidate, source, runId) {
   const candidate = sanitizeDeep(rawCandidate);
   return transaction(async (client) => {
     const aliases = await aliasesMap(client);
-    const canonicalTown = aliases.get(normalizeSearchText(candidate.town)) || candidate.town;
+    let canonicalTown = aliases.get(normalizeSearchText(candidate.town)) || candidate.town;
+    // Fonti comunali (municipality_id valorizzato): se il parser non ha estratto il
+    // Comune dalla pagina, l'evento eredita quello della fonte — evita il falso
+    // blocco "town_missing" che svuotava Comuni come Leverano/Andrano/Casarano.
+    if (!canonicalTown && source?.municipality_name) canonicalTown = source.municipality_name;
+    if (!canonicalTown && source?.municipality_id) {
+      const byId = await client.query('SELECT name FROM municipalities WHERE id = $1 LIMIT 1', [source.municipality_id]);
+      canonicalTown = byId.rows[0]?.name || canonicalTown;
+    }
     const municipality = await resolveMunicipality(client, canonicalTown);
     const effectivePriority = source?.priority ?? 9;
     const verificationLevel = verificationLevelForPriority(effectivePriority);

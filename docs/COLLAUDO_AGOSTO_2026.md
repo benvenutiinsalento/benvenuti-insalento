@@ -123,3 +123,30 @@ Interpretazione onesta: zero eventi in finestra NON significa "nessun evento nel
 - 86 COVERAGE_WARNING aperti (volutamente visibili in backoffice, alimentano discovery automatica).
 - Fonte OpenCities Tricase: pagina non strutturata → 0 candidati; serve parser dedicato.
 - Prime esecuzioni schedulate GitHub Actions da osservare (ingest ogni 6h).
+
+---
+
+## Addendum serale — 7 agosto 2026 (verifica mirata Leverano/Andrano/Casarano)
+
+Test mirato sulle fonti dei 3 Comuni con warning aperto. Risultati reali:
+
+1. **Bug "town_missing" trovato e corretto**: i candidati da fonti comunali senza
+   Comune nel testo cadevano in revisione (`town_missing`/`territory_unknown`) pur
+   avendo una fonte con `municipality_id`. Ora l'evento eredita il Comune della fonte
+   (`event-repository.mjs`). Test 74/74 verdi.
+2. **Metrica J corretta**: contava solo `events.pending_review` (3). La coda reale
+   (`review_queue` status `pending`) era ed è di ~530 elementi. Ora J le conta
+   entrambe: numero vero degli elementi in attesa di revisione (in gran parte
+   candidati fuori provincia dagli aggregatori regionali — da smaltire in backoffice).
+3. **Fonti Leverano 909/910/923 disattivate**: pagine articolo/programmazione che
+   estraevano avvisi amministrativi e navigazione come fossero eventi
+   (34 voci di rumore rifiutate con storico; conservati i 4 contenuti culturali reali,
+   archiviati come passati). Il PICCOLO PRINCIPE resta associato correttamente a Leverano.
+4. **Andrano**: confermati in archivio "Festa di Santa Maria Maddalena" (30/7) e
+   "Sagra te la Pitta" (3/8) — passati prima della finestra 7-16/8. Nessun evento
+   futuro trovato dalle fonti attive: warning aperto, onesto.
+5. **Esito onesto**: per Leverano, Andrano e Casarano NON pubblico eventi inventati.
+   Il sistema segnala COVERAGE_WARNING aperti e la discovery continua (GHA settimanale
+   + passate assistite) finché non emerge una fonte eventi affidabile.
+
+Metriche aggiornate dopo pulizia: A=655, B=173, D=111, J=530 (coda reale esposta).
