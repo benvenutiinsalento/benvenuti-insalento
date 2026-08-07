@@ -213,3 +213,30 @@ CORREZIONI APPLICATE: vedi sopra; push su main (auto-deploy Netlify attivo).
 PROSSIMO PASSO: logo; osservare i run schedulati; fase 7 (backoffice
   Supabase Auth + ruoli); collaudo allargato fonti Comuni (discovery iPA).
 ```
+
+### Addendum 2026-08-07 — Portale live verificato, immagini provvisorie, demo discovery
+
+```text
+- VERIFICA LIVE: /api/events → fallback=false, 5 eventi reali pubblicati
+  (fonte Regione Puglia open data, livello institutional, date reali);
+  /eventi 200; logo/hero/favicon 200 (PROVISORI, generati dal team: gli
+  originali non esistono in NESSUN pacchetto/deploy allegato, nemmeno nel
+  deploy Netlify 6a75a865 — verificato. Sostituibili in qualsiasi momento).
+- BUG API risolto definitivamente: Number(null)===0 → ramo geo attivo senza
+  parametri → SQL rotta → fallback mascherato. Diagnosi live (campo DIAG2,
+  sanitizzato, da rimuovere al prossimo giro), fix + test.
+- Documenti utente acquisiti: "PROMPT OPERATIVO completamento definitivo"
+  (riferimento esteso) e "DISCOVERY WEB E SCRAPING CONTROLLATO" (flusso
+  ricerca web → fonte originale → verifica → crawling; mai da aggregatori).
+- DEMO DISCOVERY realizzata su Leverano: ricerca web (aggregatori) → fonte
+  istituzionale originale (comune.leverano.le.it/manifestazioni-ed-eventi) →
+  verifica pagina → registrazione fonte (istituzionale, p2, auto_publish) →
+  crawl reale: 7 eventi estratti e catalogati (storici → completed).
+- STATO DB: 18 eventi (4 pubblicati futuri), 316 fonti attive registrate;
+  scheduler GitHub Actions ingest 6h/riscadenze 2h/manutenzione giornaliera/
+  discovery settimanale attivi; CI test 62/62 verde.
+PROSSIMI PASSI: pulizia campo DIAG2; fase 7 backoffice (auth+ruoli); UI
+  alignment al reference design; eventuale chiave gratuita Google
+  Programmable Search (0 €, 100 query/giorno) per discovery web su tutti i
+  96 Comuni + frazioni/marine (da fare con l'utente).
+```
