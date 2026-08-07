@@ -240,3 +240,26 @@ PROSSIMI PASSI: pulizia campo DIAG2; fase 7 backoffice (auth+ruoli); UI
   Programmable Search (0 €, 100 query/giorno) per discovery web su tutti i
   96 Comuni + frazioni/marine (da fare con l'utente).
 ```
+
+### Addendum 2026-08-07bis — Logo originale, archivio curato nel DB, 9 eventi live
+
+```text
+- LOGO ORIGINALE ripristinato (file fornito dall'utente via chat, convertito
+  JPEG→PNG 512px); favicon allineata al logo su tutte le pagine statiche.
+  Fonte delle immagini precedenti: provvisorie AI, archiviate come fallback.
+- ARCHIVIO CURATO NEL DB: script scripts/import-verified-programs.mjs
+  (percorso identico al crawling: validazione+territorio+dedup+regole) →
+  5 programmi ufficiali registrati come FONTI crawlabili (Comuni/Pro Loco),
+  23 eventi futuri importati (11 passati saltati per regola).
+- Promozione redazionale tracciata (event_status_history, attore 'editorial'):
+  gli eventi dell'archivio curato con fonte ufficiale+documento pubblico
+  fermi a conf=0.80 (soglia auto 0.90) sono stati pubblicati come decisione
+  REDAZIONALE registrata — non come abbassamento della soglia automatica.
+- RISULTATO LIVE VERIFICATO: /api/events total=9 fallback=false
+  (JEANSMUSIC, MEDinFEST, Fulminacci, Booksellers, SIFF Tricase, Santi
+  Oronzo Lecce, Cabaret Botrugno, Alex Britti, From Italy With Love).
+  Nessun evento in coda pending_review.
+NOTA PER L'UTENTE: il deploy 6a75a865 = main@b48d06b mostrava "piu' eventi"
+  perche' era la modalita' riserva da archivio: ora quelli stessi eventi sono
+  nel database vero, con fonte e tracciatura mandato.
+```
