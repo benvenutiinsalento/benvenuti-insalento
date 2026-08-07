@@ -1,7 +1,7 @@
 import crypto from 'node:crypto';
 import { query, one } from './db.mjs';
 import { robotsAllows } from './robots.mjs';
-import { stableHash } from './events-core.mjs';
+import { stableHash, sanitizeText } from './events-core.mjs';
 import {
   parseHtmlEvents, parseDatedTownCalendar, parseTorrevadoCalendar, parseIcs,
   parsePugliaJson, extractPdfText, extractOcrText, parsePosterText,
@@ -194,7 +194,7 @@ async function saveRaw(source, runId, fetched) {
   const hash = crypto.createHash('sha256').update(fetched.bytes).digest('hex');
   const contentType = fetched.contentType || '';
   const textual = /json|html|xml|text|calendar/i.test(contentType)
-    ? new TextDecoder('utf-8', { fatal: false }).decode(fetched.bytes).slice(0, 1_500_000)
+    ? sanitizeText(new TextDecoder('utf-8', { fatal: false }).decode(fetched.bytes).slice(0, 1_500_000))
     : null;
   const row = await one(`
     INSERT INTO raw_ingestion_records (source_id,run_id,source_url,content_type,content_hash,raw_text,processing_status)
@@ -288,7 +288,9 @@ export async function processSource(source, runId) {
       return { ok: true, skipped: true, reason: fetched.reason, discovered: 0, created: 0, updated: 0, review: 0 };
     }
     if (fetched.notModified) {
-      await query(`UPDATE sources SET last_checked_at=NOW(),last_success_at=NOW(),last_http_status=304,last_error=NULL,consecutive_failures=0,next_check_at=NOW()+INTERVAL '12 hours' WHERE id=$1`, [source.id]);
+      await query(`UPDATE sources SET last_checked_at=NOW(),last_success_at=NOW(),last_http_status=304,last_error=NULL,consecutive_failures=0,
+        last_created_count=0,last_updated_count=0,last_review_count=0,last_run_id=$2,last_duration_ms=$3,
+        next_check_at=NOW()+INTERVAL '12 hours' WHERE id=$1`, [source.id, runId, Date.now() - started]);
       return { ok: true, notModified: true, discovered: 0, created: 0, updated: 0, review: 0 };
     }
 
@@ -315,13 +317,17 @@ export async function processSource(source, runId) {
     await query(`UPDATE raw_ingestion_records SET processing_status=$2,processed_at=NOW() WHERE id=$1`, [raw.id, window.hasMore ? 'new' : 'processed']);
     await query(`UPDATE sources SET last_checked_at=NOW(),last_success_at=NOW(),last_http_status=$2,etag=$3,last_modified_header=$4,
       content_hash=$5,last_error=NULL,consecutive_failures=0,extracted_events_count=$6,ingestion_cursor=$7,
+      last_created_count=$9,last_updated_count=$10,last_review_count=$11,last_run_id=$12,last_duration_ms=$13,
       next_check_at=NOW()+CASE WHEN $8 THEN INTERVAL '2 minutes' ELSE INTERVAL '8 hours' END,updated_at=NOW() WHERE id=$1`,
-      [source.id, fetched.status, fetched.etag, fetched.lastModified, raw.hash, candidates.length, window.nextCursor, window.hasMore]);
+      [source.id, fetched.status, fetched.etag, fetched.lastModified, raw.hash, candidates.length, window.nextCursor, window.hasMore,
+       created, updated, review, runId, Date.now() - started]);
     return { ok: true, discovered: window.items.length, sourceCandidates: candidates.length, remaining: window.remaining, discoveredLinks, created, updated, review, duplicateMerged, durationMs: Date.now()-started };
   } catch (error) {
     const message = String(error?.message || error).slice(0, 500);
-    await query(`UPDATE sources SET last_checked_at=NOW(),last_error=$2,consecutive_failures=consecutive_failures+1,
-      next_check_at=NOW() + (LEAST(consecutive_failures+1,7) * INTERVAL '12 hours'),updated_at=NOW() WHERE id=$1`, [source.id, message]);
+    await query(`UPDATE sources SET last_checked_at=NOW(),last_failure_at=NOW(),last_error=$2,consecutive_failures=consecutive_failures+1,
+      last_run_id=$3,last_duration_ms=$4,
+      next_check_at=NOW() + (LEAST(consecutive_failures+1,7) * INTERVAL '12 hours'),updated_at=NOW() WHERE id=$1`,
+      [source.id, message, runId, Date.now() - started]);
     await queueReview({ sourceId: source.id, reason: `Errore acquisizione: ${message}`, severity: source.priority <= 3 ? 'high' : 'medium', payload: { url: source.url } });
     return { ok: false, error: message, discovered: 0, created: 0, updated: 0, review: 1, durationMs: Date.now()-started };
   }

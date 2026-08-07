@@ -10,6 +10,29 @@ const ROMAN = new Map([
 
 const TITLE_NOISE = new Set(["sagra", "festa", "festival", "manifestazione", "evento", "patronale", "patronali", "edizione", "della", "delle", "degli", "del", "di", "la", "le", "il", "lo", "un", "una"]);
 
+// Sanificazione per PostgreSQL: rimuove surrogati Unicode orfani (frequentissimi
+// nelle pagine con caratteri "bold" copiati da social, es. \ud835 isolato che il
+// tipo json/jsonb respinge) e caratteri di controllo non ammessi nei text.
+export function sanitizeText(value) {
+  if (typeof value !== 'string') return value;
+  return value
+    .replace(/[\uD800-\uDBFF](?![\uDC00-\uDFFF])/g, '')
+    .replace(/(?<![\uD800-\uDBFF])[\uDC00-\uDFFF]/g, '')
+    .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, '');
+}
+
+// Variante profonda: sanifica ogni stringa in oggetti/array (payload JSON DB).
+export function sanitizeDeep(value) {
+  if (typeof value === 'string') return sanitizeText(value);
+  if (Array.isArray(value)) return value.map(sanitizeDeep);
+  if (value && typeof value === 'object') {
+    const out = {};
+    for (const [k, v] of Object.entries(value)) out[k] = sanitizeDeep(v);
+    return out;
+  }
+  return value;
+}
+
 export function normalizeSearchText(value = "") {
   return String(value)
     .normalize("NFD")

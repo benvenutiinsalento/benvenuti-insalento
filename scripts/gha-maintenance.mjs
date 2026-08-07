@@ -38,6 +38,15 @@ try {
   const coverage = await calculateCoverage();
   console.log('Coverage →', JSON.stringify(coverage).slice(0, 400));
 
+  // 2b. Test di completezza (BLOCCO punto 6): sotto soglia = COVERAGE_WARNING,
+  // mai interpretare "0 eventi" come "non ci sono eventi".
+  const { evaluateCoverageWarnings } = await import('../netlify/functions/_shared/coverage-warnings.mjs');
+  const warnings = await evaluateCoverageWarnings({ windowDays: 10 });
+  console.log(`Coverage warnings aperti: ${warnings.warnings.length}`);
+  const openWarnings = await query(`SELECT m.name AS municipality, w.window_from, w.window_to,
+    w.events_found, w.threshold, w.created_at FROM coverage_warnings w
+    JOIN municipalities m ON m.id=w.municipality_id WHERE w.status IN ('open','investigating') ORDER BY w.created_at DESC`);
+
   // 3. Rigenerazione fallback da Supabase (occurrence-first)
   const now = new Date();
   const expiresAt = new Date(now.getTime() + 26 * 3600 * 1000);
@@ -130,7 +139,9 @@ try {
       sources_active: covRows.reduce((a, r) => a + Number(r.sources_active || 0), 0),
       sources_working_72h: covRows.reduce((a, r) => a + Number(r.sources_working || 0), 0),
       future_events: covRows.reduce((a, r) => a + Number(r.future_events || 0), 0),
+      open_warnings: openWarnings.length,
     },
+    coverageWarnings: openWarnings,
     municipalities: covRows,
   };
   fs.writeFileSync(REPORT_FILE, JSON.stringify(report, null, 2));

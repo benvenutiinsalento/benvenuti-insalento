@@ -1,1 +1,345 @@
-<!doctype html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Amministrazione eventi</title><meta name="robots" content="noindex,nofollow"><link rel="stylesheet" href="styles/main.css"><link rel="stylesheet" href="styles/events.css"><script defer src="scripts/admin-events.js"></script></head><body><header class="event-mini-header"><a href="/"><img src="assets/images/benvenuti-in-salento-logo.png" alt="" width="46"><strong>Backoffice eventi</strong></a><a href="eventi.html">Portale pubblico</a></header><main class="admin-shell"><section class="admin-card"><h1>Controllo del sistema</h1><p>Il token resta soltanto nella sessione del browser.</p><label>ADMIN_TOKEN <input type="password" id="token" autocomplete="off"></label><div class="admin-toolbar"><button class="button button-primary" data-action="status">Stato</button><button class="button button-light" data-action="bootstrap">Bootstrap + IPA</button><button class="button button-light" data-action="ingest">Acquisisci lotto</button><button class="button button-light" data-action="coverage">Ricalcola copertura</button><button class="button button-light" data-action="review">Coda revisioni</button><button class="button button-light" data-action="submissions">Segnalazioni</button><button class="button button-light" data-action="sources">Fonti</button></div><pre id="admin-output" class="admin-output">Inserisci il token e scegli un’operazione.</pre><div id="admin-table-wrap"></div></section></main></body></html>
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Backoffice Eventi | Benvenuti in Salento</title>
+  <link rel="icon" href="assets/images/benvenuti-in-salento-logo.png">
+  <style>
+    :root{--ink:#173042;--brand:#0d3b4f;--accent:#c96f2f;--bg:#f7f3eb;--ok:#1e7b4f;--ko:#b3261e;--warn:#9a6a00}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:15px;line-height:1.45}
+    h1,h2,h3{margin:.2em 0;color:var(--brand)}button{font:inherit;cursor:pointer}
+    .wrap{max-width:1080px;margin:0 auto;padding:14px}
+    header.bar{position:sticky;top:0;z-index:5;background:var(--brand);color:#fff;padding:10px 14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+    header.bar img{width:36px;height:36px;border-radius:50%}
+    header.bar .spacer{flex:1}
+    .badge{display:inline-block;padding:3px 10px;border-radius:999px;font-size:.75rem;font-weight:700;background:#eaf4f6;color:var(--brand)}
+    .badge.role-admin{background:#ffe3d0;color:#8a4100}.badge.role-editor{background:#e2ecff;color:#1e3f8a}.badge.role-reviewer{background:#e6f6ec;color:#1e7b4f}
+    .card{background:#fff;border:1px solid rgba(13,59,79,.12);border-radius:14px;padding:16px;margin:12px 0;box-shadow:0 1px 3px rgba(13,59,79,.06)}
+    .grid{display:grid;gap:10px}
+    .grid.metrics{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+    .metric{background:#fff;border:1px solid rgba(13,59,79,.12);border-radius:12px;padding:12px}
+    .metric b{display:block;font-size:1.5rem;color:var(--brand)}
+    .metric small{color:#5c6b75}
+    .btn{display:inline-block;padding:10px 16px;border-radius:10px;border:1px solid var(--brand);background:var(--brand);color:#fff;font-weight:600;text-decoration:none}
+    .btn.secondary{background:#fff;color:var(--brand)}
+    .btn.small{padding:6px 12px;font-size:.82rem;border-radius:8px}
+    .btn.ok{background:var(--ok);border-color:var(--ok)}
+    .btn.ko{background:var(--ko);border-color:var(--ko)}
+    .btn:disabled{opacity:.5;cursor:default}
+    input,select{width:100%;padding:11px 12px;border:1px solid rgba(13,59,79,.25);border-radius:10px;font:inherit;background:#fff}
+    label{display:block;margin:10px 0 4px;font-weight:600;color:var(--brand);font-size:.88rem}
+    nav.tabs{display:flex;gap:6px;overflow-x:auto;padding:10px 0 0;-webkit-overflow-scrolling:touch}
+    nav.tabs button{flex:0 0 auto;padding:9px 16px;border:1px solid rgba(13,59,79,.2);border-bottom:none;border-radius:12px 12px 0 0;background:#efe9dd;color:var(--ink);font-weight:600;font-size:.9rem}
+    nav.tabs button.is-active{background:#fff;color:var(--brand);position:relative;top:1px}
+    .tab-body{background:#fff;border:1px solid rgba(13,59,79,.12);border-radius:0 12px 12px 12px;padding:14px;min-height:40vh}
+    table.report{width:100%;border-collapse:collapse;font-size:.8rem;min-width:980px}
+    table.report th,table.report td{padding:7px 8px;border-bottom:1px solid rgba(13,59,79,.1);text-align:left;vertical-align:top}
+    table.report th{position:sticky;top:0;background:var(--brand);color:#fff;white-space:nowrap}
+    .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid rgba(13,59,79,.1);border-radius:10px}
+    .state-funzionante{color:var(--ok);font-weight:700}.state-in_errore{color:var(--ko);font-weight:700}
+    .state-mai_controllata{color:var(--warn);font-weight:700}.state-disattivata{color:#777}
+    .pill{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.72rem;font-weight:700;background:#eee}
+    .pill.err{background:#fde7e5;color:var(--ko)}.pill.warn{background:#fff3d6;color:var(--warn)}.pill.ok{background:#e6f6ec;color:var(--ok)}
+    .alert{padding:12px 14px;border-radius:10px;margin:10px 0;font-size:.9rem}
+    .alert.ko{background:#fde7e5;border:1px solid var(--ko);color:var(--ko)}
+    .alert.ok{background:#e6f6ec;border:1px solid var(--ok);color:var(--ok)}
+    .alert.warn{background:#fff3d6;border:1px solid #d9a713;color:#5a4308}
+    .muted{color:#718089;font-size:.8rem}
+    .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+    .chips{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 12px}
+    .chip{padding:6px 12px;border-radius:999px;border:1px solid rgba(13,59,79,.25);background:#fff;font-size:.8rem;font-weight:600}
+    .chip.is-active{background:var(--brand);color:#fff;border-color:var(--brand)}
+    .login-box{max-width:380px;margin:8vh auto}
+    .login-box .card{padding:26px}
+    [hidden]{display:none!important}
+    .mono{font-family:ui-monospace,Menlo,monospace;font-size:.78rem}
+    .err-text{color:var(--ko);font-size:.78rem;max-width:320px;word-break:break-word}
+    a{color:var(--brand)}
+  </style>
+</head>
+<body>
+  <header class="bar">
+    <img src="assets/images/benvenuti-in-salento-logo.png" alt="">
+    <div><strong>Backoffice Eventi</strong><br><small>Benvenuti in Salento</small></div>
+    <div class="spacer"></div>
+    <span id="user-box" hidden><span id="user-email" class="muted" style="color:#cfe2ea"></span> <span id="user-role" class="badge"></span></span>
+    <button id="logout" class="btn secondary small" style="background:#fff" hidden>Esci</button>
+  </header>
+
+  <main class="wrap">
+    <!-- LOGIN -->
+    <section id="login-view" class="login-box">
+      <div class="card">
+        <h1>Accedi</h1>
+        <p class="muted">Solo operatori autorizzati. Login con l'account Supabase del portale (ruoli: admin, editor, reviewer, viewer).</p>
+        <form id="login-form">
+          <label for="email">Email</label>
+          <input id="email" type="email" autocomplete="username" required>
+          <label for="password">Password</label>
+          <input id="password" type="password" autocomplete="current-password" required>
+          <div style="margin-top:16px"><button class="btn" type="submit" id="login-btn" style="width:100%">Entra nel backoffice</button></div>
+          <p id="login-error" class="err-text" hidden></p>
+        </form>
+      </div>
+    </section>
+
+    <!-- APP -->
+    <section id="app-view" hidden>
+      <div id="health-banner"></div>
+      <nav class="tabs" id="tabs">
+        <button data-tab="panoramica" class="is-active">Panoramica</button>
+        <button data-tab="fonti">Fonti</button>
+        <button data-tab="revisioni">Revisioni <span id="rev-count" class="pill warn" hidden></span></button>
+        <button data-tab="eventi">Eventi</button>
+        <button data-tab="segnalazioni">Segnalazioni</button>
+      </nav>
+
+      <div class="tab-body">
+        <!-- PANORAMICA -->
+        <section data-panel="panoramica">
+          <h2>Salute del sistema</h2>
+          <div id="health-card" class="card">Controllo in corso…</div>
+          <h2>Metriche di verifica (A–J)</h2>
+          <div id="metrics-grid" class="grid metrics">Caricamento…</div>
+          <div id="warnings-box"></div>
+          <h2>Ultimi cicli di acquisizione</h2>
+          <div class="scroll"><table class="report" id="runs-table" style="min-width:640px">
+            <thead><tr><th>ID</th><th>Tipo</th><th>Stato</th><th>Avviato</th><th>Fonti</th><th>OK</th><th>KO</th><th>Trovati</th><th>Nuovi</th><th>Aggiornati</th></tr></thead><tbody></tbody>
+          </table></div>
+        </section>
+
+        <!-- FONTI -->
+        <section data-panel="fonti" hidden>
+          <div class="row" style="justify-content:space-between">
+            <h2 style="margin:0">Report fonti</h2>
+            <button class="btn small" id="reload-sources">Aggiorna</button>
+          </div>
+          <p class="muted">Distingue la <b>fonte registrata</b> dalla <b>fonte realmente funzionante</b> (verifica reale sull'ultima scansione).</p>
+          <div id="sources-summary" class="chips"></div>
+          <div class="scroll" style="max-height:70vh;overflow:auto">
+            <table class="report" id="sources-table">
+              <thead><tr><th>ID</th><th>Nome</th><th>URL</th><th>Comune</th><th>Tipo</th><th>Stato</th><th>Ultima scansione</th><th>Ultimo successo</th><th>HTTP</th><th>Parser</th><th>Trovati</th><th>Nuovi</th><th>Aggiornati</th><th>Errore</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- REVISIONI -->
+        <section data-panel="revisioni" hidden>
+          <h2>Coda di revisione</h2>
+          <p class="muted">Eventi e anomalie in attesa di verifica umana. Approvare pubblica l'evento collegato.</p>
+          <div id="review-list"></div>
+        </section>
+
+        <!-- EVENTI -->
+        <section data-panel="eventi" hidden>
+          <div class="row" style="justify-content:space-between">
+            <h2 style="margin:0">Eventi</h2>
+            <select id="events-status-filter" style="max-width:220px">
+              <option value="published">Pubblicati</option>
+              <option value="pending_review">In revisione</option>
+              <option value="postponed">Rinviati</option>
+              <option value="cancelled">Annullati</option>
+              <option value="completed">Conclusi</option>
+              <option value="">Tutti</option>
+            </select>
+          </div>
+          <div id="events-list"></div>
+        </section>
+
+        <!-- SEGNALAZIONI -->
+        <section data-panel="segnalazioni" hidden>
+          <h2>Segnalazioni dal pubblico</h2>
+          <div id="submissions-list"></div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <script>
+  const SUPABASE_URL='https://bzzdpfobfvsnmpoewoyx.supabase.co';
+  const SUPABASE_ANON_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ6emRwZm9iZnZzbm1wb2V3b3l4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODYwMjM5NDIsImV4cCI6MjEwMTU5OTk0Mn0.dg6qiB1Npd_FzV31TDS8-wtP-5F2pjIK712swhq8aIw';
+  const ROLE_RANK={viewer:1,reviewer:2,editor:3,admin:4};
+  let token=sessionStorage.getItem('bis_admin_token')||'';
+  let myRole='viewer';
+
+  const $=(sel)=>document.querySelector(sel);
+  const fmtDate=(v)=>v?new Date(v).toLocaleString('it-IT',{timeZone:'Europe/Rome',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}):'—';
+  const esc=(v)=>String(v??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+  async function api(path,opts={}){
+    const response=await fetch(path,{...opts,headers:{'authorization':`Bearer ${token}`,'content-type':'application/json',...(opts.headers||{})}});
+    if(response.status===401||response.status===403){const data=await response.json().catch(()=>({}));throw Object.assign(new Error(data?.error?.message||'Sessione scaduta'),{auth:true})}
+    if(!response.ok){const data=await response.json().catch(()=>({}));throw new Error(data?.error?.message||`Errore ${response.status}`)}
+    return response.json();
+  }
+
+  async function login(email,password){
+    const response=await fetch(`${SUPABASE_URL}/auth/v1/token?grant_type=password`,{
+      method:'POST',headers:{'apikey':SUPABASE_ANON_KEY,'content-type':'application/json'},
+      body:JSON.stringify({email,password})});
+    const data=await response.json().catch(()=>({}));
+    if(!response.ok||!data.access_token)throw new Error(data.error_description||data.msg||'Credenziali non valide');
+    token=data.access_token;sessionStorage.setItem('bis_admin_token',token);
+  }
+
+  function showApp(user){
+    $('#login-view').hidden=true;$('#app-view').hidden=false;
+    $('#user-box').hidden=false;$('#logout').hidden=false;
+    $('#user-email').textContent=user.email||'';$('#user-role').textContent=user.role||'viewer';
+    $('#user-role').className=`badge role-${user.role||'viewer'}`;
+    myRole=user.role||'viewer';
+    loadPanoramica();
+  }
+  function showLogin(msg){
+    sessionStorage.removeItem('bis_admin_token');token='';
+    $('#login-view').hidden=false;$('#app-view').hidden=true;
+    $('#user-box').hidden=true;$('#logout').hidden=true;
+    const err=$('#login-error');err.hidden=!msg;err.textContent=msg||'';
+  }
+  function guard(e){if(e&&e.auth)showLogin(e.message);else console.error(e)}
+
+  async function bootstrap(){
+    if(!token){showLogin();return}
+    try{const me=await api('/api/admin/me');showApp(me.user)}catch(e){showLogin(e.auth?e.message:'')}
+  }
+
+  $('#login-form').addEventListener('submit',async(ev)=>{
+    ev.preventDefault();$('#login-error').hidden=true;$('#login-btn').disabled=true;
+    try{await login($('#email').value.trim(),$('#password').value);await bootstrap()}
+    catch(e){$('#login-error').hidden=false;$('#login-error').textContent=e.message}
+    finally{$('#login-btn').disabled=false}
+  });
+  $('#logout').addEventListener('click',async()=>{
+    try{await fetch(`${SUPABASE_URL}/auth/v1/logout`,{method:'POST',headers:{'apikey':SUPABASE_ANON_KEY,'authorization':`Bearer ${token}`}})}catch{}
+    showLogin();
+  });
+
+  document.querySelectorAll('#tabs button').forEach(btn=>btn.addEventListener('click',()=>{
+    document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('is-active',b===btn));
+    document.querySelectorAll('[data-panel]').forEach(p=>p.hidden=p.dataset.panel!==btn.dataset.tab);
+    if(btn.dataset.tab==='fonti')loadSources();
+    if(btn.dataset.tab==='revisioni')loadReview();
+    if(btn.dataset.tab==='eventi')loadEvents();
+    if(btn.dataset.tab==='segnalazioni')loadSubmissions();
+  }));
+
+  async function loadPanoramica(){
+    // 1) Salute API pubblica (punto 10 del blocco: il backoffice DEVE mostrare il KO)
+    try{
+      const response=await fetch('/api/health',{cache:'no-store'});
+      const h=await response.json();
+      const ok=h.status==='ok';
+      $('#health-banner').innerHTML=ok?'':'<div class="alert ko"><b>⚠️ API eventi in modalità KO/fallback.</b> Il database non risponde: il sito mostra l’archivio di riserva contrassegnato. Intervenire sul backend.</div>';
+      $('#health-card').innerHTML=ok
+        ?`<div class="alert ok" style="margin:0"><b>Backend operativo.</b> Database Supabase raggiungibile in ${h.latencyMs} ms · Eventi futuri pubblicati: <b>${h.events.futurePublished}</b> · Fonti attive: <b>${h.sources.active}</b><br><span class="muted">Ultimo ciclo acquisizione: ${h.lastIngestionRun?`#${h.lastIngestionRun.id} (${h.lastIngestionRun.run_type}) ${h.lastIngestionRun.status} del ${fmtDate(h.lastIngestionRun.started_at)}`:'mai eseguito'} · Scheduler: GitHub Actions · Cron Netlify: assenti ✓</span></div>`
+        :`<div class="alert ko" style="margin:0"><b>Backend KO.</b> ${esc(h.db&&h.db.error||'errore sconosciuto')} · Fallback pubblico: ${h.fallback&&h.fallback.active?'ATTIVO (contrassegnato)':'no'}</div>`;
+    }catch{$('#health-banner').innerHTML='<div class="alert ko"><b>⚠️ Impossibile contattare /api/health.</b> Verificare Netlify/Supabase.</div>';$('#health-card').innerHTML='<div class="alert ko" style="margin:0">Health check non raggiungibile.</div>'}
+    // 2) Metriche A–J
+    try{
+      const data=await api('/api/admin/metrics');const m=data.metrics;
+      const cells=[
+        ['A · Fonti registrate',m.a_fonti_registrate],['B · Fonti funzionanti',m.b_fonti_funzionanti],['C · Fonti fallite',m.c_fonti_fallite],
+        ['D · Eventi futuri totali',m.d_eventi_futuri],['E · Eventi prossimi 7 giorni',m.e_eventi_prossimi_7_giorni],
+        ['F · Comuni con eventi',m.f_comuni_con_eventi],['G · Comuni senza copertura',m.g_comuni_senza_copertura],
+        ['H · Acquisiti automaticamente',m.h_eventi_automatici],['I · Inseriti manualmente',m.i_eventi_manuali],
+        ['J · Eventi in revisione',m.j_eventi_in_review]];
+      $('#metrics-grid').innerHTML=cells.map(([k,v])=>`<div class="metric"><small>${k}</small><b>${v}</b></div>`).join('');
+      $('#warnings-box').innerHTML=data.coverageWarnings.length
+        ?`<div class="alert warn"><b>⚠️ ${data.coverageWarnings.length} COVERAGE_WARNING aperti</b> — pochi eventi plausibili per il periodo: ${data.coverageWarnings.map(w=>`${esc(w.municipality)} (${w.events_found}/${w.threshold}, ${w.window_from}→${w.window_to})`).join(' · ')}</div>`
+        :'';
+      if(m.j_eventi_in_review>0){$('#rev-count').hidden=false;$('#rev-count').textContent=m.j_eventi_in_review}
+    }catch(e){$('#metrics-grid').innerHTML=`<div class="alert ko">Metriche non disponibili: ${esc(e.message)}</div>`;guard(e)}
+    // 3) Ultimi run
+    try{
+      const data=await api('/api/admin/status');
+      $('#runs-table tbody').innerHTML=(data.runs||[]).map(r=>`<tr><td class="mono">#${r.id}</td><td>${esc(r.run_type)}</td><td>${r.status==='completed'?'<span class="pill ok">'+r.status+'</span>':r.status==='failed'?'<span class="pill err">'+r.status+'</span>':'<span class="pill warn">'+r.status+'</span>'}</td><td>${fmtDate(r.started_at)}</td><td>${r.sources_checked}</td><td>${r.sources_succeeded}</td><td>${r.sources_failed}</td><td>${r.events_discovered}</td><td><b>${r.events_created}</b></td><td>${r.events_updated}</td></tr>`).join('')||'<tr><td colspan="10">Nessun ciclo registrato.</td></tr>';
+    }catch(e){guard(e)}
+  }
+
+  let sourcesState='';
+  async function loadSources(){
+    try{
+      const data=await api(`/api/admin/sources${sourcesState?`?state=${sourcesState}`:''}`);
+      const s=data.summary;
+      const chips=[['','Registrate',s.registered],['funzionante','Funzionanti',s.working],['in_errore','Fallite',s.failing],['mai_controllata','Mai controllate',s.neverChecked],['disattivata','Disattivate',s.inactive]];
+      $('#sources-summary').innerHTML=chips.map(([k,label,v])=>`<button class="chip ${sourcesState===k?'is-active':''}" data-state="${k}">${label}: <b>${v}</b></button>`).join('');
+      document.querySelectorAll('#sources-summary .chip').forEach(c=>c.addEventListener('click',()=>{sourcesState=c.dataset.state;loadSources()}));
+      $('#sources-table tbody').innerHTML=(data.sources||[]).map(row=>`<tr>
+        <td class="mono">${row.id}</td>
+        <td>${esc(row.entity_name)}</td>
+        <td style="max-width:220px;word-break:break-all"><a href="${esc(row.url)}" target="_blank" rel="noopener">${esc(row.url.replace(/^https?:\/\//,'').slice(0,60))}</a></td>
+        <td>${esc(row.municipality||'—')}</td>
+        <td>${esc(row.source_type)}</td>
+        <td><span class="state-${row.working_state}">${row.working_state.replace('_',' ')}</span></td>
+        <td class="mono">${fmtDate(row.last_scan_at)}</td>
+        <td class="mono">${fmtDate(row.last_success_at)}</td>
+        <td>${row.last_http_status??'—'}</td>
+        <td>${esc(row.parser_type)}</td>
+        <td>${row.events_found??0}</td>
+        <td><b>${row.events_created_last_scan??0}</b></td>
+        <td>${row.events_updated_last_scan??0}</td>
+        <td class="err-text">${esc((row.last_error||'').slice(0,120))}</td>
+      </tr>`).join('')||'<tr><td colspan="14">Nessuna fonte con questo filtro.</td></tr>';
+    }catch(e){guard(e);$('#sources-table tbody').innerHTML=`<tr><td colspan="14" class="err-text">${esc(e.message)}</td></tr>`}
+  }
+  $('#reload-sources').addEventListener('click',loadSources);
+
+  async function loadReview(){
+    try{
+      const data=await api('/api/admin/review');
+      const canDecide=(ROLE_RANK[myRole]||0)>=ROLE_RANK.reviewer;
+      $('#review-list').innerHTML=(data.items||[]).length?data.items.map(item=>`<div class="card">
+        <div class="row" style="justify-content:space-between"><b>${esc(item.event_title||(item.payload&&item.payload.title)||'(senza titolo)')}</b><span class="pill ${item.severity==='high'||item.severity==='critical'?'err':'warn'}">${esc(item.severity)}</span></div>
+        <p class="muted" style="margin:6px 0">${esc(item.reason)} · Fonte: ${esc(item.source_name||'—')} · ${fmtDate(item.created_at)}</p>
+        ${item.payload&&item.payload.town?`<p class="muted" style="margin:0 0 8px">Comune: ${esc(item.payload.town)} ${item.payload.dates?`· Date: ${esc((item.payload.dates||[]).join(', '))}`:''}</p>`:''}
+        ${canDecide?`<div class="row"><button class="btn ok small" data-rev="${item.id}" data-dec="approved">Approva e pubblica</button><button class="btn ko small" data-rev="${item.id}" data-dec="rejected">Rifiuta</button></div>`:'<p class="muted">Serve il ruolo reviewer per decidere.</p>'}
+      </div>`).join(''):'<p class="muted">Coda vuota: niente da revisionare. 🎉</p>';
+      document.querySelectorAll('[data-rev]').forEach(btn=>btn.addEventListener('click',async()=>{
+        btn.disabled=true;
+        try{await api('/api/admin/review',{method:'PATCH',body:JSON.stringify({id:Number(btn.dataset.rev),status:btn.dataset.dec})});await loadReview();loadPanoramica()}
+        catch(e){alert(e.message);guard(e);btn.disabled=false}
+      }));
+    }catch(e){guard(e)}
+  }
+
+  async function loadEvents(){
+    try{
+      const status=$('#events-status-filter').value;
+      const data=await api(`/api/admin/events?status=${encodeURIComponent(status)}`);
+      const canEdit=(ROLE_RANK[myRole]||0)>=ROLE_RANK.editor;
+      $('#events-list').innerHTML=(data.events||[]).length?data.events.map(ev=>`<div class="card">
+        <div class="row" style="justify-content:space-between"><b>${esc(ev.title)}</b><span class="pill ${ev.status==='published'?'ok':ev.status==='cancelled'?'err':'warn'}">${esc(ev.status)}</span></div>
+        <p class="muted" style="margin:6px 0">${esc(ev.town)} · ${fmtDate(ev.start_date)}${ev.end_date&&ev.end_date!==ev.start_date?` → ${fmtDate(ev.end_date)}`:''} · ${esc(ev.verification_level)}</p>
+        <p class="muted mono" style="margin:0 0 8px">fonte #${ev.primary_source_id||'—'} · run #${ev.ingestion_run_id||'—'} · rilevato ${fmtDate(ev.first_discovered_at)} · controllato ${fmtDate(ev.last_checked_at)}</p>
+        ${canEdit&&ev.status==='pending_review'?`<button class="btn ok small" data-pub="${ev.id}">Pubblica</button>`:''}
+        ${canEdit&&ev.status==='published'?`<button class="btn ko small" data-cancel="${ev.id}">Segna annullato</button>`:''}
+        ${ev.source_url?`<a href="${esc(ev.source_url)}" target="_blank" rel="noopener" class="muted">apri fonte ↗</a>`:''}
+      </div>`).join(''):'<p class="muted">Nessun evento con questo stato.</p>';
+      document.querySelectorAll('[data-pub]').forEach(btn=>btn.addEventListener('click',async()=>{btn.disabled=true;try{await api('/api/admin/events',{method:'PATCH',body:JSON.stringify({id:Number(btn.dataset.pub),patch:{status:'published',reason:'Pubblicazione redazionale dal backoffice'}})});await loadEvents()}catch(e){alert(e.message);guard(e);btn.disabled=false}}));
+      document.querySelectorAll('[data-cancel]').forEach(btn=>btn.addEventListener('click',async()=>{if(!confirm('Segnare come ANNULLATO? Fallo solo se la fonte ufficiale lo conferma.'))return;btn.disabled=true;try{await api('/api/admin/events',{method:'PATCH',body:JSON.stringify({id:Number(btn.dataset.cancel),patch:{status:'cancelled',reason:'Annullamento redazionale (fonte verificata)'}})});await loadEvents()}catch(e){alert(e.message);guard(e);btn.disabled=false}}));
+    }catch(e){guard(e)}
+  }
+  $('#events-status-filter').addEventListener('change',loadEvents);
+
+  async function loadSubmissions(){
+    try{
+      const data=await api('/api/admin/submissions');
+      const canDecide=(ROLE_RANK[myRole]||0)>=ROLE_RANK.reviewer;
+      $('#submissions-list').innerHTML=(data.submissions||[]).length?data.submissions.map(s=>`<div class="card">
+        <b>${esc(s.event_name)}</b>
+        <p class="muted" style="margin:6px 0">${esc(s.town||'—')} · ${esc(s.start_date||'?')} → ${esc(s.end_date||'?')} · Organizzatore: ${esc(s.organizer_name||'—')}</p>
+        ${s.source_url?`<p class="muted"><a href="${esc(s.source_url)}" target="_blank" rel="noopener">fonte indicata ↗</a></p>`:''}
+        ${s.notes?`<p>${esc(s.notes)}</p>`:''}
+        ${canDecide?`<div class="row"><button class="btn ok small" data-sub="${s.id}" data-dec="approved">Approva</button><button class="btn ko small" data-sub="${s.id}" data-dec="rejected">Rifiuta</button></div>`:''}
+      </div>`).join(''):'<p class="muted">Nessuna segnalazione in attesa.</p>';
+      document.querySelectorAll('[data-sub]').forEach(btn=>btn.addEventListener('click',async()=>{btn.disabled=true;try{await api('/api/admin/submissions',{method:'PATCH',body:JSON.stringify({id:btn.dataset.sub,status:btn.dataset.dec})});await loadSubmissions()}catch(e){alert(e.message);guard(e);btn.disabled=false}}));
+    }catch(e){guard(e)}
+  }
+
+  bootstrap();
+  </script>
+</body>
+</html>

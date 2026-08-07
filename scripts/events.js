@@ -2,6 +2,7 @@ const form=document.querySelector('#events-search');
 const grid=document.querySelector('#events-grid');
 const statusBox=document.querySelector('#events-status');
 const meta=document.querySelector('#results-meta');
+const fallbackNotice=document.querySelector('#fallback-notice');
 const template=document.querySelector('#event-card');
 const geoButton=document.querySelector('#geo');
 const dialog=document.querySelector('#event-dialog');
@@ -15,12 +16,20 @@ const normalize=(value='')=>String(value).normalize('NFD').replace(/[\u0300-\u03
 const distanceKm=(a,b,c,d)=>{const rad=v=>v*Math.PI/180,x=rad(c-a),y=rad(d-b),q=Math.sin(x/2)**2+Math.cos(rad(a))*Math.cos(rad(c))*Math.sin(y/2)**2;return 6371*2*Math.atan2(Math.sqrt(q),Math.sqrt(1-q))};
 
 function selectQuick(type){document.querySelectorAll('[data-range]').forEach(button=>button.classList.toggle('is-active',button.dataset.range===type))}
+function clearTimeFlags(){form.evening.value='';form.weekend.value=''}
 function setRange(type){
-  const today=romeToday();let from=today,to=today;
+  const today=romeToday();let from=today,to=today;clearTimeFlags();
   form.evening.value=type==='evening'?'1':'';
   if(type==='tomorrow')from=to=addDays(today,1);
   if(type==='seven')to=addDays(today,6);
-  if(type==='weekend'){const d=new Date(`${today}T12:00:00`),day=d.getDay(),delta=day===0?0:6-day;from=addDays(today,delta);to=addDays(from,1)}
+  if(type==='weekend'){
+    // Weekend (mandato): venerdì dalle 18:00, sabato, domenica.
+    form.weekend.value='1';
+    const dow=new Date(`${today}T12:00:00`).getUTCDay(); // 0=dom..6=sab
+    if(dow===6){to=addDays(today,1)} // sabato: oggi+domani
+    else if(dow===0){to=today} // domenica: solo oggi
+    else {const toFri=(5-dow+7)%7;from=addDays(today,toFri);to=addDays(from,2)}
+  }
   form.from.value=from;form.to.value=to;selectQuick(type);load();
 }
 
@@ -48,7 +57,33 @@ function flattenFallback(payload){
   })));
 }
 function occurs(event,from,to){return (!from||event.endDate>=from)&&(!to||event.startDate<=to)}
-function isEvening(event){const match=String(event.startTime||'').match(/^(\d{1,2})(?::(\d{2}))?/);return match?Number(match[1])*60+Number(match[2]||0)>=1080:false}
+function timeMinutes(value){const match=String(value||'').match(/^(\d{1,2})(?::(\d{2}))?/);return match?Number(match[1])*60+Number(match[2]||0):null}
+function isEvening(event){
+  // "Stasera": dicitura serale, inizio >= 18:00, evento giornaliero ancora in
+  // corso (nessun orario), pomeridiano che entra in serata.
+  if(/sera|serata|notturn|a cena|mezzanotte|cena spettacolo|in serata/i.test(`${event.title} ${event.originalTimeText||''}`))return true;
+  const start=timeMinutes(event.startTime);
+  if(start==null)return true;
+  if(start>=1080)return true;
+  const end=timeMinutes(event.endTime);
+  return end!=null&&end>=1080&&end>start;
+}
+function occursOnWeekend(event){
+  // venerdì dalle 18:00 (o tutto il giorno), sabato e domenica
+  const from=event.startDate,to=event.endDate||event.startDate;
+  const cursor=new Date(`${from}T12:00:00`),end=new Date(`${to}T12:00:00`);let guard=0;
+  while(cursor<=end&&guard<90){
+    const dow=cursor.getDay();
+    if(dow===0||dow===6)return true;
+    if(dow===5&&isEvening(event))return true;
+    cursor.setDate(cursor.getDate()+1);guard++;
+  }
+  return false;
+}
+function isFamily(event){
+  const hay=normalize([event.title,event.description,event.primaryCategory,...(event.tags||[]),...(event.audiences||[])].join(' '));
+  return (event.audiences||[]).some(a=>/famiglie|bambini/.test(normalize(a)))||/bambin|famigli|laborator|giochi|animazione|burattin/.test(hay);
+}
 function localFilter(events,params){
   const municipality=form.town.options[form.town.selectedIndex]?.textContent||'';
   const tokens=normalize(params.get('q')).split(/\s+/).filter(Boolean);
@@ -60,6 +95,8 @@ function localFilter(events,params){
     const category=params.get('category');
     if(category&&event.primaryCategory!==category&&!(event.secondaryCategories||[]).includes(category))return false;
     if(params.get('evening')==='1'&&!isEvening(event))return false;
+    if(params.get('weekend')==='1'&&!occursOnWeekend(event))return false;
+    if(params.get('family')==='1'&&!isFamily(event))return false;
     const haystack=normalize([event.title,event.description,event.town,event.venue,event.primaryCategory,...(event.tags||[])].join(' '));
     return tokens.every(token=>haystack.includes(token));
   }).map(event=>Number.isFinite(lat)&&Number.isFinite(lng)&&event.latitude!=null?{...event,distanceKm:distanceKm(lat,lng,event.latitude,event.longitude)}:event);
@@ -72,12 +109,21 @@ async function fallbackEvents(params){
   return localFilter(flattenFallback(fallbackPayload),params);
 }
 
+function showFallbackNotice(generatedAt,expiresAt,offline){
+  const gen=generatedAt?new Date(generatedAt).toLocaleString('it-IT',{timeZone:'Europe/Rome'}):'—';
+  const exp=expiresAt?new Date(expiresAt).toLocaleDateString('it-IT'):'—';
+  fallbackNotice.hidden=false;
+  fallbackNotice.innerHTML=`<strong>⚠️ Modalità di riserva attiva.</strong> ${offline?'Il servizio principale non risponde:':'Il database principale non risponde:'} stai vedendo l’archivio verificato aggiornato al <b>${gen}</b> (valido fino al ${exp}). Controlla sempre la fonte su ogni evento.`;
+}
+function hideFallbackNotice(){fallbackNotice.hidden=true;fallbackNotice.textContent=''}
+
 const months=['gen','feb','mar','apr','mag','giu','lug','ago','set','ott','nov','dic'];
 function longDate(event){
   const format=new Intl.DateTimeFormat('it-IT',{weekday:'long',day:'numeric',month:'long'});
   const start=format.format(new Date(`${event.startDate}T12:00:00`));
   const end=format.format(new Date(`${event.endDate}T12:00:00`));
-  return `${event.startDate===event.endDate?start:`${start} – ${end}`}${event.startTime?` · ore ${event.startTime}`:''}`;
+  const multi=(event.occurrenceDates||[]).length>1?` · ${(event.occurrenceDates||[]).length} date`:'';
+  return `${event.startDate===event.endDate?start:`${start} – ${end}`}${event.startTime?` · ore ${event.startTime}`:''}${multi}`;
 }
 function render(events){
   renderedEvents=events;grid.innerHTML='';
@@ -95,16 +141,28 @@ function openEvent(event){
   dialog.querySelector('.dialog-date').textContent=longDate(event);dialog.querySelector('.dialog-place').textContent=[event.venue,event.locality,event.town].filter(Boolean).join(' · ');
   dialog.querySelector('.dialog-description').textContent=event.description||'Consulta il programma per tutti i dettagli e gli eventuali aggiornamenti.';
   dialog.querySelector('.dialog-price').textContent=event.priceType==='free'?'Ingresso gratuito':event.priceText||'';
+  const directions=dialog.querySelector('.dialog-directions');
+  const destination=event.latitude!=null&&event.longitude!=null?`${event.latitude},${event.longitude}`:encodeURIComponent([event.venue,event.locality,event.town,'Lecce'].filter(Boolean).join(', '));
+  directions.href=`https://www.google.com/maps/dir/?api=1&destination=${destination}`;
   const source=dialog.querySelector('.dialog-source');source.hidden=!event.sourceUrl;if(event.sourceUrl)source.href=event.sourceUrl;
+  const verification=dialog.querySelector('.dialog-verification');
+  const checked=event.lastCheckedAt?new Date(event.lastCheckedAt).toLocaleString('it-IT',{timeZone:'Europe/Rome'}):null;
+  verification.textContent=[event.sourceName?`Fonte: ${event.sourceName}`:'',checked?`Ultimo controllo: ${checked}`:event.sourceName?'':'',event.status==='postponed'?'⚠️ Evento rinviato: verifica la nuova data sulla fonte':event.status==='cancelled'?'⚠️ Evento annullato':''].filter(Boolean).join(' · ');
+  dialog.dataset.shareText=`${event.title} — ${event.town} · ${longDate(event)}\nhttps://benvenutiinsalento.it/eventi/${event.slug||''}`;
   dialog.showModal();
 }
 
 async function load(){
-  if(loading)return;loading=true;statusBox.classList.remove('is-empty');statusBox.textContent='Cerco gli appuntamenti…';
+  if(loading)return;loading=true;hideFallbackNotice();statusBox.classList.remove('is-empty');statusBox.textContent='Cerco gli appuntamenti…';
   const params=new URLSearchParams(new FormData(form));params.set('pageSize','100');for(const [key,value] of [...params])if(!value)params.delete(key);
   try{
     let events=[];
-    try{const response=await fetch(`/api/events?${params}`);if(!response.ok)throw new Error();const data=await response.json();events=data.events||[]}catch{events=await fallbackEvents(params)}
+    try{
+      const response=await fetch(`/api/events?${params}`);if(!response.ok)throw new Error();
+      const data=await response.json();events=data.events||[];
+      if(data.total!=null)meta.dataset.total=data.total;
+      if(data.verifiedFallback)showFallbackNotice(data.fallbackGeneratedAt,data.fallbackExpiresAt,false);
+    }catch{events=await fallbackEvents(params);showFallbackNotice(fallbackPayload?.generatedAt||fallbackPayload?.capturedAt,fallbackPayload?.expiresAt,true)}
     render(events);meta.textContent=events.length===1?'1 evento trovato':`${events.length} eventi trovati`;
     statusBox.textContent=events.length?'':'Non ci sono appuntamenti con questi filtri. Prova a cambiare data, Comune o categoria.';statusBox.classList.toggle('is-empty',!events.length);
   }catch{render([]);meta.textContent='';statusBox.textContent='Non ci sono appuntamenti disponibili per questa ricerca. Riprova tra poco.';statusBox.classList.add('is-empty')}
@@ -116,18 +174,27 @@ function requestPosition(){
   if(!navigator.geolocation){note.textContent='Posizione non disponibile su questo dispositivo';return}
   note.textContent='Sto rilevando la posizione…';geoButton.disabled=true;
   navigator.geolocation.getCurrentPosition(position=>{
-    form.lat.value=position.coords.latitude.toFixed(5);form.lng.value=position.coords.longitude.toFixed(5);form.radius.value=form.radius.value||'50';form.sort.value='distance';
+    form.lat.value=position.coords.latitude.toFixed(5);form.lng.value=position.coords.longitude.toFixed(5);form.radius.value=form.radius.value||'20';form.sort.value='distance';
     note.textContent=`Eventi entro ${form.radius.value} km`;geoButton.classList.add('is-active');geoButton.disabled=false;load();
   },()=>{note.textContent='Permesso non concesso: scegli un Comune';form.radius.value='';geoButton.disabled=false},{enableHighAccuracy:false,timeout:10000,maximumAge:300000});
 }
 
 document.querySelectorAll('[data-range]').forEach(button=>button.addEventListener('click',()=>setRange(button.dataset.range)));
 geoButton.addEventListener('click',requestPosition);
-form.radius.addEventListener('change',()=>{if(form.radius.value&&!form.lat.value)requestPosition()});
-form.addEventListener('submit',event=>{event.preventDefault();selectQuick('');form.evening.value='';load()});
-form.from.addEventListener('change',()=>{selectQuick('');form.evening.value=''});form.to.addEventListener('change',()=>{selectQuick('');form.evening.value=''});
-form.addEventListener('reset',()=>setTimeout(()=>{form.lat.value='';form.lng.value='';form.evening.value='';form.sort.value='date';geoButton.classList.remove('is-active');document.querySelector('#geo-status').textContent='Usa la posizione del dispositivo';form.from.value=romeToday();form.to.value=addDays(romeToday(),6);selectQuick('seven');load()},0));
+form.radius.addEventListener('change',()=>{if(form.radius.value&&!form.lat.value)requestPosition();else load()});
+form.family.addEventListener('change',load);
+form.category.addEventListener('change',load);
+form.town.addEventListener('change',()=>{form.lat.value='';form.lng.value='';form.radius.value='';form.sort.value='date';geoButton.classList.remove('is-active');load()});
+form.addEventListener('submit',event=>{event.preventDefault();selectQuick('');clearTimeFlags();load()});
+form.from.addEventListener('change',()=>{selectQuick('');clearTimeFlags()});form.to.addEventListener('change',()=>{selectQuick('');clearTimeFlags()});
+form.addEventListener('reset',()=>setTimeout(()=>{form.lat.value='';form.lng.value='';clearTimeFlags();form.sort.value='date';geoButton.classList.remove('is-active');document.querySelector('#geo-status').textContent='Usa la posizione del dispositivo';form.from.value=romeToday();form.to.value=addDays(romeToday(),6);selectQuick('seven');load()},0));
 grid.addEventListener('click',event=>{const button=event.target.closest('.event-open');if(button)openEvent(renderedEvents[Number(button.dataset.index)])});
-dialog.querySelector('.dialog-close').addEventListener('click',()=>dialog.close());dialog.addEventListener('click',event=>{if(event.target===dialog)dialog.close()});
+dialog.querySelector('.dialog-close').addEventListener('click',()=>dialog.close());
+dialog.addEventListener('click',event=>{if(event.target===dialog)dialog.close()});
+dialog.querySelector('.dialog-share').addEventListener('click',async()=>{
+  const text=dialog.dataset.shareText||document.title;
+  try{if(navigator.share){await navigator.share({title:document.title,text,url:'https://benvenutiinsalento.it/eventi'});return}}catch{}
+  try{await navigator.clipboard.writeText(text);const button=dialog.querySelector('.dialog-share');button.textContent='Copiato!';setTimeout(()=>{button.textContent='Condividi'},1600)}catch{}
+});
 
 form.from.value=romeToday();form.to.value=addDays(romeToday(),6);populateMunicipalities();load();

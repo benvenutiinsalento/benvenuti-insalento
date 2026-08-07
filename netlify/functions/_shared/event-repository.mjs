@@ -7,7 +7,7 @@ import { query, one, transaction } from './db.mjs';
 import {
   buildOccurrences, canAutoPublish, canonicalEventKey, categorySlug, deriveConfidence,
   eventSearchText, mergeEvents, mergeSameSourceUpdate, normalizeSearchText,
-  romeIsoDate, sameEvent, stableHash, validateEvent, verificationLevelForPriority,
+  romeIsoDate, sameEvent, sanitizeDeep, stableHash, validateEvent, verificationLevelForPriority,
 } from './events-core.mjs';
 import { uniqueEventSlug } from './slug.mjs';
 
@@ -68,6 +68,8 @@ function mapRow(row) {
     confidenceScore: row.confidence_score == null ? 0 : Number(row.confidence_score),
     sourceUrl: row.source_url,
     sourceName: row.source_name,
+    sourceId: row.primary_source_id ?? null,
+    ingestionRunId: row.last_seen_run_id ?? null,
     firstDiscoveredAt: row.first_discovered_at,
     lastCheckedAt: row.last_checked_at,
     lastVerifiedAt: row.last_verified_at,
@@ -130,10 +132,21 @@ export async function listEvents(filters = {}) {
              OR (o.start_at AT TIME ZONE o.timezone)::time >= TIME '18:00'))`);
     }
     if (filters.evening) {
+      // "Stasera" (mandato/blocco): inizio >= 18:00, evento giornaliero ancora
+      // in corso (all_day oggi), evento iniziato prima delle 18 che prosegue
+      // in serata, più orari nella stessa giornata (EXISTS copre ogni caso),
+      // dicitura testuale "in serata" e simili.
       conditions.push(`(EXISTS (SELECT 1 FROM event_occurrences o WHERE o.event_id = e.id
           AND o.occurrence_date BETWEEN ${add(filters.from)}::date AND ${add(to)}::date
-          AND (o.start_at AT TIME ZONE o.timezone)::time >= TIME '18:00')
-        OR e.original_time_text ~* 'sera|serata|notturn|a cena|mezzanotte|cena spettacolo')`);
+          AND (
+            (o.start_at AT TIME ZONE o.timezone)::time >= TIME '18:00'
+            OR o.all_day
+            OR (o.end_at IS NOT NULL
+                AND o.end_at::date = o.occurrence_date
+                AND (o.start_at AT TIME ZONE o.timezone)::time < TIME '18:00'
+                AND (o.end_at AT TIME ZONE o.timezone)::time >= TIME '18:00')
+          ))
+        OR e.original_time_text ~* 'sera|serata|notturn|a cena|mezzanotte|cena spettacolo|in serata|ore di cena')`);
     }
   } else {
     // Ricerche normali: nessun evento completamente passato.
@@ -269,7 +282,7 @@ async function categoryIdMap(client) {
 export async function queueReview({ sourceId, reason, severity = 'medium', payload, eventId = null, itemType = 'event' }, clientOverride) {
   const run = async (client) => client.query(
     `INSERT INTO review_queue (item_type, event_id, source_id, reason, severity, payload) VALUES ($1,$2,$3,$4,$5,$6::jsonb)`,
-    [itemType, eventId, sourceId || null, reason, severity, JSON.stringify(payload || {})]);
+    [itemType, eventId, sourceId || null, reason, severity, JSON.stringify(sanitizeDeep(payload || {}))]);
   if (clientOverride) return run(clientOverride);
   return transaction(run);
 }
@@ -279,7 +292,10 @@ function confidenceCap(level) {
   return level === 'secondary' || level === 'unverified' ? 0.79 : 1;
 }
 
-export async function upsertEvent(candidate, source, runId) {
+export async function upsertEvent(rawCandidate, source, runId) {
+  // Surrogati orfani / caratteri di controllo dal web: sanificati UNA volta qui
+  // (json/pg li respingerebbe con "invalid input syntax for type json").
+  const candidate = sanitizeDeep(rawCandidate);
   return transaction(async (client) => {
     const aliases = await aliasesMap(client);
     const canonicalTown = aliases.get(normalizeSearchText(candidate.town)) || candidate.town;

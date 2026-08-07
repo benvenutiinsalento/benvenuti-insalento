@@ -2,3 +2,11 @@
 @media(max-width:1050px){.events-filter-grid{grid-template-columns:repeat(3,1fr)}.filter-search{grid-column:span 2}.events-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:680px){.event-mini-header{min-height:68px}.event-brand img{width:42px;height:42px}.event-home-link{font-size:.8rem}.events-hero{padding:48px 0 98px}.events-hero h1{font-size:clamp(2.55rem,14vw,4.3rem)}.geo-hero-button{width:100%}.events-search-shell{margin-top:-48px}.events-search-card{padding:16px;border-radius:16px}.events-filter-grid{grid-template-columns:1fr 1fr;gap:11px}.filter-search{grid-column:1/-1}.events-actions{align-items:stretch;flex-direction:column}.events-submit{width:100%}.events-reset{width:100%}.events-results-section{padding:48px 0 64px}.events-results-head{align-items:flex-start;flex-direction:column;gap:8px}.events-grid{grid-template-columns:1fr}.event-card-new{min-height:220px}.event-dialog{padding:28px 22px}}
 @media(max-width:430px){.events-filter-grid{grid-template-columns:1fr}.filter-search{grid-column:auto}.event-card-new{grid-template-columns:68px 1fr}.event-card-body{padding:17px}.event-home-link{max-width:72px;text-align:right}.event-brand strong{font-size:.9rem}}
+.filter-toggle{display:flex;align-items:center;gap:9px;padding:12px 14px;background:#fff;border:1px solid rgba(13,59,79,.18);border-radius:14px;cursor:pointer;font-size:.92rem;color:#173042;user-select:none}
+.filter-toggle input{width:18px;height:18px;accent-color:#0d3b4f;cursor:pointer}
+.filter-toggle:has(input:checked){border-color:#0d3b4f;background:#eaf4f6;font-weight:600}
+.fallback-notice{margin:0 0 16px;padding:13px 16px;background:#fff7e0;border:1px solid #e8c96a;border-left:5px solid #d9a713;border-radius:12px;font-size:.9rem;line-height:1.45;color:#5a4308}
+.dialog-actions{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 4px}
+.dialog-action{display:inline-block;padding:10px 16px;border-radius:999px;border:1px solid #0d3b4f;background:#0d3b4f;color:#fff!important;font-size:.88rem;font-weight:600;text-decoration:none;cursor:pointer;font-family:inherit}
+.dialog-action.dialog-share{background:#fff;color:#0d3b4f!important}
+.dialog-verification{margin-top:12px;font-size:.78rem;color:#718089;line-height:1.4}

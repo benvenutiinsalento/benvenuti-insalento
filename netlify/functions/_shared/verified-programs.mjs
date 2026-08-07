@@ -43,10 +43,40 @@ export function verifiedEvents() {
 }
 
 export function isEveningEvent(event) {
-  const time = String(event.startTime || event.originalTimeText || '').match(/(?:^|\D)(\d{1,2})(?::|[.,])?(\d{2})?/)?.slice(1);
-  if (!time) return false;
-  const minutes = Number(time[0]) * 60 + Number(time[1] || 0);
-  return minutes >= 18 * 60;
+  // "Stasera" (blocco verifica): inizio serale, evento giornaliero ancora in
+  // corso (nessun orario = tutto il giorno), evento pomeridiano che entra in
+  // serata, dicitura testuale "in serata".
+  const textBlob = `${event.title || ''} ${event.originalTimeText || ''}`;
+  if (/sera|serata|notturn|a cena|mezzanotte|cena spettacolo/i.test(textBlob)) return true;
+  const start = String(event.startTime || event.originalTimeText || '').match(/(?:^|\D)(\d{1,2})(?::|[.,])?(\d{2})?/)?.slice(1);
+  if (!start) return true; // evento giornaliero: ancora in corso la sera
+  const minutes = Number(start[0]) * 60 + Number(start[1] || 0);
+  if (minutes >= 18 * 60) return true;
+  const end = String(event.endTime || '').match(/^(\d{1,2})(?::(\d{2}))?/);
+  if (end) {
+    const endMinutes = Number(end[1]) * 60 + Number(end[2] || 0);
+    if (endMinutes >= 18 * 60 && endMinutes > minutes) return true;
+  }
+  return false;
+}
+
+// Regola weekend del mandato: venerdì solo dalle 18:00 (all-day ammesso),
+// sabato e domenica interi.
+export function occursOnWeekend(event) {
+  const from = event.startDate;
+  const to = event.endDate || event.startDate;
+  if (!from) return false;
+  const cursor = new Date(`${from}T12:00:00Z`);
+  const end = new Date(`${to}T12:00:00Z`);
+  let guard = 0;
+  while (cursor <= end && guard < 90) {
+    const dow = cursor.getUTCDay(); // 0=dom, 5=ven, 6=sab
+    if (dow === 0 || dow === 6) return true;
+    if (dow === 5 && isEveningEvent(event)) return true;
+    cursor.setUTCDate(cursor.getUTCDate() + 1);
+    guard += 1;
+  }
+  return false;
 }
 
 function distanceKm(lat1, lon1, lat2, lon2) {
@@ -78,6 +108,7 @@ export function listVerifiedEvents(filters = {}) {
     if (filters.priceType && event.priceType !== filters.priceType) return false;
     if (filters.family && !isFamilyFriendly(event)) return false;
     if (filters.evening && !isEveningEvent(event)) return false;
+    if (filters.weekend && !occursOnWeekend(event)) return false;
     if (queryTokens.length && !queryTokens.every((token) => eventSearchText(event).includes(token))) return false;
     return true;
   }).map((event) => {

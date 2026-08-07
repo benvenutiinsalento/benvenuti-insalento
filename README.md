@@ -1,6 +1,14 @@
-# Benvenuti in Salento — Eventi v12.0 Netlify
+# Benvenuti in Salento — Portale Eventi (Netlify + Supabase + GitHub Actions)
 
 Versione unificata del sito Netlify e del motore provinciale per eventi, sagre e feste patronali.
+
+> **Mappa completa del progetto sorgente** (frontend, backend, crawler, parser,
+> discovery, migrazioni, workflow, test): vedi **[docs/STRUTTURA_PROGETTO.md](docs/STRUTTURA_PROGETTO.md)**.
+> Ricostruzione da zero: `npm ci && npm test && npm run build`.
+>
+> Architettura vincolata dal mandato: **Netlify** = frontend/API leggere,
+> **Supabase Postgres** = unico database, **GitHub Actions** = unico schedulatore.
+> Backoffice con **Supabase Auth** e ruoli (admin/editor/reviewer/viewer).
 
 ## Principio del progetto
 Il sistema non è costruito intorno a MEDinFEST, Andrano o altri esempi. Quei casi non sono seed e non ricevono trattamenti speciali. Un evento entra nel portale soltanto tramite una fonte registrata o una segnalazione verificata.
@@ -11,8 +19,8 @@ L’obiettivo è censire sistematicamente la provincia di Lecce attraverso fonti
 - sito originale preservato;
 - pagina `/eventi.html`;
 - dettaglio SEO `/eventi/:slug`;
-- ricerca per data, Comune, categoria, testo, prezzo e posizione;
-- compatibilità con Netlify Database oppure PostgreSQL esterno;
+- ricerca per data, Comune, categoria, testo, prezzo, famiglie e posizione (5/10/20/30/50 km);
+- database **solo Supabase Postgres** (migrazioni in `supabase/migrations/`);
 - 96 Comuni della provincia di Lecce;
 - 102 candidature Pro Loco da verificare;
 - registro di fonti regionali, provinciali, comunali, UNPLI e diocesane;

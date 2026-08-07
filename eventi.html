@@ -63,7 +63,6 @@
                 <option value="Mercatini">Mercatini</option>
                 <option value="Cultura">Cultura e spettacoli</option>
                 <option value="Sport">Sport</option>
-                <option value="Per famiglie">Bambini e famiglie</option>
                 <option value="Altro">Altro</option>
               </select>
             </label>
@@ -78,15 +77,21 @@
                 <option value="">Qualsiasi distanza</option>
                 <option value="5">Entro 5 km</option>
                 <option value="10">Entro 10 km</option>
-                <option value="25">Entro 25 km</option>
+                <option value="20">Entro 20 km</option>
+                <option value="30">Entro 30 km</option>
                 <option value="50">Entro 50 km</option>
               </select>
+            </label>
+            <label class="filter-toggle">
+              <input type="checkbox" name="family" id="family" value="1">
+              <span>👨‍👩‍👧 Adatto a bambini e famiglie</span>
             </label>
           </div>
 
           <input type="hidden" name="lat" id="lat">
           <input type="hidden" name="lng" id="lng">
           <input type="hidden" name="evening" id="evening">
+          <input type="hidden" name="weekend" id="weekend">
           <input type="hidden" name="sort" id="sort" value="date">
 
           <div class="events-actions">
@@ -106,6 +111,7 @@
           </div>
           <p id="results-meta" aria-live="polite"></p>
         </div>
+        <div id="fallback-notice" class="fallback-notice" hidden></div>
         <div id="events-status" class="events-status" aria-live="polite"></div>
         <div id="events-grid" class="events-grid"></div>
       </div>
@@ -138,7 +144,12 @@
     <p class="dialog-place"></p>
     <p class="dialog-description"></p>
     <p class="dialog-price"></p>
+    <div class="dialog-actions">
+      <a class="dialog-action dialog-directions" target="_blank" rel="nofollow noopener">Indicazioni stradali</a>
+      <button class="dialog-action dialog-share" type="button">Condividi</button>
+    </div>
     <a class="dialog-source" target="_blank" rel="nofollow noopener">Vedi il programma</a>
+    <p class="dialog-verification"></p>
   </dialog>
 </body>
 </html>
