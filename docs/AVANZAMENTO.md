@@ -177,3 +177,39 @@ CORREZIONE APPLICATA (utente, guidata): ripetere link GitHub + variabili
 NESSUNO SPRECO: il lavoro fatto sul sito di prova ha permesso di scoprire e
   correggere il bug deploy prima del go-live sul dominio reale.
 ```
+
+---
+
+## 2026-08-07 — Go-live /eventi + Fase 6 GitHub Actions + primi eventi reali
+
+```text
+FASE: 5-6 — go-live, crawling automatico, primi eventi reali pubblicati
+ATTIVITÀ COMPLETATE (eseguite, con verifica su sistemi live):
+  - Sito reale online: risolto il linking Netlify (era collegato a un VECCHIO
+    repo di un altro account; guida utente per ricollegare benvenuti-insalento).
+  - GO-LIVE confermato: benvenutiinsalento.it/eventi risponde.
+  - GitHub Actions (mandato, scheduler SOLO li'): ingest-frequent ogni 6h,
+    recheck-imminent ogni 2h, daily-maintenance (archivio + copertura +
+    RIGENERAZIONE GIORNALIERA fallback da Supabase, commit automatico),
+    weekly-discovery (iPA + nuove fonti), tests CI (verde al primo push).
+    Rimossi TUTTI i cron Netlify (test dedicato ne verifica l'assenza).
+  - Primo crawling reale: 64 fetch, timeout open-data Regione risolto
+    (dump 28MB gzip, timeout dedicato 10 min), parser puglia_json allineato ai
+    campi reali (nm_evento_it, dsc_evento_it, ...), 7044 candidati, filtro
+    provincia Lecce + territorio + regole mandato → 4 eventi PUBBLICATI
+    (SIFF Tricase, JEANSMUSIC, Fulminacci, From Italy With Love) con fonte,
+    ultimo controllo e livello 'institutional'.
+  - Fix qualita' pipeline: colonna id ambigua (s.id), filtro anti-rumore coda
+    (candidati senza titolo/data scartati, non piu' 121 righe di rumore),
+    import JSON bundled per Lambda (ENOENT /var/data).
+  - FIX CRITICO API /api/events: Number(null)===0 attivava il ramo geo e
+    rompeva la SQL ("missing FROM-clause entry e") → il sito viveva in
+    fallback mascherato. Riprodotta, corretta (guardie null + espressione
+    distanza in due varianti CTE/esterna), verificata: fallback=false live.
+PROBLEMI TROVATI: tutti risolti sopra. Logo + 3 immagini mancanti nel repo
+  (mai pervenute nei pacchetti): in attesa file originali dall'utente o
+  autorizzazione a placeholder temporanei.
+CORREZIONI APPLICATE: vedi sopra; push su main (auto-deploy Netlify attivo).
+PROSSIMO PASSO: logo; osservare i run schedulati; fase 7 (backoffice
+  Supabase Auth + ruoli); collaudo allargato fonti Comuni (discovery iPA).
+```

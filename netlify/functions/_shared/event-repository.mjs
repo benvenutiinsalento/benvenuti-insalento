@@ -173,18 +173,26 @@ export async function listEvents(filters = {}) {
   }
 
   let distanceExpression = 'NULL::double precision';
-  const lat = Number(filters.lat);
-  const lng = Number(filters.lng);
-  const radius = Number(filters.radius);
+  // Geolocalizzazione solo se le coordinate arrivano davvero: Number(null) === 0
+  // (finito!) attiverebbe il ramo distanza anche senza parametri nella query.
+  const lat = (filters.lat === undefined || filters.lat === null || filters.lat === '') ? NaN : Number(filters.lat);
+  const lng = (filters.lng === undefined || filters.lng === null || filters.lng === '') ? NaN : Number(filters.lng);
+  const radius = (filters.radius === undefined || filters.radius === null || filters.radius === '') ? NaN : Number(filters.radius);
   if (Number.isFinite(lat) && Number.isFinite(lng)) {
     const pLat = add(lat);
     const pLng = add(lng);
-    distanceExpression = `(6371 * acos(LEAST(1, GREATEST(-1,
+    // Due varianti: WHERE nella CTE (tabella e + join municipalities, serve alias)
+    // e SELECT esterna su filtered (senza alias; li' 'latitude' non e' ambiguo).
+    const exprCte = `(6371 * acos(LEAST(1, GREATEST(-1,
       cos(radians(${pLat})) * cos(radians(e.latitude)) * cos(radians(e.longitude) - radians(${pLng})) +
       sin(radians(${pLat})) * sin(radians(e.latitude))
     ))))`;
+    distanceExpression = `(6371 * acos(LEAST(1, GREATEST(-1,
+      cos(radians(${pLat})) * cos(radians(latitude)) * cos(radians(longitude) - radians(${pLng})) +
+      sin(radians(${pLat})) * sin(radians(latitude))
+    ))))`;
     conditions.push('e.latitude IS NOT NULL AND e.longitude IS NOT NULL');
-    if (Number.isFinite(radius) && radius > 0 && radius <= 200) conditions.push(`${distanceExpression} <= ${add(radius)}`);
+    if (Number.isFinite(radius) && radius > 0 && radius <= 200) conditions.push(`${exprCte} <= ${add(radius)}`);
   }
 
   const page = Math.max(1, Number(filters.page) || 1);

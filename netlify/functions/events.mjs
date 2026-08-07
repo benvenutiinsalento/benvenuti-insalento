@@ -25,12 +25,10 @@ export default async (req) => {
     });
     console.error('EVENTS_DATABASE_FALLBACK', e);
     let meta = null; try { meta = loadVerifiedPrograms(); } catch { meta = null; }
-    const fallbackReason = `DIAG_TMP ${String(e?.message || e).slice(0, 300)}`;
     return json({ok:true,...data,verifiedFallback:true,
       fallbackNotice:'Elenco servito da archivio di riserva rigenerato quotidianamente: verificare sempre fonte e ultimo controllo su ogni scheda.',
       fallbackGeneratedAt: meta?.generatedAt || meta?.capturedAt || null,
-      fallbackExpiresAt: meta?.expiresAt || null,
-      fallbackReason},
+      fallbackExpiresAt: meta?.expiresAt || null},
       200,{'cache-control':'public, max-age=60, stale-while-revalidate=300'});
   }
 };
