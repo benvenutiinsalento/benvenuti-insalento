@@ -136,5 +136,5 @@ try {
   fs.writeFileSync(REPORT_FILE, JSON.stringify(report, null, 2));
   console.log('Coverage report →', JSON.stringify(report.totals));
 } finally {
-  await getDb().end();
+  const { pool } = await getDb(); await pool.end();
 }

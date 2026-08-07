@@ -312,7 +312,7 @@ export function parsePugliaJson(payload, source) {
     if (!row || typeof row !== "object") return null;
     const fields = flattenRecord(row);
     const title = pickField(fields, [
-      "titolo", "title", "nome evento", "nome attivita", "denominazione evento", "denominazione", "event name", "name",
+      "nm evento it", "titolo", "title", "nome evento", "nome attivita", "denominazione evento", "denominazione", "event name", "name",
     ]);
     const startRaw = pickField(fields, [
       "data inizio", "datainizio", "start date", "startdate", "data evento", "dataevento", "inizio", "dal", "validita inizio",
@@ -326,8 +326,8 @@ export function parsePugliaJson(payload, source) {
       "comune", "nome comune", "comune evento", "citta", "city", "address locality", "addresslocality", "municipality",
     ]);
     const locality = pickField(fields, ["frazione", "localita specifica", "localita", "borgo", "marina"]);
-    const description = pickField(fields, ["descrizione", "description", "testo", "abstract", "sintesi"]);
-    const venue = pickField(fields, ["luogo", "nome luogo", "location name", "sede", "venue"]);
+    const description = pickField(fields, ["dsc evento it", "abstract evento it", "snippet evento it", "descrizione", "description", "testo", "abstract", "sintesi"]);
+    const venue = pickField(fields, ["nome location", "luogo", "nome luogo", "location name", "sede", "venue"]);
     const address = pickField(fields, ["indirizzo", "address", "street address", "streetaddress", "ubicazione"]);
     const price = pickField(fields, ["prezzo", "price", "costo", "tariffa", "ingresso"]);
     const organizer = pickField(fields, ["organizzatore", "organizer", "ente organizzatore", "promotore"]);
@@ -335,7 +335,7 @@ export function parsePugliaJson(payload, source) {
     const time = pickField(fields, ["orario", "time", "ora inizio", "start time"]);
     const sourceUrlRaw = pickField(fields, ["url", "link", "sito web", "website", "pagina evento", "event url"]);
     const imageUrl = pickField(fields, ["immagine", "image", "image url", "foto", "locandina"]);
-    const bookingUrl = pickField(fields, ["prenotazione", "booking url", "ticket url", "biglietti", "ticket"]);
+    const bookingUrl = pickField(fields, ["link prenotazioni", "prenotazione", "booking url", "ticket url", "biglietti", "ticket"]);
     const latitude = primitiveCoordinate(pickField(fields, ["latitudine", "latitude", "geo latitude"]));
     const longitude = primitiveCoordinate(pickField(fields, ["longitudine", "longitude", "geo longitude", "lng", "lon"]));
     let sourceUrl = String(sourceUrlRaw || source.url).trim();

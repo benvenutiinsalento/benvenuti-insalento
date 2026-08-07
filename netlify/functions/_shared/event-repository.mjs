@@ -288,6 +288,15 @@ export async function upsertEvent(candidate, source, runId) {
     };
     const validation = validateEvent(normalizedCandidate, new Date().getFullYear());
     if (!validation.valid || !municipality) {
+      // Filtro anti-rumore (mandato: la coda serve a revisionare EVENTI, non link):
+      // candidati senza titolo o senza alcuna data/ora non sono eventi plausibili
+      // (tipico delle pagine-registro): scartati silenziosamente nel run, mai in coda.
+      const hasAnyDate = (normalizedCandidate.occurrences || []).some((o) => o?.startAt || o?.date)
+        || Boolean(normalizedCandidate.startDate) || Boolean(normalizedCandidate.occurrenceDates?.length);
+      const hasTitle = Boolean(String(normalizedCandidate.title || '').trim());
+      if (validation.errors.includes('title_missing') || !hasTitle || !hasAnyDate) {
+        return { created: false, updated: false, review: false, discarded: 1 };
+      }
       await queueReview({
         sourceId: source.id,
         reason: `Dati non pubblicabili: ${[...validation.errors, ...(!municipality ? ['territory_unknown'] : [])].join(', ')}`,

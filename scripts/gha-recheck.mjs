@@ -24,5 +24,5 @@ try {
     console.log('Nessuna fonte da ricontrollare: skip.');
   }
 } finally {
-  await getDb().end();
+  const { pool } = await getDb(); await pool.end();
 }

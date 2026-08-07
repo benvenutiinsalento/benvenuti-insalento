@@ -32,8 +32,8 @@ function parserName(source, contentType = '') {
   return source.discovery_only ? 'discovery' : 'generic_html';
 }
 
-async function fetchLimited(url, options = {}, maxBytes = DEFAULT_MAX_BYTES) {
-  const response = await fetch(url, { ...options, signal: AbortSignal.timeout(25000), redirect: 'follow' });
+async function fetchLimited(url, options = {}, maxBytes = DEFAULT_MAX_BYTES, timeoutMs = 25000) {
+  const response = await fetch(url, { ...options, signal: AbortSignal.timeout(timeoutMs), redirect: 'follow' });
   const length = Number(response.headers.get('content-length') || 0);
   if (length > maxBytes) throw new Error('CONTENT_TOO_LARGE');
   if (response.status === 304) return { response, bytes: new Uint8Array(), notModified: true };
@@ -63,7 +63,10 @@ export async function fetchSource(source) {
   }
 
   const maxBytes = source.crawl_policy === 'open_data' ? OPEN_DATA_MAX_BYTES : DEFAULT_MAX_BYTES;
-  const { response, bytes, notModified } = await fetchLimited(source.url, { headers }, maxBytes);
+  // Open data regionali: dump grandi e server lenti → timeout dedicato 10 minuti
+  // (girano solo su GitHub Actions, mai nelle Netlify Functions leggere).
+  const timeoutMs = source.crawl_policy === 'open_data' ? 600000 : 25000;
+  const { response, bytes, notModified } = await fetchLimited(source.url, { headers }, maxBytes, timeoutMs);
   if (!response.ok && response.status !== 304) throw new Error(`HTTP_${response.status}`);
   return {
     skipped: false,
@@ -330,7 +333,7 @@ export async function runIngestionBatch({ limit = 10, sourceIds = [], runType = 
   let where = `active=TRUE AND crawl_policy NOT IN ('disallowed','manual_only') AND (next_check_at IS NULL OR next_check_at<=NOW())`;
   if (sourceIds.length) {
     params.push(sourceIds);
-    where += ` AND id=ANY($1::bigint[])`;
+    where += ` AND s.id=ANY($1::bigint[])`;
   }
   if (discoveryOnly) where += ` AND (discovery_only=TRUE OR parser_type IN ('municipal_discovery','religious_discovery','organization_discovery','sitemap_discovery'))`;
   params.push(Math.min(40, Math.max(1, Number(limit) || 10)));

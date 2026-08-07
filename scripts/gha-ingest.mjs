@@ -29,5 +29,5 @@ try {
   }), { checked: 0, created: 0, updated: 0, failed: 0 });
   console.log('RIEPILOGO INGEST →', JSON.stringify(tot));
 } finally {
-  await getDb().end();
+  const { pool } = await getDb(); await pool.end();
 }

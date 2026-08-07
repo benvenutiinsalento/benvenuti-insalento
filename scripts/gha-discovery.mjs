@@ -24,5 +24,5 @@ try {
     if (!result.checked) break;
   }
 } finally {
-  await getDb().end();
+  const { pool } = await getDb(); await pool.end();
 }
