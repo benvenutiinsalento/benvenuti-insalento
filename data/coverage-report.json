@@ -1,19 +1,723 @@
 {
-  "generatedAt": "2026-08-12T08:07:27.400Z",
+  "generatedAt": "2026-08-13T08:08:56.762Z",
   "mandate": "La copertura misura il monitoraggio delle fonti, non certifica la totalita degli eventi organizzati.",
   "totals": {
     "municipalities": 96,
     "byStatus": {
-      "partial": 48,
-      "good": 35,
-      "complete": 13
+      "partial": 57,
+      "good": 27,
+      "complete": 12
     },
     "sources_active": 2490,
-    "sources_working_72h": 714,
-    "future_events": 81,
-    "open_warnings": 520
+    "sources_working_72h": 583,
+    "future_events": 79,
+    "open_warnings": 602
   },
   "coverageWarnings": [
+    {
+      "municipality": "Zollino",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:56.536Z"
+    },
+    {
+      "municipality": "Veglie",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:56.360Z"
+    },
+    {
+      "municipality": "Uggiano la Chiesa",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 1,
+      "created_at": "2026-08-13T08:08:56.272Z"
+    },
+    {
+      "municipality": "Ugento",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:56.184Z"
+    },
+    {
+      "municipality": "Trepuzzi",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 1,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:55.921Z"
+    },
+    {
+      "municipality": "Tiggiano",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:55.833Z"
+    },
+    {
+      "municipality": "Taviano",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:55.745Z"
+    },
+    {
+      "municipality": "Taurisano",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 1,
+      "created_at": "2026-08-13T08:08:55.656Z"
+    },
+    {
+      "municipality": "Surbo",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:55.568Z"
+    },
+    {
+      "municipality": "Surano",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 1,
+      "created_at": "2026-08-13T08:08:55.480Z"
+    },
+    {
+      "municipality": "Supersano",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:55.392Z"
+    },
+    {
+      "municipality": "Squinzano",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:55.211Z"
+    },
+    {
+      "municipality": "Spongano",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 1,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:55.123Z"
+    },
+    {
+      "municipality": "Specchia",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:55.035Z"
+    },
+    {
+      "municipality": "Soleto",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:54.947Z"
+    },
+    {
+      "municipality": "Sogliano Cavour",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 1,
+      "created_at": "2026-08-13T08:08:54.859Z"
+    },
+    {
+      "municipality": "Seclì",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 1,
+      "created_at": "2026-08-13T08:08:54.771Z"
+    },
+    {
+      "municipality": "Scorrano",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:54.683Z"
+    },
+    {
+      "municipality": "Santa Cesarea Terme",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:54.595Z"
+    },
+    {
+      "municipality": "Sannicola",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 1,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:54.507Z"
+    },
+    {
+      "municipality": "Sanarica",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:54.418Z"
+    },
+    {
+      "municipality": "San Pietro in Lama",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:54.330Z"
+    },
+    {
+      "municipality": "San Donato di Lecce",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 1,
+      "created_at": "2026-08-13T08:08:54.241Z"
+    },
+    {
+      "municipality": "San Cesario di Lecce",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:54.152Z"
+    },
+    {
+      "municipality": "San Cassiano",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:54.064Z"
+    },
+    {
+      "municipality": "Salve",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:53.976Z"
+    },
+    {
+      "municipality": "Salice Salentino",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:53.887Z"
+    },
+    {
+      "municipality": "Ruffano",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 1,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:53.799Z"
+    },
+    {
+      "municipality": "Racale",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:53.711Z"
+    },
+    {
+      "municipality": "Presicce-Acquarica",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:53.623Z"
+    },
+    {
+      "municipality": "Porto Cesareo",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:53.535Z"
+    },
+    {
+      "municipality": "Poggiardo",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 1,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:53.447Z"
+    },
+    {
+      "municipality": "Patù",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:53.359Z"
+    },
+    {
+      "municipality": "Parabita",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:53.270Z"
+    },
+    {
+      "municipality": "Palmariggi",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:53.182Z"
+    },
+    {
+      "municipality": "Ortelle",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 1,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:53.003Z"
+    },
+    {
+      "municipality": "Novoli",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:52.915Z"
+    },
+    {
+      "municipality": "Nociglia",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:52.827Z"
+    },
+    {
+      "municipality": "Neviano",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:52.739Z"
+    },
+    {
+      "municipality": "Nardò",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 1,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:52.651Z"
+    },
+    {
+      "municipality": "Muro Leccese",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:52.563Z"
+    },
+    {
+      "municipality": "Morciano di Leuca",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:52.475Z"
+    },
+    {
+      "municipality": "Montesano Salentino",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:52.387Z"
+    },
+    {
+      "municipality": "Monteroni di Lecce",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:52.298Z"
+    },
+    {
+      "municipality": "Minervino di Lecce",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:52.211Z"
+    },
+    {
+      "municipality": "Miggiano",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:52.122Z"
+    },
+    {
+      "municipality": "Melpignano",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 1,
+      "created_at": "2026-08-13T08:08:52.034Z"
+    },
+    {
+      "municipality": "Melissano",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:51.946Z"
+    },
+    {
+      "municipality": "Melendugno",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:51.858Z"
+    },
+    {
+      "municipality": "Matino",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:51.770Z"
+    },
+    {
+      "municipality": "Martignano",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:51.682Z"
+    },
+    {
+      "municipality": "Martano",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 1,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:51.594Z"
+    },
+    {
+      "municipality": "Maglie",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:51.506Z"
+    },
+    {
+      "municipality": "Lizzanello",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:51.418Z"
+    },
+    {
+      "municipality": "Leverano",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:51.330Z"
+    },
+    {
+      "municipality": "Lequile",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:51.242Z"
+    },
+    {
+      "municipality": "Lecce",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 1,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:51.154Z"
+    },
+    {
+      "municipality": "Guagnano",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:51.066Z"
+    },
+    {
+      "municipality": "Giurdignano",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:50.978Z"
+    },
+    {
+      "municipality": "Giuggianello",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:50.890Z"
+    },
+    {
+      "municipality": "Gallipoli",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:50.801Z"
+    },
+    {
+      "municipality": "Galatone",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 1,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:50.713Z"
+    },
+    {
+      "municipality": "Gagliano del Capo",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:50.536Z"
+    },
+    {
+      "municipality": "Cutrofiano",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 1,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:50.359Z"
+    },
+    {
+      "municipality": "Cursi",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 1,
+      "created_at": "2026-08-13T08:08:50.267Z"
+    },
+    {
+      "municipality": "Corsano",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:50.179Z"
+    },
+    {
+      "municipality": "Corigliano d’Otranto",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:50.090Z"
+    },
+    {
+      "municipality": "Copertino",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:50.001Z"
+    },
+    {
+      "municipality": "Collepasso",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:49.912Z"
+    },
+    {
+      "municipality": "Cavallino",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:49.824Z"
+    },
+    {
+      "municipality": "Castro",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:49.735Z"
+    },
+    {
+      "municipality": "Castrignano del Capo",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 1,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:49.646Z"
+    },
+    {
+      "municipality": "Castrignano de’ Greci",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 1,
+      "created_at": "2026-08-13T08:08:49.558Z"
+    },
+    {
+      "municipality": "Castrì di Lecce",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:49.469Z"
+    },
+    {
+      "municipality": "Casarano",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:49.381Z"
+    },
+    {
+      "municipality": "Carpignano Salentino",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:49.292Z"
+    },
+    {
+      "municipality": "Carmiano",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:49.204Z"
+    },
+    {
+      "municipality": "Caprarica di Lecce",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:49.115Z"
+    },
+    {
+      "municipality": "Cannole",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 1,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:49.026Z"
+    },
+    {
+      "municipality": "Campi Salentina",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:48.938Z"
+    },
+    {
+      "municipality": "Calimera",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:48.849Z"
+    },
+    {
+      "municipality": "Botrugno",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 1,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:48.761Z"
+    },
+    {
+      "municipality": "Bagnolo del Salento",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:48.672Z"
+    },
+    {
+      "municipality": "Arnesano",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:48.583Z"
+    },
+    {
+      "municipality": "Aradeo",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:48.494Z"
+    },
+    {
+      "municipality": "Andrano",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:48.405Z"
+    },
+    {
+      "municipality": "Alliste",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:48.317Z"
+    },
+    {
+      "municipality": "Alessano",
+      "window_from": "2026-08-13T00:00:00.000Z",
+      "window_to": "2026-08-22T00:00:00.000Z",
+      "events_found": 0,
+      "threshold": 2,
+      "created_at": "2026-08-13T08:08:48.126Z"
+    },
     {
       "municipality": "Zollino",
       "window_from": "2026-08-12T00:00:00.000Z",
@@ -101,14 +805,6 @@
       "events_found": 0,
       "threshold": 2,
       "created_at": "2026-08-12T08:07:25.201Z"
-    },
-    {
-      "municipality": "Sternatia",
-      "window_from": "2026-08-12T00:00:00.000Z",
-      "window_to": "2026-08-21T00:00:00.000Z",
-      "events_found": 1,
-      "threshold": 2,
-      "created_at": "2026-08-12T08:07:25.060Z"
     },
     {
       "municipality": "Squinzano",
@@ -815,14 +1511,6 @@
       "created_at": "2026-08-11T06:13:58.785Z"
     },
     {
-      "municipality": "Sternatia",
-      "window_from": "2026-08-11T00:00:00.000Z",
-      "window_to": "2026-08-20T00:00:00.000Z",
-      "events_found": 1,
-      "threshold": 2,
-      "created_at": "2026-08-11T06:13:58.641Z"
-    },
-    {
       "municipality": "Squinzano",
       "window_from": "2026-08-11T00:00:00.000Z",
       "window_to": "2026-08-20T00:00:00.000Z",
@@ -1527,14 +2215,6 @@
       "created_at": "2026-08-10T08:59:14.807Z"
     },
     {
-      "municipality": "Sternatia",
-      "window_from": "2026-08-10T00:00:00.000Z",
-      "window_to": "2026-08-19T00:00:00.000Z",
-      "events_found": 1,
-      "threshold": 2,
-      "created_at": "2026-08-10T08:59:14.673Z"
-    },
-    {
       "municipality": "Squinzano",
       "window_from": "2026-08-10T00:00:00.000Z",
       "window_to": "2026-08-19T00:00:00.000Z",
@@ -2231,14 +2911,6 @@
       "created_at": "2026-08-09T06:01:19.920Z"
     },
     {
-      "municipality": "Sternatia",
-      "window_from": "2026-08-09T00:00:00.000Z",
-      "window_to": "2026-08-18T00:00:00.000Z",
-      "events_found": 1,
-      "threshold": 2,
-      "created_at": "2026-08-09T06:01:19.840Z"
-    },
-    {
       "municipality": "Squinzano",
       "window_from": "2026-08-09T00:00:00.000Z",
       "window_to": "2026-08-18T00:00:00.000Z",
@@ -2919,14 +3591,6 @@
       "created_at": "2026-08-08T05:57:42.541Z"
     },
     {
-      "municipality": "Sternatia",
-      "window_from": "2026-08-08T00:00:00.000Z",
-      "window_to": "2026-08-17T00:00:00.000Z",
-      "events_found": 1,
-      "threshold": 2,
-      "created_at": "2026-08-08T05:57:42.397Z"
-    },
-    {
       "municipality": "Squinzano",
       "window_from": "2026-08-08T00:00:00.000Z",
       "window_to": "2026-08-17T00:00:00.000Z",
@@ -3597,14 +4261,6 @@
       "events_found": 0,
       "threshold": 2,
       "created_at": "2026-08-07T13:35:26.914Z"
-    },
-    {
-      "municipality": "Sternatia",
-      "window_from": "2026-08-07T00:00:00.000Z",
-      "window_to": "2026-08-16T00:00:00.000Z",
-      "events_found": 1,
-      "threshold": 2,
-      "created_at": "2026-08-07T13:35:26.783Z"
     },
     {
       "municipality": "Squinzano",
@@ -4382,7 +5038,7 @@
       "sources_registered": "8",
       "sources_active": "8",
       "sources_working": "0",
-      "future_events": "2",
+      "future_events": "1",
       "last_source_success": "2026-08-08T08:13:04.169Z"
     },
     {
@@ -4410,11 +5066,11 @@
     {
       "name": "Copertino",
       "slug": "copertino",
-      "coverage_status": "good",
-      "coverage_score": 75,
+      "coverage_status": "partial",
+      "coverage_score": 30,
       "sources_registered": "12",
       "sources_active": "12",
-      "sources_working": "6",
+      "sources_working": "0",
       "future_events": "0",
       "last_source_success": "2026-08-09T14:34:16.835Z"
     },
@@ -4436,9 +5092,9 @@
       "coverage_score": 75,
       "sources_registered": "54",
       "sources_active": "54",
-      "sources_working": "19",
+      "sources_working": "41",
       "future_events": "0",
-      "last_source_success": "2026-08-12T05:55:27.408Z"
+      "last_source_success": "2026-08-12T09:53:21.027Z"
     },
     {
       "name": "Cursi",
@@ -4458,9 +5114,9 @@
       "coverage_score": 85,
       "sources_registered": "280",
       "sources_active": "280",
-      "sources_working": "31",
+      "sources_working": "47",
       "future_events": "1",
-      "last_source_success": "2026-08-12T05:54:34.049Z"
+      "last_source_success": "2026-08-13T06:16:56.415Z"
     },
     {
       "name": "Diso",
@@ -4469,9 +5125,9 @@
       "coverage_score": 85,
       "sources_registered": "36",
       "sources_active": "36",
-      "sources_working": "8",
+      "sources_working": "5",
       "future_events": "2",
-      "last_source_success": "2026-08-12T05:55:06.599Z"
+      "last_source_success": "2026-08-12T15:35:03.609Z"
     },
     {
       "name": "Gagliano del Capo",
@@ -4480,7 +5136,7 @@
       "coverage_score": 65,
       "sources_registered": "60",
       "sources_active": "60",
-      "sources_working": "18",
+      "sources_working": "4",
       "future_events": "0",
       "last_source_success": "2026-08-10T09:05:09.969Z"
     },
@@ -4502,7 +5158,7 @@
       "coverage_score": 85,
       "sources_registered": "37",
       "sources_active": "37",
-      "sources_working": "7",
+      "sources_working": "1",
       "future_events": "5",
       "last_source_success": "2026-08-10T09:04:50.593Z"
     },
@@ -4531,11 +5187,11 @@
     {
       "name": "Giurdignano",
       "slug": "giurdignano",
-      "coverage_status": "good",
-      "coverage_score": 65,
+      "coverage_status": "partial",
+      "coverage_score": 20,
       "sources_registered": "15",
       "sources_active": "15",
-      "sources_working": "12",
+      "sources_working": "0",
       "future_events": "0",
       "last_source_success": "2026-08-09T19:59:47.173Z"
     },
@@ -4564,11 +5220,11 @@
     {
       "name": "Lequile",
       "slug": "lequile",
-      "coverage_status": "complete",
-      "coverage_score": 85,
+      "coverage_status": "partial",
+      "coverage_score": 40,
       "sources_registered": "8",
       "sources_active": "8",
-      "sources_working": "6",
+      "sources_working": "0",
       "future_events": "1",
       "last_source_success": "2026-08-09T14:34:59.855Z"
     },
@@ -4608,22 +5264,22 @@
     {
       "name": "Martano",
       "slug": "martano",
-      "coverage_status": "good",
-      "coverage_score": 75,
+      "coverage_status": "partial",
+      "coverage_score": 30,
       "sources_registered": "29",
       "sources_active": "29",
-      "sources_working": "4",
+      "sources_working": "0",
       "future_events": "1",
       "last_source_success": "2026-08-09T14:35:19.641Z"
     },
     {
       "name": "Martignano",
       "slug": "martignano",
-      "coverage_status": "good",
-      "coverage_score": 75,
+      "coverage_status": "partial",
+      "coverage_score": 30,
       "sources_registered": "46",
       "sources_active": "46",
-      "sources_working": "45",
+      "sources_working": "0",
       "future_events": "0",
       "last_source_success": "2026-08-09T19:56:35.762Z"
     },
@@ -4652,11 +5308,11 @@
     {
       "name": "Melissano",
       "slug": "melissano",
-      "coverage_status": "good",
-      "coverage_score": 65,
+      "coverage_status": "partial",
+      "coverage_score": 20,
       "sources_registered": "47",
       "sources_active": "47",
-      "sources_working": "8",
+      "sources_working": "0",
       "future_events": "0",
       "last_source_success": "2026-08-09T20:00:35.986Z"
     },
@@ -4766,18 +5422,18 @@
       "coverage_score": 65,
       "sources_registered": "40",
       "sources_active": "40",
-      "sources_working": "5",
+      "sources_working": "4",
       "future_events": "0",
       "last_source_success": "2026-08-10T10:47:35.414Z"
     },
     {
       "name": "Novoli",
       "slug": "novoli",
-      "coverage_status": "good",
-      "coverage_score": 75,
+      "coverage_status": "partial",
+      "coverage_score": 30,
       "sources_registered": "15",
       "sources_active": "15",
-      "sources_working": "10",
+      "sources_working": "0",
       "future_events": "0",
       "last_source_success": "2026-08-09T20:01:08.767Z"
     },
@@ -4806,22 +5462,22 @@
     {
       "name": "Palmariggi",
       "slug": "palmariggi",
-      "coverage_status": "good",
-      "coverage_score": 65,
+      "coverage_status": "partial",
+      "coverage_score": 20,
       "sources_registered": "8",
       "sources_active": "8",
-      "sources_working": "1",
+      "sources_working": "0",
       "future_events": "0",
       "last_source_success": "2026-08-09T20:01:10.471Z"
     },
     {
       "name": "Parabita",
       "slug": "parabita",
-      "coverage_status": "good",
-      "coverage_score": 75,
+      "coverage_status": "partial",
+      "coverage_score": 30,
       "sources_registered": "10",
       "sources_active": "10",
-      "sources_working": "8",
+      "sources_working": "0",
       "future_events": "0",
       "last_source_success": "2026-08-10T05:12:26.465Z"
     },
@@ -4832,7 +5488,7 @@
       "coverage_score": 75,
       "sources_registered": "48",
       "sources_active": "48",
-      "sources_working": "45",
+      "sources_working": "1",
       "future_events": "0",
       "last_source_success": "2026-08-10T10:45:15.464Z"
     },
@@ -4997,7 +5653,7 @@
       "coverage_score": 75,
       "sources_registered": "16",
       "sources_active": "16",
-      "sources_working": "12",
+      "sources_working": "11",
       "future_events": "1",
       "last_source_success": "2026-08-10T10:57:54.762Z"
     },
@@ -5163,7 +5819,7 @@
       "sources_registered": "64",
       "sources_active": "64",
       "sources_working": "52",
-      "future_events": "10",
+      "future_events": "9",
       "last_source_success": "2026-08-11T15:38:02.332Z"
     },
     {
