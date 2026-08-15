@@ -4,6 +4,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const read = (p) => fs.readFileSync(new URL(`../${p}`, import.meta.url), 'utf8');
 const WORKFLOWS = '.github/workflows';
@@ -39,7 +40,7 @@ test('NESSUNO schedulatore rimane su Netlify: solo API leggere', () => {
   const dir = new URL('../netlify/functions/', import.meta.url);
   for (const entry of fs.readdirSync(dir)) {
     if (!entry.endsWith('.mjs')) continue;
-    const code = fs.readFileSync(path.join(dir.pathname, entry), 'utf8');
+    const code = fs.readFileSync(path.join(fileURLToPath(dir), entry), 'utf8');
     assert.doesNotMatch(code, /schedule:\s*['"]/, `cron Netlify residuo in ${entry}`);
   }
 });

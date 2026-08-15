@@ -24,9 +24,34 @@
     Cache-Control = "no-store"
 
 [[redirects]]
+  from = "/api/*"
+  to = "https://eventi-salento.pages.dev/api/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/eventi-fallback/*"
+  to = "https://eventi-salento.pages.dev/fallback/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
   from = "/eventi"
   to = "/eventi.html"
   status = 200
+  force = true
+
+[[redirects]]
+  from = "/eventi/"
+  to = "/eventi.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/eventi/*"
+  to = "/eventi.html"
+  status = 200
+  force = true
 
 [[headers]]
   for = "/admin-eventi.html"
