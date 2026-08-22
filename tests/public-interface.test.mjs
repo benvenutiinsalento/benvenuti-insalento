@@ -7,6 +7,7 @@ const html = read('eventi.html');
 const script = read('scripts/eventi-app.js');
 const config = read('netlify.toml');
 const home = read('index.html');
+const robots = read('robots.txt');
 
 test('la sezione Eventi usa identità e navigazione del sito principale', () => {
   assert.match(html, /assets\/images\/benvenuti-in-salento-logo\.png/);
@@ -49,4 +50,21 @@ test('SEO /eventi è canonico e genera structured data Evento dal dato API', () 
 test('nessun secret amministrativo è incluso nel frontend', () => {
   const publicCode = `${html}\n${script}`;
   assert.doesNotMatch(publicCode, /service_role|SUPABASE_DB_URL|NETLIFY_AUTH_TOKEN|GITHUB_TOKEN/i);
+});
+
+test('Copertura e Admin sono privati, noindex e assenti dalla navigazione pubblica', () => {
+  assert.doesNotMatch(html, />Copertura</);
+  assert.doesNotMatch(html, />Admin</);
+  assert.doesNotMatch(script, /api\('\/coverage-summary/);
+  assert.match(script, /case 'copertura': renderAdmin\('coverage'\)/);
+  assert.match(config, /for = "\/admin\/\*"[\s\S]*X-Robots-Tag = "noindex, nofollow"/);
+  assert.match(config, /for = "\/eventi\/copertura\/\*"[\s\S]*X-Robots-Tag = "noindex, nofollow"/);
+  assert.match(config, /from = "\/api\/coverage-summary"[\s\S]*\/api\/admin\/coverage/);
+  assert.match(robots, /Disallow: \/admin/);
+  assert.match(robots, /Disallow: \/eventi\/copertura/);
+});
+
+test('Segnala un evento resta una funzione pubblica', () => {
+  assert.match(html, /href="\/eventi#\/segnala">Segnala un evento/);
+  assert.match(script, /case 'segnala': renderSubmit\(\)/);
 });

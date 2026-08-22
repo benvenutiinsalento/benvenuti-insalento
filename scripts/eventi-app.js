@@ -1,3 +1,5 @@
+import { cleanPublicTitle, normalizePublicResults, resultsCounterText } from './eventi-display.js';
+
 // Eventi Salento — app frontend (vanilla JS, hash routing, no framework)
 // Accessibile: focus, aria, contrasto. Tutti i dati arrivano da /api/*.
 
@@ -182,14 +184,14 @@ async function searchEvents() {
   try {
     const data = await api('/events?' + p.toString(), { signal: ctrl.signal });
     if (ctrl.signal.aborted) return;
-    state.results = data; state.fallback = false;
+    state.results = normalizePublicResults(data); state.fallback = false;
   } catch (err) {
     if (ctrl.signal.aborted || err.name === 'AbortError') return;
     if (err.status === 502 || err.code === 'db_error' || err.code === 'internal') {
       // fallback di emergenza: solo se l'API non risponde, mai se restituisce risultati vuoti
       const fb = await loadFallback();
       if (fb && fb.generated_at) {
-        state.results = { events: fb.events, pagination: { page: 1, limit: fb.events.length, total: fb.events.length, pages: 1 }, generated_at: fb.generated_at };
+        state.results = normalizePublicResults({ events: fb.events, pagination: { page: 1, limit: fb.events.length, total: fb.events.length, pages: 1 }, generated_at: fb.generated_at });
         state.fallback = true;
       } else {
         state.error = err.message;
@@ -207,7 +209,11 @@ async function searchEvents() {
 
 /* ── routing ───────────────────────────────────────────────────────────── */
 function parseHash() {
-  const h = location.hash.replace(/^#\/?/, '');
+  let h = location.hash.replace(/^#\/?/, '');
+  if (!h) {
+    if (/^\/admin(?:\/|$)/.test(location.pathname)) h = `admin/${location.pathname.replace(/^\/admin\/?/, '')}`;
+    else h = location.pathname.replace(/^\/eventi\/?/, '');
+  }
   const [pathPart, queryPart] = h.split('?');
   const seg = pathPart.split('/').filter(Boolean);
   const qp = new URLSearchParams(queryPart || '');
@@ -218,6 +224,21 @@ function parseHash() {
   };
   if (route.name === 'cerca') route.name = 'list';
   return route;
+}
+
+function setPrivateRouteMeta(isPrivate) {
+  let robots = document.querySelector('meta[name="robots"]');
+  if (isPrivate) {
+    if (!robots) {
+      robots = document.createElement('meta');
+      robots.name = 'robots';
+      document.head.append(robots);
+    }
+    robots.content = 'noindex, nofollow';
+    document.title = 'Area operatori | Benvenuti in Salento';
+  } else {
+    robots?.remove();
+  }
 }
 
 function navigate(hash) { location.hash = hash; }
@@ -233,13 +254,14 @@ function render() {
   try {
     const route = parseHash();
     if (route.name !== 'evento') clearEventJsonLd();
+    setPrivateRouteMeta(route.name === 'admin' || route.name === 'copertura');
 
     switch (route.name) {
       case '': case 'list': renderList(route); break;
       case 'evento': renderDetail(route); break;
       case 'comune': renderComune(route); break;
       case 'categoria': renderCategoria(route); break;
-      case 'copertura': renderCoverage(); break;
+      case 'copertura': renderAdmin('coverage'); break;
       case 'segnala': renderSubmit(); break;
       case 'admin': renderAdmin(); break;
       default: renderList({ name: 'list', args: [], qp: new URLSearchParams() });
@@ -373,7 +395,7 @@ async function renderList(route) {
 
       <div class="results-head">
         <h2>${resultsTitle()}</h2>
-        ${state.results ? `<span class="results-meta">${state.results.pagination.total} appuntamenti · aggiornato ${esc(fmtDate(state.results.generated_at, { hour: '2-digit', minute: '2-digit' }))}</span>` : ''}
+        <span class="results-meta" id="results-meta" aria-live="polite"></span>
       </div>
       <div id="results"></div>
     </div>`;
@@ -451,11 +473,13 @@ function bindListEvents() {
 
 function renderResults() {
   const el = document.getElementById('results');
+  const meta = document.getElementById('results-meta');
   if (!el) return;
-  if (state.loading) { el.innerHTML = '<div class="state"><div class="spinner" role="status" aria-label="Caricamento"></div>Caricamento eventi…</div>'; return; }
-  if (state.error) { el.innerHTML = `<div class="state">${esc(state.error)}</div>`; return; }
-  if (!state.results) { el.innerHTML = ''; return; }
+  if (state.loading) { if (meta) meta.textContent = 'Aggiornamento…'; el.innerHTML = '<div class="state"><div class="spinner" role="status" aria-label="Caricamento"></div>Caricamento eventi…</div>'; return; }
+  if (state.error) { if (meta) meta.textContent = ''; el.innerHTML = `<div class="state">${esc(state.error)}</div>`; return; }
+  if (!state.results) { if (meta) meta.textContent = ''; el.innerHTML = ''; return; }
   const events = state.results.events || [];
+  if (meta) meta.textContent = resultsCounterText(state.results, (date) => fmtDate(date, { hour: '2-digit', minute: '2-digit' }));
   if (!events.length) {
     el.innerHTML = `<div class="state"><div class="big">🌊</div><h2>Nessun evento trovato</h2><p>Prova a cambiare data, Comune o a rimuovere qualche filtro.</p><a class="btn" href="#/">Azzera filtri</a></div>`;
     return;
@@ -608,7 +632,10 @@ async function renderDetail(route) {
   const slug = route.args[0];
   $app.innerHTML = '<div class="container"><div class="state"><div class="spinner" role="status"></div>Caricamento evento…</div></div>';
   try {
-    const { event: ev } = await api(`/events/${encodeURIComponent(slug)}`);
+    const { event: rawEvent } = await api(`/events/${encodeURIComponent(slug)}`);
+    const cleanTitle = cleanPublicTitle(rawEvent.title);
+    if (!cleanTitle) throw new Error('Evento non disponibile: titolo sorgente non valido');
+    const ev = { ...rawEvent, title: cleanTitle };
     const occs = ev.event_occurrences || [];
     setEventJsonLd(ev, occs);
     const catLabels = (ev.category_slugs || []).map((c) => catLabel(c));
@@ -688,38 +715,6 @@ async function renderCategoria(route) {
   navigate(`#/?categories=${slug}&preset=next7`);
 }
 
-/* ── copertura ────────────────────────────────────────────────────────── */
-async function renderCoverage() {
-  $app.innerHTML = '<div class="container"><div class="state"><div class="spinner" role="status"></div>Caricamento report copertura…</div></div>';
-  try {
-    const cov = await api('/coverage-summary');
-    const st = cov.stats;
-    const label = { complete: 'Completa', good: 'Buona', partial: 'Parziale', critical: 'Critica', missing: 'Assente' };
-    $app.innerHTML = `
-    <div class="container">
-      <h1>Report copertura — 96 Comuni</h1>
-      <p class="muted">Misurazioni reali del ${esc(fmtDate(cov.generated_at, { hour: '2-digit', minute: '2-digit' }))}. La copertura è dichiarata solo sulla base di questi dati.</p>
-      <div class="coverage-grid" style="margin-bottom:18px">
-        ${Object.entries(st.states).map(([k, v]) => `<div class="coverage-card"><span class="cov-state ${k}">${label[k]}</span> <strong>${v}</strong> Comuni</div>`).join('')}
-        <div class="coverage-card"><strong>${st.future_events}</strong> eventi futuri</div>
-        <div class="coverage-card"><strong>${st.sources_active}</strong> fonti attive</div>
-        <div class="coverage-card"><strong>${st.errors_7d}</strong> errori fonti (7 giorni)</div>
-      </div>
-      <div class="coverage-grid">
-        ${cov.municipalities.map((m) => `
-        <div class="coverage-card">
-          <a href="#/?municipality=${esc(m.slug)}&preset=next7"><strong>${esc(m.municipality)}</strong></a>
-          <div><span class="cov-state ${m.coverage_state}">${label[m.coverage_state] || m.coverage_state}</span></div>
-          <div class="small muted">fonti: ${m.sources_active}/${m.sources_registered} attive · eventi futuri: ${m.future_events} · ultimi 30g: ${m.events_last_30d}</div>
-          <div class="small muted">ultimo successo: ${m.last_success_at ? esc(fmtDate(m.last_success_at, { day: '2-digit', month: '2-digit' })) : 'mai'} · errori 7g: ${m.errors_7d}</div>
-        </div>`).join('')}
-      </div>
-    </div>`;
-  } catch (err) {
-    $app.innerHTML = `<div class="container"><div class="alert err" role="alert">${esc(err.message)}</div></div>`;
-  }
-}
-
 /* ── segnala evento ───────────────────────────────────────────────────── */
 function renderSubmit() {
   const qp = parseHash().qp;
@@ -775,9 +770,9 @@ function renderSubmit() {
 const ADMIN_VIEWS = ['queue', 'sources', 'duplicates', 'submissions', 'coverage', 'audit'];
 let adminState = { user: null, roles: [], view: 'queue', items: [] };
 
-async function renderAdmin() {
+async function renderAdmin(requestedView = '') {
   const route = parseHash();
-  const view = route.args[0] || 'queue';
+  const view = requestedView || route.args[0] || 'queue';
   $app.innerHTML = `
   <div class="container" style="max-width:1000px">
     <h1>Backoffice</h1>

@@ -1,6 +1,8 @@
 User-agent: *
 Allow: /
 Disallow: /admin-eventi.html
+Disallow: /admin
+Disallow: /eventi/copertura
 Disallow: /api/admin/
 Sitemap: https://benvenutiinsalento.it/sitemap.xml
 Sitemap: https://benvenutiinsalento.it/sitemap-eventi.xml
