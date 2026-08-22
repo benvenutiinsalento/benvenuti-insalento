@@ -1,6 +1,14 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { cleanPublicTitle, normalizePublicResults, resultsCounterText } from '../scripts/eventi-display.js';
+import {
+  cleanPublicDescription,
+  cleanPublicEventTitle,
+  cleanPublicTitle,
+  normalizePublicResults,
+  ongoingTodayLabel,
+  refinePublicCategories,
+  resultsCounterText,
+} from '../scripts/eventi-display.js';
 
 test('rimuove boilerplate CMS senza inventare il titolo', () => {
   assert.equal(cleanPublicTitle('. Due serate dedicate ai più piccoli. NOTIZIE'), 'Due serate dedicate ai più piccoli.');
@@ -29,4 +37,43 @@ test('normalizzazione e contatore descrivono esattamente i record visibili', () 
   assert.deepEqual(result.events.map((event) => event.title), ['Due serate dedicate ai più piccoli.', 'Apollo Film Festival']);
   assert.equal(result.pagination.total, 2);
   assert.equal(resultsCounterText(result, () => '22/08/2026, 14:00'), '2 appuntamenti · aggiornato 22/08/2026, 14:00');
+});
+
+test('usa il titolo vero solo quando è attestato dalla stessa fonte', () => {
+  assert.equal(cleanPublicEventTitle({
+    title: '. Due serate dedicate ai più piccoli. NOTIZIE',
+    source_url: 'https://comune.otranto.le.it/novita',
+  }), 'La Notte dei Bambini di Otranto');
+  assert.equal(cleanPublicEventTitle({
+    title: '. Due serate dedicate ai più piccoli. NOTIZIE',
+    source_url: 'https://example.com/altro',
+  }), 'Due serate dedicate ai più piccoli.');
+});
+
+test('le descrizioni troncate finiscono all’ultima frase completa o vengono omesse', () => {
+  assert.equal(
+    cleanPublicDescription('Un concerto che va dritto al cuore. Il ricavato sarà destinato per la "Scu'),
+    'Un concerto che va dritto al cuore.',
+  );
+  assert.equal(cleanPublicDescription('Testo estratto senza alcuna frase completa, proseguito automaticamente dalla pagina sorgente oltre il limite disponibile e che termina bruscamente per la Scu'), '');
+  assert.equal(cleanPublicDescription('Descrizione breve e completa'), 'Descrizione breve e completa');
+});
+
+test('Oggi segnala un multi-day già iniziato senza cambiare la data reale', () => {
+  const event = { event_occurrences: [{
+    start_at: '2026-08-10T00:00:00+02:00',
+    end_at: '2026-09-11T00:00:00+02:00',
+  }] };
+  assert.equal(
+    ongoingTodayLabel(event, 'today', new Date('2026-08-22T12:00:00+02:00'), () => '10 set 2026'),
+    'In corso fino al 10 set 2026',
+  );
+  assert.equal(ongoingTodayLabel(event, 'next7', new Date('2026-08-22T12:00:00+02:00')), '');
+});
+
+test('affina Altro soltanto con segnali inequivocabili', () => {
+  assert.deepEqual(refinePublicCategories({ title: 'Rappresentazione teatrale “Matti da slegare”', category_slugs: ['altro'] }), ['teatro']);
+  assert.deepEqual(refinePublicCategories({ title: 'La Notte dei Bambini di Otranto', category_slugs: ['altro'] }), ['famiglie-e-bambini']);
+  assert.deepEqual(refinePublicCategories({ title: 'Serata d’estate', category_slugs: ['altro'] }), ['altro']);
+  assert.deepEqual(refinePublicCategories({ title: 'Festival già classificato', category_slugs: ['festival'] }), ['festival']);
 });

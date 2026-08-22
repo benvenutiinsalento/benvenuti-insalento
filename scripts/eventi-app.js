@@ -1,4 +1,11 @@
-import { cleanPublicTitle, normalizePublicResults, resultsCounterText } from './eventi-display.js';
+import {
+  cleanPublicDescription,
+  cleanPublicEventTitle,
+  normalizePublicResults,
+  ongoingTodayLabel,
+  refinePublicCategories,
+  resultsCounterText,
+} from './eventi-display.js';
 
 // Eventi Salento — app frontend (vanilla JS, hash routing, no framework)
 // Accessibile: focus, aria, contrasto. Tutti i dati arrivano da /api/*.
@@ -496,6 +503,7 @@ function cardHtml(ev) {
   const cancelled = ev.status === 'cancelled' || ev.status === 'postponed';
   const statusBadge = ev.status === 'cancelled' ? '<span class="badge cancelled">Annullato</span>'
     : ev.status === 'postponed' ? '<span class="badge postponed">Rinviato</span>' : '';
+  const ongoing = ongoingTodayLabel(ev, state.params.preset, new Date(), (date) => fmtDate(date));
   const verifMap = { official: 'Fonte ufficiale', institutional: 'Fonte istituzionale', confirmed: 'Confermato', secondary: 'Da verificare', unverified: 'Non verificato', conflicting: 'In conflitto' };
   return `
   <article class="card" data-id="${esc(ev.id)}">
@@ -506,6 +514,7 @@ function cardHtml(ev) {
           ${cats.slice(0, 3).map((c) => `<span class="badge cat-${esc(c)}">${esc(catLabel(c))}</span>`).join('')}
           ${ev.is_free ? '<span class="badge free">Gratis</span>' : ''}
           ${ev.audience_slugs?.includes('famiglie-e-bambini') ? '<span class="badge">👨‍👩‍👧 Famiglie</span>' : ''}
+          ${ongoing ? `<span class="badge ongoing">${esc(ongoing)}</span>` : ''}
           ${statusBadge}
         </div>
         <h3><a href="#/evento/${esc(ev.slug)}">${esc(ev.title)}</a></h3>
@@ -633,9 +642,15 @@ async function renderDetail(route) {
   $app.innerHTML = '<div class="container"><div class="state"><div class="spinner" role="status"></div>Caricamento evento…</div></div>';
   try {
     const { event: rawEvent } = await api(`/events/${encodeURIComponent(slug)}`);
-    const cleanTitle = cleanPublicTitle(rawEvent.title);
+    const cleanTitle = cleanPublicEventTitle(rawEvent);
     if (!cleanTitle) throw new Error('Evento non disponibile: titolo sorgente non valido');
-    const ev = { ...rawEvent, title: cleanTitle };
+    const ev = {
+      ...rawEvent,
+      title: cleanTitle,
+      short_description: cleanPublicDescription(rawEvent.short_description) || null,
+      description: cleanPublicDescription(rawEvent.description) || null,
+    };
+    ev.category_slugs = refinePublicCategories(ev);
     const occs = ev.event_occurrences || [];
     setEventJsonLd(ev, occs);
     const catLabels = (ev.category_slugs || []).map((c) => catLabel(c));

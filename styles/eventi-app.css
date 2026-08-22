@@ -133,6 +133,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .badge.free { background: #e8f5ec; color: var(--ok); }
 .badge.cancelled { background: #fbe3e3; color: var(--danger); }
 .badge.postponed { background: #fff3d6; color: #8a5a00; }
+.badge.ongoing { background: #dff3ea; color: #11623f; border: 1px solid #afd9c5; }
 .card .source { font-size: .82rem; color: var(--muted); margin-top: 10px; }
 .card .source a { font-weight: 600; }
 .verif { display: inline-flex; align-items: center; gap: 4px; font-size: .78rem; font-weight: 600; border-radius: 6px; padding: 2px 8px; }
