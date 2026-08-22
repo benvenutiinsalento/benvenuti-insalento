@@ -52,6 +52,10 @@ export function cleanPublicEventTitle(event) {
     && /^Due serate dedicate ai più piccoli\.?$/i.test(title)) {
     return 'La Notte dei Bambini di Otranto';
   }
+  if (source === 'https://comune.otranto.le.it/novita/calendario-eventi-primavera-estate-2026'
+    && /^Notte dei Bambini dall['’]1$/i.test(title)) {
+    return 'Notte dei Bambini';
+  }
 
   // In questi occhielli il nome dell'evento è già letteralmente presente:
   // si elimina solo il testo giornalistico circostante, senza inferire parole.

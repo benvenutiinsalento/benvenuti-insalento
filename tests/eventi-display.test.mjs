@@ -48,6 +48,10 @@ test('usa il titolo vero solo quando è attestato dalla stessa fonte', () => {
     title: '. Due serate dedicate ai più piccoli. NOTIZIE',
     source_url: 'https://example.com/altro',
   }), 'Due serate dedicate ai più piccoli.');
+  assert.equal(cleanPublicEventTitle({
+    title: 'Notte dei Bambini dall’1',
+    source_url: 'https://comune.otranto.le.it/novita/calendario-eventi-primavera-estate-2026/',
+  }), 'Notte dei Bambini');
 });
 
 test('le descrizioni troncate finiscono all’ultima frase completa o vengono omesse', () => {
